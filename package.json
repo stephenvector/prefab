@@ -1,0 +1,53 @@
+{
+  "name": "@stephenvector/prefab",
+  "version": "0.1.0",
+  "description": "A set of themeable UI components for React projects.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenvector/prefab.git"
+  },
+  "author": "Stephen Vector",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenvector/prefab/issues"
+  },
+  "homepage": "https://github.com/stephenvector/prefab#readme",
+  "peerDependencies": {
+    "@emotion/core": "^10.0.17",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
+    "@types/react": "^16.9.3",
+    "@types/react-dom": "^16.9.0",
+    "babel-jest": "^24.9.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.9.0",
+    "react-test-renderer": "^16.9.0",
+    "typescript": "^3.6.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>src/setupTests.js"
+    ]
+  }
+}
