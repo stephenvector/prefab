@@ -1,7 +1,3 @@
-import React from "react";
-
-interface ButtonProps extends React.ComponentProps<"button"> {}
-
-export function Button(props: ButtonProps) {
-  return React.createElement("button", props);
-}
+export { default as Button } from "./Button";
+export { default as Input } from "./Input";
+export { default as Fieldset } from "./Fieldset";

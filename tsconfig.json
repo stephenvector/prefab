@@ -4,7 +4,11 @@
     "esModuleInterop": true,
     "jsx": "react",
     "outDir": "lib",
-    "declaration": true
+    "declaration": true,
+    "rootDirs": ["src"],
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "noEmit": true
   },
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test.tsx"]
