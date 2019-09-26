@@ -26,23 +26,57 @@
     "@emotion/styled": "^10.0.17"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.2.1",
-    "@storybook/addon-links": "^5.2.1",
-    "@storybook/addons": "^5.2.1",
-    "@storybook/react": "^5.2.1",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.6.0",
+    "@emotion/core": "^10.0.17",
+    "@emotion/styled": "^10.0.17",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.0",
+    "babel-jest": "^24.9.0",
     "docz": "next",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "typescript": "^3.6.3"
   },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
+  },
   "jest": {
+    "clearMocks": true,
+    "coverageDirectory": "coverage",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx",
+      "node"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>src/setupTests.js"
+    ],
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/.docz/"
     ]
   }
 }
