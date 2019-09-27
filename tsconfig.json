@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -8,7 +10,6 @@
     "rootDirs": ["src"],
     "resolveJsonModule": true,
     "skipLibCheck": false,
-    "noEmit": true,
     "inlineSourceMap": true
   },
   "include": ["src/**/*"],
