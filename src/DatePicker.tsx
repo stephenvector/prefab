@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import styled from "./styled";
 
+const Wrapper = styled("div")`
+  background: #fff;
+  width: 21rem;
+  box-shadow: inset 0 0 0 1px #ddd;
+  border-radius: 3px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
+
+const Header = styled("div")`
+  display: flex;
+  justify-content: space-between;
+  line-height: 3rem;
+  border-bottom: 1px solid #ddd;
+`;
+
 const DayBox = styled("button")`
   background: transparent;
   height: 3rem;
@@ -10,12 +26,25 @@ const DayBox = styled("button")`
   font: inherit;
   user-select: none;
   &:hover {
-    background: ${t => t.theme.colors.accent};
+    background: blue;
+    color: #fff;
   }
 `;
 
+const NextPreviousButton = styled("button")`
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  border: none;
+  height: 3rem;
+  line-height: 3rem;
+  width: 3rem;
+  text-align: center;
+`;
+
 const monthFormatter = new Intl.DateTimeFormat("en-us", { month: "long" });
-const dayFormatter = new Intl.DateTimeFormat("en-us", { weekday: "narrow" });
 
 export default function DatePicker() {
   const [now, setNow] = useState(new Date(Date.now()));
@@ -43,23 +72,22 @@ export default function DatePicker() {
   }
 
   return (
-    <div>
-      <div>
-        <div>
+    <Wrapper>
+      <Header>
+        <NextPreviousButton onClick={previousMonth} type="button">
+          &larr;
+        </NextPreviousButton>
+        <div style={{ textAlign: "center" }}>
           {monthFormatter.format(now)} {now.getFullYear()}
         </div>
-        <button onClick={previousMonth} type="button">
-          Previous Month
-        </button>
-        <button onClick={nextMonth} type="button">
-          Next Month
-        </button>
-      </div>
+        <NextPreviousButton onClick={nextMonth} type="button">
+          &rarr;
+        </NextPreviousButton>
+      </Header>
 
       <div
         style={{
           display: "flex",
-          background: "#eee",
           maxWidth: "21rem",
           flexWrap: "wrap"
         }}
@@ -75,9 +103,6 @@ export default function DatePicker() {
             <DayBox key={index}>{index + 1}</DayBox>
           ))}
       </div>
-
-      <p>{now.getFullYear()}</p>
-      <p>{numDaysInMonth}</p>
-    </div>
+    </Wrapper>
   );
 }
