@@ -9,11 +9,6 @@ export interface PrefabTheme {
     warning: string;
     success: string;
   };
-  fonts: {
-    primary: string;
-    heading: string;
-    secondary: string;
-  };
 }
 
 export default defaultStyled as CreateStyled<PrefabTheme>;
