@@ -1,6 +1,13 @@
-import styled from "./styled";
+import React from "react";
+import styled from "styled-components";
 
-export default styled("button")`
+export interface ButtonProps {
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  fullWidth?: true;
+  variant?: "default" | "error" | "accent" | "success" | "warning";
+}
+
+export default styled.button`
   border: none;
   font: inherit;
   display: inline-block;

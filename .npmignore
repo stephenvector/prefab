@@ -2,3 +2,4 @@ src
 coverage
 .docz
 doczrc.js
+.travis.yml

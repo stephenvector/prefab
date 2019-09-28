@@ -1,21 +1,6 @@
-import React from "react";
-import styled from "./styled";
-import Label from "./Label";
+import styled from "styled-components";
 
-const TextareaControl = styled("textarea")`
+export default styled.textarea`
   padding: 0.5rem;
   border: 1px solid #ddd;
 `;
-
-interface TextareaProps {
-  label: string;
-}
-
-export default function Textarea({ label }: TextareaProps) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <TextareaControl />
-    </div>
-  );
-}

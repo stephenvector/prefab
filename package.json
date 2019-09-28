@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "A set of themeable UI components for React projects.",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf build lib coverage",
+    "prebuild-docs": "npm run clean",
+    "build-docs": "webpack",
+    "postbuild-docs": "react-snap",
     "test": "jest",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -19,46 +23,45 @@
     "url": "https://github.com/stephenvector/prefab/issues"
   },
   "homepage": "https://github.com/stephenvector/prefab#readme",
-  "peerDependencies": {
-    "@emotion/core": "^10.0.17",
+  "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "@emotion/styled": "^10.0.17"
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
-    "@emotion/core": "^10.0.17",
-    "@emotion/styled": "^10.0.17",
+    "@mdx-js/loader": "^1.5.0",
+    "@next/mdx": "^9.0.6",
+    "@static/charge": "^1.5.0",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.0",
+    "@types/styled-components": "^4.1.19",
     "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
     "docz": "next",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "html-webpack-plugin": "^4.0.0-beta.8",
+    "html-webpack-template": "^6.2.0",
     "jest": "^24.9.0",
+    "next": "^9.0.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-snap": "^1.23.0",
+    "rimraf": "^3.0.0",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ],
-      "@babel/preset-react",
-      "@babel/preset-typescript"
-    ]
+    "ts-loader": "^6.1.2",
+    "typescript": "^3.6.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1",
+    "webpack-node-externals": "^1.7.2"
   },
   "jest": {
     "coverageDirectory": "coverage",

@@ -11,7 +11,16 @@ before_script:
 script:
   - npm test
   - npm run build
+  - npm run build-docs
   - npm install -g codecov
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: build
+  on:
+    branch: master
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 after_success:
