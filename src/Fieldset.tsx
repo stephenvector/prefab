@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import React from "react";
 
-export default styled("fieldset")`
-  border: 1px solid #ddd;
-`;
+export default function Fieldset(
+  props: React.DetailedHTMLProps<
+    React.FieldsetHTMLAttributes<HTMLFieldSetElement>,
+    HTMLFieldSetElement
+  >
+) {
+  return <fieldset {...props} />;
+}

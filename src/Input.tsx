@@ -1,21 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-import Label from "./Label";
+import { css, StyleSheet } from "aphrodite";
 
-const InputControl = styled("input")`
-  font: inherit;
-  padding: 0.5rem;
-`;
+const styles = StyleSheet.create({
+  input: {
+    font: "inherit"
+  }
+});
 
-interface Props {
-  label: string;
-}
-
-export default function Input({ label }: Props) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <InputControl />
-    </div>
-  );
+export default function Input(
+  props: React.InputHTMLAttributes<HTMLInputElement>
+) {
+  return <input {...props} className={css(styles.input)} />;
 }

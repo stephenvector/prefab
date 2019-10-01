@@ -1,7 +1,13 @@
-import styled from "styled-components";
+import React from "react";
+import { css, StyleSheet } from "aphrodite";
+import { lightTheme } from "./themes";
 
-export default styled("div")`
-  height: 1rem;
-  width: 1rem;
-  border-radius: 0.5rem;
-`;
+const loadingStyles = StyleSheet.create({
+  text: {
+    color: `var(--colors-meta, ${lightTheme.colors.meta})`
+  }
+});
+
+export default function Loading() {
+  return <span className={css(loadingStyles.text)}>Loading</span>;
+}

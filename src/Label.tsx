@@ -1,5 +1,15 @@
-import styled from "styled-components";
+import React from "react";
+import { css, StyleSheet } from "aphrodite";
+import { lightTheme } from "./themes";
 
-export default styled("label")`
-  display: block;
-`;
+const styles = StyleSheet.create({
+  label: {
+    color: `var(--colors-meta, ${lightTheme.colors.meta})`
+  }
+});
+
+export default function Label(
+  props: React.LabelHTMLAttributes<HTMLLabelElement>
+) {
+  return <label {...props} className={css(styles.label)} />;
+}
