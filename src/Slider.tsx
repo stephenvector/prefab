@@ -1,53 +1,44 @@
 import React, { useEffect, useState } from "react";
+import { StyleSheet, css } from "aphrodite";
 
-// export const SliderBar = styled.div<{
-//   width: number;
-//   theme: DefaultTheme;
-// }>`
-//   position: absolute;
-//   left: 0rem;
-//   bottom: 0.75rem;
-//   top: 0.75rem;
-//   height: 0.5rem;
-//   border-radius: 0.5rem;
-//   background: ${p => p.theme.colors.accent};
-//   width: ${p => `${p.width * 100}%`};
-// `;
-
-// export const SliderBackgroundBar = styled.div``;
-
-// export const SliderWrapper = styled.div`
-//   height: 2rem;
-//   position: relative;
-//   width: 100%;
-//   ${SliderBackgroundBar} {
-//     background: #ddd;
-//     width: 100%;
-//     position: absolute;
-//     left: 0rem;
-//     bottom: 0.75rem;
-//     top: 0.75rem;
-//     height: 0.5rem;
-//     border-radius: 0.5rem;
-//   }
-// `;
-
-// export const SliderDot = styled.div<{
-//   width: number;
-//   theme: DefaultTheme;
-// }>`
-//   position: absolute;
-//   bottom: 0;
-//   top: 50%;
-//   height: 2rem;
-//   width: 2rem;
-//   background: ${p => p.theme.colors.background};
-//   box-shadow: inset 0 0 2px 0 ${p => p.theme.colors.accent};
-//   transform: translateY(-1rem) translateX(-1rem);
-//   left: ${p => `${p.width * 100}%`};
-//   z-index: 100;
-//   border-radius: 1rem;
-// `;
+const styles = StyleSheet.create({
+  wrapper: {
+    height: "2rem",
+    position: "relative",
+    width: "100%",
+    margin: "0.5rem 0"
+  },
+  indicatorBar: {
+    position: "absolute",
+    left: 0,
+    bottom: "0.75rem",
+    top: "0.75rem",
+    height: "0.5rem",
+    borderRadius: "0.5rem",
+    background: "#f2f2f2"
+  },
+  backgroundBar: {
+    background: "#ddd",
+    width: "100%",
+    position: "absolute",
+    left: 0,
+    bottom: "0.75rem",
+    top: "0.75rem",
+    height: "0.5rem",
+    borderRadius: "0.5rem"
+  },
+  dot: {
+    position: "absolute",
+    bottom: 0,
+    top: "50%",
+    height: "2rem",
+    width: "2rem",
+    borderRadius: "1rem",
+    background: "#000",
+    transform: "translateY(-1rem) translateX(-1rem)",
+    zIndex: 100
+  }
+});
 
 type SliderProps = {
   min: number;
@@ -106,12 +97,19 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
         ref={ref}
         onMouseMove={handleMouseEvent}
         onMouseDown={handleMouseEvent}
+        className={css(styles.wrapper)}
       >
-        <div style={{ width: (value - min) / (max - min) }} />
+        <div
+          className={css(styles.indicatorBar)}
+          style={{ width: (value - min) / (max - min) }}
+        />
 
-        <div />
+        <div className={css(styles.backgroundBar)} />
 
-        <div style={{ width: (value - min) / (max - min) }} />
+        <div
+          className={css(styles.dot)}
+          style={{ left: (value - min) / (max - min) }}
+        />
       </div>
     );
   }
