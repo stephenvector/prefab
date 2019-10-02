@@ -7,16 +7,10 @@ type ThemePreviewProps = {
 };
 
 export default function ThemePreview({ theme }: ThemePreviewProps) {
-  const [currentTheme, setCurrentTheme] = useState(theme);
-
-  useEffect(() => {
-    setCurrentTheme(theme);
-  }, [theme]);
-
   return (
-    <PrefabTheme theme={currentTheme}>
+    <PrefabTheme theme={theme}>
       <DatePicker />
-      <ColorPicker onChange={() => {}} value={currentTheme.colors.background} />
+      <ColorPicker onChange={() => {}} value={theme.colors.background} />
     </PrefabTheme>
   );
 }

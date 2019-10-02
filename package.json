@@ -1,20 +1,14 @@
 {
   "name": "@stephenvector/prefab",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A set of themeable UI components for React projects.",
-  "main": "lib/index.js",
-  "types": "types/index.d.ts",
   "scripts": {
+    "dev": "webpack-dev-server",
     "build": "tsc",
     "docz": "docz dev",
+    "docz:build": "docz build",
     "test": "jest"
   },
-  "files": [
-    "docs/",
-    "doczrc.js",
-    "tsconfig.json",
-    "package.json"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stephenvector/prefab.git"
@@ -27,13 +21,12 @@
   "homepage": "https://github.com/stephenvector/prefab#readme",
   "dependencies": {
     "aphrodite": "^2.4.0",
-    "docz": "^2.0.0-rc.49"
-  },
-  "devDependencies": {
+    "docz": "latest",
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
+    "@mdx-js/mdx": "^1.5.0",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.3",
@@ -51,36 +44,10 @@
     "rimraf": "^3.0.0",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
-    "typescript": "^3.6.3",
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1",
-    "webpack-node-externals": "^1.7.2"
+    "typescript": "^3.6.3"
   },
-  "jest": {
-    "coverageDirectory": "coverage",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json",
-      "jsx",
-      "node"
-    ],
-    "roots": [
-      "<rootDir>/src/"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>src/setupTests.js"
-    ],
-    "testEnvironment": "jsdom",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/.docz/"
-    ]
+  "devDependencies": {
+    "docz-theme-default": "^1.2.0",
+    "yarn": "^1.19.0"
   }
 }

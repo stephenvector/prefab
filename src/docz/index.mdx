@@ -1,5 +1,162 @@
 ---
+name: Prefab
 route: /
 ---
 
+import { Playground, Props } from "docz";
+import {
+  Button,
+  ColorPicker,
+  Column,
+  Container,
+  DatePicker,
+  Fieldset,
+  Input,
+  Label,
+  Loading,
+  PrefabTheme,
+  ProgressBar,
+  Row,
+  Select,
+  Slider,
+  Textarea,
+  ThemeEditor,
+  ThemePreview
+} from "../";
+import { lightTheme } from "../themes";
+
 # Prefab
+
+## Components
+
+### Button
+
+<Playground>
+  <Button>Button</Button>
+</Playground>
+
+### ColorPicker
+
+<Playground>
+  <ColorPicker value="#523" onChange={() => {}} />
+</Playground>
+
+### Column
+
+<Playground>
+  <Column />
+</Playground>
+
+<Props of={Column} />
+
+### Container
+
+<Playground>
+  <Container />
+</Playground>
+
+<Props of={Container} />
+
+### DatePicker
+
+<Playground>
+  <DatePicker />
+</Playground>
+
+<Props of={DatePicker} />
+
+### Fieldset
+
+<Playground>
+  <Fieldset />
+</Playground>
+
+<Props of={Fieldset} />
+
+### Input
+
+<Playground>
+  <Input />
+</Playground>
+
+<Props of={Input} />
+
+### Label
+
+<Playground>
+  <Label />
+</Playground>
+
+<Props of={Label} />
+
+### Loading
+
+<Playground>
+  <Loading />
+</Playground>
+
+<Props of={Loading} />
+
+### PrefabTheme
+
+<Playground>
+  <PrefabTheme />
+</Playground>
+
+<Props of={PrefabTheme} />
+
+### ProgressBar
+
+<Playground>
+  <ProgressBar />
+</Playground>
+
+<Props of={ProgressBar} />
+
+### Row
+
+<Playground>
+  <Row />
+</Playground>
+
+<Props of={Row} />
+
+### Select
+
+<Playground>
+  <Select />
+</Playground>
+
+<Props of={Select} />
+
+### Slider
+
+<Playground>
+  <Slider />
+</Playground>
+
+<Props of={Slider} />
+
+### Textarea
+
+<Playground>
+  <Textarea />
+</Playground>
+
+<Props of={Textarea} />
+
+### ThemeEditor
+
+<Playground>
+  <ThemeEditor value={lightTheme} />
+</Playground>
+
+<Props of={ThemeEditor} />
+
+### ThemePreview
+
+<Playground>
+  <ThemePreview theme={lightTheme} />
+</Playground>
+
+<Props of={ThemePreview} />

@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
 
+type ContainerProps = {
+  fullWidth?: boolean;
+} & React.HTMLAttributes<HTMLDivElement>;
+
 const styles = StyleSheet.create({
   container: {
     display: "flex",
@@ -8,6 +12,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Container(props: React.HTMLAttributes<HTMLDivElement>) {
+export default function Container(props: ContainerProps) {
   return <div {...props} className={css(styles.container)} />;
 }

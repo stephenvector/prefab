@@ -10,6 +10,7 @@ export { default as Loading } from "./Loading";
 export { default as PrefabTheme } from "./PrefabTheme";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as Row } from "./Row";
+export { default as Select } from "./Select";
 export { default as Slider } from "./Slider";
 export { default as Textarea } from "./Textarea";
 export { default as ThemeEditor } from "./ThemeEditor";
