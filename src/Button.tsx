@@ -29,12 +29,13 @@ const hasHref = (
 
 const buttonStyles = StyleSheet.create({
   button: {
+    color: `var(--colors-background, ${lightTheme.colors.background})`,
     background: `var(--colors-accent, ${lightTheme.colors.accent})`,
     cursor: "pointer",
     border: "none",
     font: "inherit",
     padding: "0.5rem 1rem",
-    borderRadius: `var(--colors-accent, ${lightTheme.sizing.borderRadius})em`
+    borderRadius: `var(--sizing-borderRadius, ${lightTheme.sizing.borderRadius})px`
   }
 });
 
