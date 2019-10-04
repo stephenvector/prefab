@@ -1,9 +1,13 @@
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
 
-type ContainerProps = {
-  fullWidth?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+type ColumnProps = {
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +16,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Container(props: ContainerProps) {
+export default function Column(props: ColumnProps) {
   return <div {...props} className={css(styles.container)} />;
 }
