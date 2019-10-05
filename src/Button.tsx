@@ -34,6 +34,7 @@ const buttonStyles = StyleSheet.create({
     cursor: "pointer",
     border: "none",
     font: "inherit",
+    fontFamily: `var(--fonts-familyDefault, ${lightTheme.fonts.familyDefault})`,
     padding: "0.5rem 1rem",
     borderRadius: `var(--sizing-borderRadius, ${lightTheme.sizing.borderRadius})px`
   }
