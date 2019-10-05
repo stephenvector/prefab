@@ -3,7 +3,6 @@ export { default as ColorPicker } from "./ColorPicker";
 export { default as Column } from "./Column";
 export { default as Container } from "./Container";
 export { default as DatePicker } from "./DatePicker";
-export { default as Fieldset } from "./Fieldset";
 export { default as Input } from "./Input";
 export { default as Label } from "./Label";
 export { default as Loading } from "./Loading";
