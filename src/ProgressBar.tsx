@@ -1,28 +1,52 @@
 import React from "react";
+import { css, StyleSheet } from "aphrodite";
+import { lightTheme } from "./themes";
+
+const progressBarStyles = StyleSheet.create({
+  wrapper: {
+    background: `var(--colors-background, ${lightTheme.colors.background})`,
+    border: "none",
+    overflow: "hidden",
+    borderRadius: "0.5rem",
+    boxShadow: `inset 0 0 0 2px var(--colors-accent, ${lightTheme.colors.accent})`
+  },
+  progress: {
+    background: `var(--colors-accent, ${lightTheme.colors.accent})`,
+    border: "none",
+    font: "inherit",
+    height: "1rem",
+    borderRadius: "0.5rem",
+    fontWeight: "bold",
+    fontSize: "90%",
+    lineHeight: "1rem",
+    textAlign: "center",
+    color: `var(--colors-background, ${lightTheme.colors.background})`
+  }
+});
 
 interface Props {
   value: number;
-  disabled?: boolean;
+  showText: boolean;
 }
 
-// const Wrapper = styled.div<Props>`
-//   height: 1rem;
-//   background: #f2f2f2;
-//   border-radius: 0.5rem;
-//   overflow: hidden;
-//   opacity: ${p => (p.disabled ? 0.5 : 1)};
-// `;
+function ProgressBar({ value, showText }: Props) {
+  const widthStyle = StyleSheet.create({
+    width: {
+      width: `${value}%`
+    }
+  });
 
-// const Progress = styled.div<Props>`
-//   width: ${p => p.value}%;
-//   height: 1rem;
-//   background: blue;
-// `;
-
-export default function ProgressBar({ value, disabled }: Props) {
   return (
-    <div>
-      <div style={{ width: `${value}%` }} />
+    <div className={css(progressBarStyles.wrapper)}>
+      <div className={css([progressBarStyles.progress, widthStyle.width])}>
+        {showText && `${value}%`}
+      </div>
     </div>
   );
 }
+
+ProgressBar.defaultProps = {
+  showText: false
+};
+
+export default ProgressBar;
