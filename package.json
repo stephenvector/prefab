@@ -8,7 +8,8 @@
     "docz": "docz dev",
     "docz:build": "docz build",
     "test": "jest",
-    "cleanup": "rimraf .docz coverage lib node_modules"
+    "cleanup": "rimraf .docz coverage lib node_modules",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
@@ -21,29 +22,37 @@
   },
   "homepage": "https://github.com/stephenvector/prefab#readme",
   "devDependencies": {
-    "aphrodite": "^2.4.0",
-    "docz": "latest",
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
+    "@storybook/addon-info": "^5.2.1",
+    "@storybook/preset-typescript": "^1.1.0",
+    "@storybook/react": "^5.2.1",
     "@types/enzyme": "^3.10.3",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.0",
+    "@types/storybook__react": "^4.0.2",
+    "aphrodite": "^2.4.0",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "docz": "latest",
+    "docz-theme-default": "^1.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.9.0",
     "next": "^9.0.6",
     "react": "^16.10.1",
+    "react-docgen-typescript-loader": "^3.3.0",
     "react-dom": "^16.10.1",
     "react-live": "^2.2.0",
     "rimraf": "^3.0.0",
+    "storybook-addon-props": "^3.0.4",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.2.0",
-    "typescript": "^3.6.3",
-    "docz-theme-default": "^1.2.0"
+    "typescript": "^3.6.3"
   },
   "jest": {
     "coverageDirectory": "coverage",
@@ -70,5 +79,8 @@
       "/node_modules/",
       "/.docz/"
     ]
+  },
+  "dependencies": {
+    "storybook-addon-react-docgen": "^1.2.28"
   }
 }
