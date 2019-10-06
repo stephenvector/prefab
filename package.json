@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "description": "A set of themeable UI components for React projects.",
   "scripts": {
-    "build": "tsc",
+    "build-lib": "tsc",
     "test": "jest",
     "cleanup": "rimraf coverage lib node_modules",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "build": "build-storybook -c .storybook -o public"
   },
   "repository": {
     "type": "git",
