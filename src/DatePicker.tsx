@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { css, StyleSheet } from "aphrodite";
+import { lightTheme } from "./themes";
 
 const datePickerStylesheet = StyleSheet.create({
   wrapper: {
-    width: "21rem"
+    width: "21rem",
+    font: "inherit",
+    fontFamily: `var(--fonts-familyDefault, ${lightTheme.fonts.familyDefault})`
   },
   header: {
     display: "flex",
@@ -15,7 +18,12 @@ const datePickerStylesheet = StyleSheet.create({
     border: "none",
     font: "inherit",
     height: "3rem",
-    width: "3rem"
+    width: "3rem",
+    borderRadius: `var(--sizing-borderRadius, ${lightTheme.sizing.borderRadius})px`,
+    ":hover": {
+      background: `var(--colors-accent, ${lightTheme.colors.accent})`,
+      color: `var(--colors-background, ${lightTheme.colors.background})`
+    }
   },
   nextPreviousButton: {
     background: "transparent",
@@ -86,7 +94,7 @@ export default function DatePicker() {
         {Array(startDayOfWeek)
           .fill(0)
           .map((_item, index) => (
-            <button className={css(datePickerStylesheet.dayBox)} key={index} />
+            <span className={css(datePickerStylesheet.dayBox)} key={index} />
           ))}
         {Array(numDaysInMonth)
           .fill(0)
