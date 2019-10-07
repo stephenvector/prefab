@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, css } from "aphrodite";
+import { lightTheme } from "./themes";
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
     top: "0.75rem",
     height: "0.5rem",
     borderRadius: "0.5rem",
-    background: "#f2f2f2"
+    background: `var(--colors-accent, ${lightTheme.colors.accent})`
   },
   backgroundBar: {
     background: "#ddd",
@@ -25,7 +26,8 @@ const styles = StyleSheet.create({
     bottom: "0.75rem",
     top: "0.75rem",
     height: "0.5rem",
-    borderRadius: "0.5rem"
+    borderRadius: "0.5rem",
+    zIndex: -1
   },
   dot: {
     position: "absolute",
@@ -34,8 +36,10 @@ const styles = StyleSheet.create({
     height: "2rem",
     width: "2rem",
     borderRadius: "1rem",
-    background: "#000",
+    boxShadow: `inset 0 0 0 2px var(--colors-meta, ${lightTheme.colors.meta})`,
+    background: `var(--colors-background, ${lightTheme.colors.background})`,
     transform: "translateY(-1rem) translateX(-1rem)",
+    border: "none",
     zIndex: 100
   }
 });
@@ -101,12 +105,12 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       >
         <div
           className={css(styles.indicatorBar)}
-          style={{ width: (value - min) / (max - min) }}
+          style={{ width: `${((value - min) / (max - min)) * 100}%` }}
         />
 
         <div className={css(styles.backgroundBar)} />
 
-        <div
+        <button
           className={css(styles.dot)}
           style={{ left: `${((value - min) / (max - min)) * 100}%` }}
         />
