@@ -53,7 +53,7 @@ export const lightTheme: PrefabThemeConfig = {
     familyDefault: "sans-serif"
   },
   sizing: {
-    borderRadius: 0.4,
+    borderRadius: 3,
     h1: 3,
     h2: 2.4,
     h3: 2.1,
