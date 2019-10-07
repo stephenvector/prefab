@@ -6,7 +6,11 @@ type RGBColor = {
   b: number;
 };
 
-export function isValidHex(hexOrNot: string): boolean {
+export function isValidHex(hexOrNot?: string): boolean {
+  if (hexOrNot === undefined) {
+    return false;
+  }
+
   if (hexOrNot.charAt(0) !== "#") {
     return false;
   }
