@@ -108,7 +108,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
         <div
           className={css(styles.dot)}
-          style={{ left: (value - min) / (max - min) }}
+          style={{ left: `${((value - min) / (max - min)) * 100}%` }}
         />
       </div>
     );
