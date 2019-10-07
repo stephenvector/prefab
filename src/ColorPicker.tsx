@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Slider } from "./";
+import { lightTheme } from "./themes";
 import { isValidHex, getRGBFromHex, getHexFromRGB } from "./utils";
 
 type ColorPickerProps = {
   value: string;
-  onChange(newValue: string): void;
+  onChange?(newValue: string): void;
 };
-
-export default function ColorPicker({ value, onChange }: ColorPickerProps) {
+function ColorPicker({ value, onChange }: ColorPickerProps) {
   const [rgbValue, setRGBValue] = useState(getRGBFromHex(value));
 
   const rRef = useRef<HTMLDivElement>(null);
@@ -19,17 +19,30 @@ export default function ColorPicker({ value, onChange }: ColorPickerProps) {
   }
 
   function handleChange(newValue: number, e: React.MouseEvent) {
+    let newRGB;
     if (rRef.current === e.currentTarget) {
-      onChange(getHexFromRGB({ ...rgbValue, r: newValue }));
+      newRGB = { ...rgbValue, r: newValue };
     } else if (gRef.current === e.currentTarget) {
-      onChange(getHexFromRGB({ ...rgbValue, g: newValue }));
+      newRGB = { ...rgbValue, g: newValue };
     } else if (bRef.current === e.currentTarget) {
-      onChange(getHexFromRGB({ ...rgbValue, b: newValue }));
+      newRGB = { ...rgbValue, b: newValue };
+    }
+
+    if (newRGB === undefined) {
+      return;
+    }
+
+    if (onChange === undefined) {
+      setRGBValue(newRGB);
+    } else {
+      onChange(getHexFromRGB(newRGB));
     }
   }
 
   useEffect(() => {
-    setRGBValue(getRGBFromHex(value));
+    if (value !== undefined) {
+      setRGBValue(getRGBFromHex(value));
+    }
   }, [value]);
 
   return (
@@ -61,3 +74,10 @@ export default function ColorPicker({ value, onChange }: ColorPickerProps) {
     </div>
   );
 }
+
+ColorPicker.defaultProps = {
+  value: lightTheme.colors.accent,
+  onChange: undefined
+};
+
+export default ColorPicker;
