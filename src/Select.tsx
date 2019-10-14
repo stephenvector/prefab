@@ -77,7 +77,8 @@ function Select({ value, options }: SelectProps) {
 
 Select.defaultProps = {
   multiple: false,
-  options: []
+  options: [],
+  value: ""
 };
 
 export default Select;

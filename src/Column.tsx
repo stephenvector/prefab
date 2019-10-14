@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-export default styled.div`
+const Column = styled.div`
   flex: 1 1 auto;
 `;
+
+export default Column;

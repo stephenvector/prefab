@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
-export default styled.div`
+const Row = styled.div`
   display: flex;
 `;
+
+export default Row;

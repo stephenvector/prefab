@@ -7,6 +7,7 @@ export { default as ColorPicker } from "./ColorPicker";
 export { default as Column } from "./Column";
 export { default as Container } from "./Container";
 export { default as DatePicker } from "./DatePicker";
+export { default as DefaultPrefabTheme } from "./DefaultPrefabTheme";
 export { default as Input } from "./Input";
 export { default as Label } from "./Label";
 export { default as Loading } from "./Loading";
@@ -21,13 +22,14 @@ export {
   H4,
   H5,
   H6,
-  P,
-  Display1 // Display2, // // Display3, // Display4
+  Display1,
+  Display2,
+  Display3,
+  Display4,
+  Paragraph
 } from "./Text";
 export { default as Textarea } from "./Textarea";
-export { default as ThemeEditor } from "./ThemeEditor";
-export { default as ThemePreview } from "./ThemePreview";
-export { PrefabThemeProvider, PrefabTheme } from "./PrefabTheme";
+export { default as PrefabThemeProvider } from "./PrefabThemeProvider";
 
 export {
   Table,
@@ -37,3 +39,14 @@ export {
   TableHeadCell,
   TableBody
 } from "./Table";
+
+export {
+  isValidRGBColor,
+  isValidHex,
+  darkenHex,
+  lightenHex,
+  getHexFromRGB,
+  getRGBFromHex,
+  min,
+  max
+} from "./utils";

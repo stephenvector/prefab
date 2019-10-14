@@ -41,6 +41,22 @@ export function isValidHex(hexOrNot?: string): boolean {
   return true;
 }
 
+export function isValidRGBColor({ r, g, b }: RGBColor) {
+  if (r < 0 || r > 255 || Math.trunc(r) !== r) {
+    return false;
+  }
+
+  if (g < 0 || g > 255 || Math.trunc(g) !== g) {
+    return false;
+  }
+
+  if (b < 0 || b > 255 || Math.trunc(b) !== b) {
+    return false;
+  }
+
+  return true;
+}
+
 export function getRGBFromHex(color: string): RGBColor {
   const rgbValue = {
     r: 0,
@@ -66,6 +82,10 @@ export function getRGBFromHex(color: string): RGBColor {
 }
 
 export function getHexFromRGB({ r, g, b }: RGBColor): string {
+  if (!isValidRGBColor({ r, g, b })) {
+    throw new Error("Not a valid RGBColor");
+  }
+
   const colorValue = [
     Number(r % 256).toString(16),
     Number(g % 256).toString(16),
@@ -83,7 +103,7 @@ export function getHexFromRGB({ r, g, b }: RGBColor): string {
   return `#${colorValue}`;
 }
 
-function min(a: number, b: number): number {
+export function min(a: number, b: number): number {
   if (a < b) {
     return a;
   }
@@ -91,14 +111,34 @@ function min(a: number, b: number): number {
   return b;
 }
 
+export function max(a: number, b: number): number {
+  if (b < a) {
+    return a;
+  }
+
+  return b;
+}
+
 export function lightenHex(hex: string, amount: number) {
+  if (!isValidHex(hex)) {
+    throw new Error("Not a valid hex color");
+  }
+
+  if (amount < 0 || amount > 1) {
+    throw new Error("Only values between 0 and 1 are valid");
+  }
+
+  if (amount === 1) {
+    return getHexFromRGB({ r: 255, g: 255, b: 255 });
+  }
+
   const rgbValue = getRGBFromHex(hex);
 
   const rNew = Math.floor(min(255, rgbValue.r * (1 + amount)));
   const gNew = Math.floor(min(255, rgbValue.g * (1 + amount)));
   const bNew = Math.floor(min(255, rgbValue.b * (1 + amount)));
 
-  const newColor = {
+  const newColor: RGBColor = {
     r: rNew,
     g: gNew,
     b: bNew
@@ -110,11 +150,19 @@ export function lightenHex(hex: string, amount: number) {
 export function darkenHex(hex: string, amount: number) {
   const rgbValue = getRGBFromHex(hex);
 
-  const rNew = Math.floor(min(255, rgbValue.r * (1 - amount)));
-  const gNew = Math.floor(min(255, rgbValue.g * (1 - amount)));
-  const bNew = Math.floor(min(255, rgbValue.b * (1 - amount)));
+  if (amount < 0 || amount > 1) {
+    throw new Error("Only values between 0 and 1 are valid");
+  }
 
-  const newColor = {
+  if (amount === 1) {
+    return getHexFromRGB({ r: 0, g: 0, b: 0 });
+  }
+
+  const rNew = Math.floor(max(255, rgbValue.r * (1 - amount)));
+  const gNew = Math.floor(max(255, rgbValue.g * (1 - amount)));
+  const bNew = Math.floor(max(255, rgbValue.b * (1 - amount)));
+
+  const newColor: RGBColor = {
     r: rNew,
     g: gNew,
     b: bNew

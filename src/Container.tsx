@@ -5,7 +5,10 @@ type ContainerProps = {
   fullWidth?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export default styled.div`
+const Container = styled.div<ContainerProps>`
   margin: 0 auto;
-  max-width: 1200px;
+  width: 100%;
+  max-width: ${p => (p.fullWidth === true ? "100%" : "1200px")};
 `;
+
+export default Container;

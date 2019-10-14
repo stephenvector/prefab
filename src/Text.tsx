@@ -1,108 +1,63 @@
-import React from "react";
 import styled from "styled-components";
 
-export const H1 = styled.h1``;
+export const Display1 = styled.div`
+  line-height: 1.1;
+  font-size: 5rem;
+  font-weight: 700;
+`;
 
-// const styleDeclaration: {
-//   [key: string]: { [k: string]: string | number };
-// } = {
-//   base: {
-//     fontFamily: `var(--fonts-base-family, ${lightTheme.fonts.base.family})`,
-//     lineHeight: `var(--fonts-base-lineHeight), ${lightTheme.fonts.base.lineHeight})`,
-//     fontWeight: `var(--fonts-base-fontWeight), ${lightTheme.fonts.base.weight})`
-//   },
-//   headings: {
-//     fontFamily: `var(--fonts-headings-family, ${lightTheme.fonts.headings.family})`,
-//     lineHeight: `var(--fonts-headings-lineHeight), ${lightTheme.fonts.headings.lineHeight})`,
-//     fontWeight: `var(--fonts-headings-fontWeight), ${lightTheme.fonts.headings.weight})`
-//   },
-//   display: {
-//     fontFamily: `var(--fonts-display-family, ${lightTheme.fonts.display.family})`,
-//     lineHeight: `var(--fonts-display-lineHeight), ${lightTheme.fonts.display.lineHeight})`,
-//     fontWeight: 900 //`var(--fonts-display-fontWeight), ${lightTheme.fonts.display.weight})`
-//   },
-//   h1: { fontSize: `var(--sizing-h1, ${lightTheme.sizing.h1})` },
-//   h2: { fontSize: `var(--sizing-h2, ${lightTheme.sizing.h2})` },
-//   h3: { fontSize: `var(--sizing-h3, ${lightTheme.sizing.h3})` },
-//   h4: { fontSize: `var(--sizing-h4, ${lightTheme.sizing.h4})` },
-//   h5: { fontSize: `var(--sizing-h5, ${lightTheme.sizing.h5})` },
-//   h6: { fontSize: `var(--sizing-h6, ${lightTheme.sizing.h6})` },
-//   display1: {
-//     fontSize: `var(--sizing-display1, ${lightTheme.sizing.display1})`
-//   },
-//   display2: {
-//     fontSize: `var(--sizing-display2, ${lightTheme.sizing.display2})`
-//   },
-//   display3: {
-//     fontSize: `var(--sizing-display3, ${lightTheme.sizing.display3})`
-//   },
-//   display4: {
-//     fontSize: `var(--sizing-display4, ${lightTheme.sizing.display4})`
-//   }
-// };
+export const Display2 = styled.div`
+  line-height: 1.1;
+  font-size: 5rem;
+  font-weight: 700;
+`;
 
-// const textStyles = StyleSheet.create(styleDeclaration);
+export const Display3 = styled.div`
+  line-height: 1.1;
+  font-size: 5rem;
+  font-weight: 700;
+`;
 
-// export function H1(props) {
-//   return <h1 {...props} />;
-// }
+export const Display4 = styled.div`
+  line-height: 1.1;
+  font-size: 5rem;
+  font-weight: 700;
+`;
 
-export function H2(props) {
-  return <h2 {...props} />;
-}
+export const H1 = styled.h1`
+  line-height: 1.1;
+  font-size: 3rem;
+  font-weight: 700;
+`;
 
-export function H3(props) {
-  return <h1 {...props} />;
-}
+export const H2 = styled.h2`
+  line-height: 1.1;
+  font-size: 2.4rem;
+  font-weight: 700;
+`;
 
-export function H4(props) {
-  return <h1 {...props} />;
-}
+export const H3 = styled.h3`
+  line-height: 1.1;
+  font-size: 2rem;
+  font-weight: 700;
+`;
 
-export function H5(props) {
-  return <h1 {...props} />;
-}
+export const H4 = styled.h4`
+  line-height: 1.1;
+  font-size: 1.6rem;
+  font-weight: 700;
+`;
 
-export function H6(props) {
-  return <h1 {...props} />;
-}
+export const H5 = styled.h5`
+  line-height: 1.1;
+  font-size: 1.3rem;
+  font-weight: 700;
+`;
 
-export function P(props) {
-  return <p {...props} />;
-}
+export const H6 = styled.h6`
+  line-height: 1.1;
+  font-size: 1.1rem;
+  font-weight: 700;
+`;
 
-export function Display1(props) {
-  return (
-    <div
-      {...props}
-      // className={css([textStyles.display, textStyles.display1])}
-    />
-  );
-}
-
-// export function Display2(props) {
-//   return (
-//     <div
-//       {...props}
-//       // className={css([textStyles.display, textStyles.display2])}
-//     />
-//   );
-// }
-
-// export function Display3(props) {
-//   return (
-//     <div
-//       {...props}
-//       className={css([textStyles.display, textStyles.display3])}
-//     />
-//   );
-// }
-
-// export function Display4(props) {
-//   return (
-//     <div
-//       {...props}
-//       className={css([textStyles.display, textStyles.display4])}
-//     />
-//   );
-// }
+export const Paragraph = styled.p``;

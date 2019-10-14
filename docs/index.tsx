@@ -15,9 +15,9 @@ import {
   Textarea,
   Display1,
   H3,
-  P,
   PrefabTheme,
-  Select
+  Select,
+  Paragraph
 } from "../src";
 
 import CodeSnippet from "./CodeSnippet";
@@ -34,12 +34,12 @@ function Docs() {
             <Row>
               <Column>
                 <Display1>prefab</Display1>
-                <P>A set of themeable UI React components.</P>
-                <P>
+                <Paragraph>A set of themeable UI React components.</Paragraph>
+                <Paragraph>
                   <a href="https://github.com/stephenvector/prefab">
                     View source on GitHub
                   </a>
-                </P>
+                </Paragraph>
               </Column>
             </Row>
           </Container>
@@ -52,7 +52,7 @@ function Docs() {
 
                 <CodeSnippet code={buttonCode} />
 
-                <H3 component="h3">Button</H3>
+                <H3>Button</H3>
                 <Button>Button</Button>
 
                 <h3>Button Group</h3>
@@ -80,13 +80,13 @@ function Docs() {
                   </Box>
                 </Carousel>
 
-                <H3 component="h3">DatePicker</H3>
+                <H3>DatePicker</H3>
                 <DemoController
                   initialValue={new Date().getTime()}
                   component={DatePicker}
                 />
 
-                <H3 component="h3">Slider</H3>
+                <H3>Slider</H3>
                 <DemoController initialValue={50} component={Slider} />
 
                 <DemoController

@@ -4,7 +4,7 @@ export const Table = styled.table`
   border-collapse: collapse;
 `;
 
-export const TableHead = styled.table`
+export const TableHead = styled.thead`
   border-collapse: collapse;
 `;
 
@@ -20,6 +20,6 @@ export const TableCell = styled.td`
   border-collapse: collapse;
 `;
 
-export const TableHeadCell = styled.thead`
+export const TableHeadCell = styled.th`
   border-collapse: collapse;
 `;

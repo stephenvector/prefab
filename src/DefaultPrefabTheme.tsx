@@ -1,7 +1,6 @@
-import React from "react";
-import styled, { ThemeProvider, DefaultTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
 
-type ColorPalette = {
+export type ColorPalette = {
   bg: string;
   fg: string;
   accent: string;
@@ -28,7 +27,7 @@ declare module "styled-components" {
   }
 }
 
-export const PrefabTheme: DefaultTheme = {
+const DefaultPrefabTheme: DefaultTheme = {
   colors: {
     bg: "#fff",
     fg: "#000",
@@ -50,20 +49,4 @@ export const PrefabTheme: DefaultTheme = {
   }
 };
 
-const ThemeProviderWrapper = styled.div`
-  font-family: sans-serif;
-`;
-
-export function PrefabThemeProvider({
-  theme,
-  children
-}: {
-  theme: DefaultTheme;
-  children: React.ReactNode;
-}) {
-  return (
-    <ThemeProvider theme={theme}>
-      <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
-    </ThemeProvider>
-  );
-}
+export default DefaultPrefabTheme;
