@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -42,14 +42,16 @@ type SliderProps = {
   min?: number;
   max?: number;
   step?: number;
-  onChange(newValue: number, e: React.MouseEvent): void;
+  onChange(newValue: number): void;
   value: number;
 };
 
-const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
-  ({ min, max, step, onChange, value }: SliderProps, ref) => {
-    const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
-    function handleMouseEvent(e: React.MouseEvent) {
+function Slider({ min, max, step, onChange, value }: SliderProps) {
+  const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
+  const ref = useRef<undefined | HTMLDivElement>();
+
+  const handleMouseEvent = useCallback(
+    function(e: React.MouseEvent) {
       e.stopPropagation();
       e.preventDefault();
 
@@ -69,44 +71,77 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
         newValue = newValue - (newValue % step);
 
-        if (onChange !== undefined) {
-          onChange(newValue, e);
-        }
+        onChange(newValue);
 
         if (e.type === "mousedown") {
           setMouseDownFocus(true);
         }
       }
+    },
+    [haveMouseDownFocus, onChange, setMouseDownFocus]
+  );
+
+  useEffect(() => {
+    function mousedownHandler() {
+      setMouseDownFocus(false);
     }
 
-    useEffect(() => {
-      function mousedownHandler() {
-        setMouseDownFocus(false);
+    window.addEventListener("mouseup", mousedownHandler);
+
+    return () => {
+      window.removeEventListener("mouseup", mousedownHandler);
+    };
+  }, []);
+
+  const mouseMoveListener = useCallback(
+    function(this: Window, ev: MouseEvent) {
+      if (!haveMouseDownFocus || ref.current === undefined) {
+        return;
       }
 
-      window.addEventListener("mouseup", mousedownHandler);
+      const sliderBoundingRect = ref.current.getBoundingClientRect();
 
-      return () => {
-        window.removeEventListener("mouseup", mousedownHandler);
-      };
-    }, []);
+      if (ev.clientX <= sliderBoundingRect.left) {
+        onChange(min);
+      } else if (
+        ev.clientX >=
+        sliderBoundingRect.left + sliderBoundingRect.width
+      ) {
+        onChange(max);
+      } else {
+        const newFraction =
+          (ev.clientX - sliderBoundingRect.left) / sliderBoundingRect.width;
+        const range = Math.abs(max - min);
+        let newValue = range * newFraction + min;
+        newValue = newValue - (newValue % step);
+        onChange(newValue);
+      }
+    },
+    [haveMouseDownFocus, ref, value, onChange]
+  );
 
-    const position = ((value - min) / (max - min)) * 100;
+  useEffect(() => {
+    window.addEventListener("mousemove", mouseMoveListener);
+    return () => {
+      window.removeEventListener("mousemove", mouseMoveListener);
+    };
+  }, [haveMouseDownFocus]);
 
-    return (
-      <Wrapper
-        ref={ref}
-        onMouseMove={handleMouseEvent}
-        onMouseDown={handleMouseEvent}
-      >
-        <BackgroundBar>
-          <IndicatorBar position={position} />
-          <Dot position={position} />
-        </BackgroundBar>
-      </Wrapper>
-    );
-  }
-);
+  const position = ((value - min) / (max - min)) * 100;
+
+  return (
+    <Wrapper
+      ref={ref}
+      onMouseMove={handleMouseEvent}
+      onMouseDown={handleMouseEvent}
+    >
+      <BackgroundBar>
+        <IndicatorBar position={position} />
+        <Dot position={position} />
+      </BackgroundBar>
+    </Wrapper>
+  );
+}
 
 Slider.defaultProps = {
   min: 0,

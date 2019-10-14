@@ -52,33 +52,23 @@ type ColorPickerProps = {
 function ColorPicker({ value, onChange }: ColorPickerProps) {
   const [rgbValue, setRGBValue] = useState(getRGBFromHex(value));
 
-  const rRef = useRef<HTMLDivElement>(null);
-  const gRef = useRef<HTMLDivElement>(null);
-  const bRef = useRef<HTMLDivElement>(null);
-
   if (!isValidHex(value)) {
     throw new Error("ColorPicker expects a hex value!");
   }
 
-  function handleChange(newValue: number, e: React.MouseEvent) {
-    let newRGB;
-    if (rRef.current === e.currentTarget) {
-      newRGB = { ...rgbValue, r: newValue };
-    } else if (gRef.current === e.currentTarget) {
-      newRGB = { ...rgbValue, g: newValue };
-    } else if (bRef.current === e.currentTarget) {
-      newRGB = { ...rgbValue, b: newValue };
-    }
+  function handleRedChange(newValue: number) {
+    const newRGB = { ...rgbValue, r: newValue };
+    onChange(getHexFromRGB(newRGB));
+  }
 
-    if (newRGB === undefined) {
-      return;
-    }
+  function handleGreenChange(newValue: number) {
+    const newRGB = { ...rgbValue, g: newValue };
+    onChange(getHexFromRGB(newRGB));
+  }
 
-    if (onChange === undefined) {
-      setRGBValue(newRGB);
-    } else {
-      onChange(getHexFromRGB(newRGB));
-    }
+  function handleBlueChange(newValue: number) {
+    const newRGB = { ...rgbValue, b: newValue };
+    onChange(getHexFromRGB(newRGB));
   }
 
   useEffect(() => {
@@ -93,8 +83,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
       <Sliders>
         <RGBWrapper rgbValue={rgbValue} rgb={"r"}>
           <Slider
-            ref={rRef}
-            onChange={handleChange}
+            onChange={handleRedChange}
             value={rgbValue.r}
             min={0}
             max={255}
@@ -103,8 +92,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
         </RGBWrapper>
         <RGBWrapper rgbValue={rgbValue} rgb={"g"}>
           <Slider
-            ref={gRef}
-            onChange={handleChange}
+            onChange={handleGreenChange}
             value={rgbValue.g}
             min={0}
             max={255}
@@ -113,8 +101,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
         </RGBWrapper>
         <RGBWrapper rgbValue={rgbValue} rgb={"b"}>
           <Slider
-            ref={bRef}
-            onChange={handleChange}
+            onChange={handleBlueChange}
             value={rgbValue.b}
             min={0}
             max={255}
