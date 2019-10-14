@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { PrefabTheme, ColorPicker, DatePicker } from "./";
-import { PrefabThemeConfig, lightTheme } from "./themes";
+import { DefaultTheme } from "styled-components";
+import { ColorPicker, DatePicker, PrefabThemeProvider } from "./";
 
 type ThemePreviewProps = {
-  theme: PrefabThemeConfig;
+  theme: DefaultTheme;
 };
 
 function ThemePreview({ theme }: ThemePreviewProps) {
   return (
-    <PrefabTheme theme={theme}>
-      <h1>Prefab</h1>
-      <p>Preview of the components.</p>
-      <DatePicker />
-      <ColorPicker onChange={() => {}} value={theme.colors.background} />
-    </PrefabTheme>
+    <PrefabThemeProvider theme={theme}>
+      <div>
+        <h1>Prefab</h1>
+        <p>Preview of the components.</p>
+        <DatePicker />
+        <ColorPicker onChange={() => {}} value={theme.colors.bg} />
+      </div>
+    </PrefabThemeProvider>
   );
 }
-
-ThemePreview.defaultProps = {
-  theme: lightTheme
-};
 
 export default ThemePreview;

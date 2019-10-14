@@ -1,53 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, css } from "aphrodite";
-import { lightTheme } from "./themes";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  wrapper: {
-    height: "2rem",
-    position: "relative",
-    width: "100%",
-    margin: "0.5rem 0"
-  },
-  indicatorBar: {
-    position: "absolute",
-    left: 0,
-    bottom: "0.75rem",
-    top: "0.75rem",
-    height: "0.5rem",
-    borderRadius: "0.5rem",
-    background: `var(--colors-accent, ${lightTheme.colors.accent})`
-  },
-  backgroundBar: {
-    background: "#ddd",
-    width: "100%",
-    position: "absolute",
-    left: 0,
-    bottom: "0.75rem",
-    top: "0.75rem",
-    height: "0.5rem",
-    borderRadius: "0.5rem",
-    zIndex: -1
-  },
-  dot: {
-    position: "absolute",
-    bottom: 0,
-    top: "50%",
-    height: "2rem",
-    width: "2rem",
-    borderRadius: "1rem",
-    boxShadow: `inset 0 0 0 2px var(--colors-meta, ${lightTheme.colors.meta})`,
-    background: `var(--colors-background, ${lightTheme.colors.background})`,
-    transform: "translateY(-1rem) translateX(-1rem)",
-    border: "none",
-    zIndex: 100
-  }
-});
+export const Wrapper = styled.div`
+  height: 3rem;
+  display: flex;
+  width: 100%;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+`;
+
+export const BackgroundBar = styled.div`
+  height: 1rem;
+  width: 100%;
+  border-radius: calc(1rem / 2);
+  background: #f2f2f2;
+  overflow: visible;
+  position: relative;
+`;
+
+export const IndicatorBar = styled.div<{ position: number }>`
+  background: blue;
+  height: 100%;
+  position: absolute;
+  width: ${p => `${p.position}%`};
+  border-radius: calc(2rem / 2);
+`;
+
+export const Dot = styled.div<{ position: number }>`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  background: #fff;
+  border-radius: calc(2rem / 2);
+  transform: translateY(calc(2rem / -4)) translateX(calc(2rem / -4));
+  left: ${p => `${p.position}%`};
+  box-shadow: 0 0 0.2rem 0 blue;
+`;
 
 type SliderProps = {
-  min: number;
-  max: number;
-  step: number;
+  min?: number;
+  max?: number;
+  step?: number;
   onChange(newValue: number, e: React.MouseEvent): void;
   value: number;
 };
@@ -55,7 +49,6 @@ type SliderProps = {
 const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
   ({ min, max, step, onChange, value }: SliderProps, ref) => {
     const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
-
     function handleMouseEvent(e: React.MouseEvent) {
       e.stopPropagation();
       e.preventDefault();
@@ -76,7 +69,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
         newValue = newValue - (newValue % step);
 
-        onChange(newValue, e);
+        if (onChange !== undefined) {
+          onChange(newValue, e);
+        }
 
         if (e.type === "mousedown") {
           setMouseDownFocus(true);
@@ -96,25 +91,19 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
       };
     }, []);
 
+    const position = ((value - min) / (max - min)) * 100;
+
     return (
-      <div
+      <Wrapper
         ref={ref}
         onMouseMove={handleMouseEvent}
         onMouseDown={handleMouseEvent}
-        className={css(styles.wrapper)}
       >
-        <div
-          className={css(styles.indicatorBar)}
-          style={{ width: `${((value - min) / (max - min)) * 100}%` }}
-        />
-
-        <div className={css(styles.backgroundBar)} />
-
-        <button
-          className={css(styles.dot)}
-          style={{ left: `${((value - min) / (max - min)) * 100}%` }}
-        />
-      </div>
+        <BackgroundBar>
+          <IndicatorBar position={position} />
+          <Dot position={position} />
+        </BackgroundBar>
+      </Wrapper>
     );
   }
 );

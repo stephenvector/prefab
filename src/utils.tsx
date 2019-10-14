@@ -1,6 +1,6 @@
 const VALID_HEX_CHARS: string[] = "0123456789abcdef".split("");
 
-type RGBColor = {
+export type RGBColor = {
   r: number;
   g: number;
   b: number;
@@ -81,4 +81,44 @@ export function getHexFromRGB({ r, g, b }: RGBColor): string {
     .join("");
 
   return `#${colorValue}`;
+}
+
+function min(a: number, b: number): number {
+  if (a < b) {
+    return a;
+  }
+
+  return b;
+}
+
+export function lightenHex(hex: string, amount: number) {
+  const rgbValue = getRGBFromHex(hex);
+
+  const rNew = Math.floor(min(255, rgbValue.r * (1 + amount)));
+  const gNew = Math.floor(min(255, rgbValue.g * (1 + amount)));
+  const bNew = Math.floor(min(255, rgbValue.b * (1 + amount)));
+
+  const newColor = {
+    r: rNew,
+    g: gNew,
+    b: bNew
+  };
+
+  return getHexFromRGB(newColor);
+}
+
+export function darkenHex(hex: string, amount: number) {
+  const rgbValue = getRGBFromHex(hex);
+
+  const rNew = Math.floor(min(255, rgbValue.r * (1 - amount)));
+  const gNew = Math.floor(min(255, rgbValue.g * (1 - amount)));
+  const bNew = Math.floor(min(255, rgbValue.b * (1 - amount)));
+
+  const newColor = {
+    r: rNew,
+    g: gNew,
+    b: bNew
+  };
+
+  return getHexFromRGB(newColor);
 }

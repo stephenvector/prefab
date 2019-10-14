@@ -1,12 +1,5 @@
-import React from "react";
-import { StyleSheet, css } from "aphrodite";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  row: {
-    display: "flex"
-  }
-});
-
-export default function Row(props: React.HTMLAttributes<HTMLDivElement>) {
-  return <div {...props} className={css(styles.row)} />;
-}
+export default styled.div`
+  display: flex;
+`;

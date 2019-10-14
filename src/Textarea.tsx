@@ -1,29 +1,29 @@
-import React from "react";
-import { css, StyleSheet } from "aphrodite";
-import { lightTheme } from "./themes";
+import React, { useCallback } from "react";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  textarea: {
-    borderRadius: `var(--sizing-borderRadius, ${lightTheme.sizing.borderRadius})rem`,
-    width: "100%",
-    font: "inherit",
-    border: `1px solid var(--colors-meta, ${lightTheme.colors.meta})`
-  }
-});
+const StyledTextarea = styled.textarea`
+  font: inherit;
+  box-sizing: border-box;
+  padding: 1rem;
+  background: #f2f2f2;
+  width: 100%;
+  min-height: 9rem;
+  border: none;
+`;
 
 type TextareaProps = {
-  disabled?: boolean;
-  valid?: boolean;
-  value?: string;
-  onChange(newVal: string): void;
+  value: string;
+  onChange(newValue: string): void;
 };
 
-export default function Textarea({
-  disabled,
-  valid,
-  value,
-  onChange,
-  ...otherProps
-}: TextareaProps) {
-  return <textarea {...otherProps} className={css(styles.textarea)} />;
+function Textarea({ value, onChange }: TextareaProps) {
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      onChange(e.target.value);
+    },
+    [value]
+  );
+  return <StyledTextarea value={value} onChange={handleChange} />;
 }
+
+export default Textarea;

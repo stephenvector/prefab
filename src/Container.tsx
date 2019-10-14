@@ -1,17 +1,11 @@
 import React from "react";
-import { StyleSheet, css } from "aphrodite";
+import styled from "styled-components";
 
 type ContainerProps = {
   fullWidth?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    margin: "0 auto"
-  }
-});
-
-export default function Container(props: ContainerProps) {
-  return <div {...props} className={css(styles.container)} />;
-}
+export default styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+`;

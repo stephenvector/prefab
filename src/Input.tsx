@@ -1,14 +1,8 @@
 import React from "react";
-import { css, StyleSheet } from "aphrodite";
+import styled from "styled-components";
 
-const styles = StyleSheet.create({
-  input: {
-    font: "inherit"
-  }
-});
-
-export default function Input(
-  props: React.InputHTMLAttributes<HTMLInputElement>
-) {
-  return <input {...props} className={css(styles.input)} />;
-}
+export default styled.input`
+  font: inherit;
+  border: none;
+  background: #f2f2f2;
+`;

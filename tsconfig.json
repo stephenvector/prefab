@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "strict": true,
+    "strict": false,
     "esModuleInterop": true,
     "jsx": "react",
     "outDir": "lib",
     "declaration": true,
     "rootDirs": ["src"],
     "resolveJsonModule": true,
-    "skipLibCheck": true,
     "inlineSourceMap": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.tsx", "*/__tests__/**/*"]
+  "exclude": [
+    "src/**/*.test.tsx",
+    "*/__tests__/**/*",
+    "coverage",
+    "node_modules"
+  ]
 }

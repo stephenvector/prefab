@@ -1,13 +1,11 @@
 import React from "react";
-import { css, StyleSheet } from "aphrodite";
-import { lightTheme } from "./themes";
+import styled from "styled-components";
 
-const loadingStyles = StyleSheet.create({
-  text: {
-    color: `var(--colors-meta, ${lightTheme.colors.meta})`
-  }
-});
+const LoadingWrapper = styled.div`
+  padding: 1rem;
+  text-align: center;
+`;
 
 export default function Loading() {
-  return <span className={css(loadingStyles.text)}>Loading</span>;
+  return <LoadingWrapper>Loading</LoadingWrapper>;
 }
