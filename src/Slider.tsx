@@ -50,48 +50,83 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
   const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
   const ref = useRef<undefined | HTMLDivElement>();
 
+  const handleTouchEvent = useCallback(
+    function(e: React.TouchEvent<HTMLDivElement>) {
+      const clientRect = ref.current.getBoundingClientRect();
+      let newValue = min;
+
+      if (e.targetTouches.length > 1) {
+        setMouseDownFocus(false);
+        return;
+      }
+
+      if (e.targetTouches[0].clientX > clientRect.left) {
+        const newFraction =
+          (e.targetTouches[0].clientX - clientRect.left) / clientRect.width;
+        const range = Math.abs(max - min);
+        newValue = range * newFraction + min;
+      }
+
+      newValue = newValue - (newValue % step);
+
+      onChange(newValue);
+
+      if (e.type === "touchstart") {
+        setMouseDownFocus(true);
+      }
+    },
+    [haveMouseDownFocus, setMouseDownFocus, onChange, ref]
+  );
+
   const handleMouseEvent = useCallback(
     function(e: React.MouseEvent) {
-      e.stopPropagation();
-      e.preventDefault();
+      if (e.type === "mousedown") {
+        setMouseDownFocus(true);
+      }
 
       if (e.type !== "mousedown" && !haveMouseDownFocus) {
         return;
       }
 
-      if (e.buttons === 1 && e.button === 0) {
-        const clientRect = e.currentTarget.getBoundingClientRect();
-        let newValue = min;
+      if (e.type === "mousedown" || e.type === "mousemove") {
+        if (e.buttons === 1 && e.button === 0) {
+          const clientRect = e.currentTarget.getBoundingClientRect();
+          let newValue = min;
 
-        if (e.clientX > clientRect.left) {
-          const newFraction = (e.clientX - clientRect.left) / clientRect.width;
-          const range = Math.abs(max - min);
-          newValue = range * newFraction + min;
-        }
+          if (e.clientX > clientRect.left) {
+            const newFraction =
+              (e.clientX - clientRect.left) / clientRect.width;
+            const range = Math.abs(max - min);
+            newValue = range * newFraction + min;
+          }
 
-        newValue = newValue - (newValue % step);
+          newValue = newValue - (newValue % step);
 
-        onChange(newValue);
-
-        if (e.type === "mousedown") {
-          setMouseDownFocus(true);
+          onChange(newValue);
         }
       }
     },
     [haveMouseDownFocus, onChange, setMouseDownFocus]
   );
 
+  function focusEndHandler() {
+    setMouseDownFocus(false);
+  }
+
   useEffect(() => {
-    function mousedownHandler() {
-      setMouseDownFocus(false);
+    if (haveMouseDownFocus) {
+      window.addEventListener("mouseup", focusEndHandler);
+      window.addEventListener("touchend", focusEndHandler);
+      window.addEventListener("touchcancel", focusEndHandler);
     }
-
-    window.addEventListener("mouseup", mousedownHandler);
-
     return () => {
-      window.removeEventListener("mouseup", mousedownHandler);
+      if (!haveMouseDownFocus) {
+        window.removeEventListener("mouseup", focusEndHandler);
+        window.removeEventListener("touchend", focusEndHandler);
+        window.removeEventListener("touchcancel", focusEndHandler);
+      }
     };
-  }, []);
+  }, [haveMouseDownFocus, setMouseDownFocus]);
 
   const mouseMoveListener = useCallback(
     function(this: Window, ev: MouseEvent) {
@@ -134,6 +169,11 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
       ref={ref}
       onMouseMove={handleMouseEvent}
       onMouseDown={handleMouseEvent}
+      onMouseUp={focusEndHandler}
+      onTouchStart={handleTouchEvent}
+      onTouchMove={handleTouchEvent}
+      onTouchCancel={focusEndHandler}
+      onTouchEnd={focusEndHandler}
     >
       <BackgroundBar>
         <IndicatorBar position={position} />
