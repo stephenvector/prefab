@@ -29,7 +29,9 @@ module.exports = {
       template: require("html-webpack-template"),
       appMountId: "root",
       title: "prefab",
-      inlineSource: ".(css)$"
+      inlineSource: ".(css)$",
+      headHtmlSnippet:
+        '<meta name="viewport" content="initial-scale=1, maximum-scale=1">'
     }),
     new HtmlWebpackInlineSourcePlugin()
   ],
