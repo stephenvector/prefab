@@ -27,7 +27,7 @@ export {
   Display3,
   Display4,
   Paragraph
-} from "./Text";
+} from "./Typography";
 export { default as Textarea } from "./Textarea";
 export { default as PrefabThemeProvider } from "./PrefabThemeProvider";
 
