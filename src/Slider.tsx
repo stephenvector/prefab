@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
+import { min as minValue, max as maxValue } from "./";
 
 export const Wrapper = styled.div`
   height: 3rem;
@@ -11,7 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const BackgroundBar = styled.div`
-  height: 1rem;
+  height: 0.5rem;
   width: 100%;
   border-radius: calc(1rem / 2);
   background: #f2f2f2;
@@ -168,6 +169,19 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
 
   const position = ((value - min) / (max - min)) * 100;
 
+  const handleDotKeydown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key === "ArrowLeft") {
+        const newValue = maxValue(min, value - step);
+        onChange(newValue);
+      } else if (e.key === "ArrowRight") {
+        const newValue = minValue(max, value + step);
+        onChange(newValue);
+      }
+    },
+    [value, onChange, step]
+  );
+
   return (
     <Wrapper
       ref={ref}
@@ -181,7 +195,7 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
     >
       <BackgroundBar>
         <IndicatorBar position={position} />
-        <Dot position={position} />
+        <Dot onKeyDown={handleDotKeydown} tabIndex={0} position={position} />
       </BackgroundBar>
     </Wrapper>
   );
