@@ -10,7 +10,7 @@ const CodeTag = styled.code`
   background: transparent;
 `;
 
-export default function Code(props) {
+export default function Code(props: { children: React.ReactNode }) {
   return (
     <Pre>
       <CodeTag>{props.children}</CodeTag>

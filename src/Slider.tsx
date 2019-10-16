@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styled from "styled-components";
+import styled, { StyledComponent } from "styled-components";
 
 export const Wrapper = styled.div`
   height: 3rem;
@@ -39,19 +39,23 @@ export const Dot = styled.div<{ position: number }>`
 `;
 
 type SliderProps = {
-  min?: number;
-  max?: number;
-  step?: number;
+  min: number;
+  max: number;
+  step: number;
   onChange(newValue: number): void;
   value: number;
 };
 
 function Slider({ min, max, step, onChange, value }: SliderProps) {
   const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
-  const ref = useRef<undefined | HTMLDivElement>();
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const handleTouchEvent = useCallback(
     function(e: React.TouchEvent<HTMLDivElement>) {
+      if (ref === undefined || ref.current === null) {
+        return;
+      }
+
       const clientRect = ref.current.getBoundingClientRect();
       let newValue = min;
 
@@ -130,7 +134,7 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
 
   const mouseMoveListener = useCallback(
     function(this: Window, ev: MouseEvent) {
-      if (!haveMouseDownFocus || ref.current === undefined) {
+      if (!haveMouseDownFocus || ref === null || ref.current === null) {
         return;
       }
 

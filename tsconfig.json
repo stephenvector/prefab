@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
     "outDir": "lib",
@@ -8,6 +8,7 @@
     "rootDirs": ["src"],
     "resolveJsonModule": true,
     "inlineSourceMap": true,
+    "skipLibCheck": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
