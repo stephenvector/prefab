@@ -1,3 +1,7 @@
+import styled from "styled-components";
+
+export const Hr = styled.hr``;
+
 export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
 export { default as Box } from "./Box";
