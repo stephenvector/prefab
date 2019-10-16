@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const Display1 = styled.div`
   line-height: 1.1;
-  font-size: 5rem;
-  font-weight: 700;
+  font-size: 8rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
 `;
 
 export const Display2 = styled.div`
   line-height: 1.1;
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: 700;
 `;
 
@@ -20,8 +21,8 @@ export const Display3 = styled.div`
 
 export const Display4 = styled.div`
   line-height: 1.1;
-  font-size: 5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 300;
 `;
 
 export const H1 = styled.h1`
@@ -60,4 +61,6 @@ export const H6 = styled.h6`
   font-weight: 700;
 `;
 
-export const Paragraph = styled.p``;
+export const Paragraph = styled.p`
+  margin: ${p => `calc(${p.theme.sizing.formControls}/2) 0`};
+`;
