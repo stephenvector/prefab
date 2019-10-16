@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 const Column = styled.div`
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
 `;
 
 export default Column;
