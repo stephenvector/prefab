@@ -1,26 +1,115 @@
 import React from "react";
-import Highlight, { defaultProps } from "prism-react-renderer";
+import Highlight, { defaultProps, PrismTheme } from "prism-react-renderer";
+import styled from "styled-components";
 
-const customTheme = {
-  ...defaultProps.theme
+const CodeSnippetWrapper = styled.div`
+  margin-top: 1rem;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  background: #fff;
+  border-radius: ${p => p.theme.sizing.borderRadius};
+`;
+
+var prefabTheme: PrismTheme = {
+  plain: {
+    color: "#000",
+    backgroundColor: "transparent",
+    padding: 0,
+    fontSize: "1rem",
+    margin: 0
+  },
+  styles: [
+    {
+      types: ["comment", "prolog", "doctype", "cdata"],
+      style: {
+        color: "#999988",
+        fontStyle: "italic"
+      }
+    },
+    {
+      types: ["namespace"],
+      style: {
+        opacity: 0.7
+      }
+    },
+    {
+      types: ["string", "attr-value"],
+      style: {
+        color: "#090"
+      }
+    },
+    {
+      types: ["punctuation", "operator"],
+      style: {
+        color: "#393A34"
+      }
+    },
+    {
+      types: [
+        "entity",
+        "url",
+        "symbol",
+        "number",
+        "boolean",
+        "variable",
+        "constant",
+        "property",
+        "regex",
+        "inserted"
+      ],
+      style: {
+        color: "#36acaa"
+      }
+    },
+    {
+      types: ["atrule", "keyword", "attr-name", "selector"],
+      style: {
+        color: "#00a4db"
+      }
+    },
+    {
+      types: ["function", "deleted", "tag"],
+      style: {
+        color: "#d73a49"
+      }
+    },
+    {
+      types: ["function-variable"],
+      style: {
+        color: "#6f42c1"
+      }
+    },
+    {
+      types: ["tag", "selector", "keyword"],
+      style: {
+        color: "#00009f",
+        fontWeight: "bold"
+      }
+    }
+  ]
 };
-
-customTheme.plain.padding = "1rem";
 
 export default function CodeSnippet({ code }: { code: string }) {
   return (
-    <Highlight {...defaultProps} theme={customTheme} code={code} language="jsx">
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <CodeSnippetWrapper>
+      <Highlight
+        {...defaultProps}
+        theme={prefabTheme}
+        code={code}
+        language="jsx"
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </CodeSnippetWrapper>
   );
 }
