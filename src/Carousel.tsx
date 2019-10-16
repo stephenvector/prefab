@@ -1,4 +1,4 @@
-import React, { useCallback, useState, createRef } from "react";
+import React, { useCallback, useState } from "react";
 import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
 
 import styled from "styled-components";
