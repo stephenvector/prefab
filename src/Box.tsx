@@ -4,7 +4,6 @@ import styled from "styled-components";
 type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   aspectRatio?: number;
   centerContent?: boolean;
-  floating?: boolean;
 };
 
 const BoxInner = styled.div``;
@@ -21,22 +20,10 @@ const BoxOuter = styled.div<BoxProps>`
         display: "block",
         content: '" "',
         width: "100%",
-        paddingTop: `${p.aspectRatio * 100}%`,
-        background: "#f2f2f2"
+        paddingTop: `${p.aspectRatio * 100}%`
       }
     };
   }}
-
-  ${p => {
-    if (p.floating) {
-      return {
-        boxShadow: "0 0 0.5rem 0 #ddd"
-      };
-    }
-
-    return {};
-  }}
-
 
   ${BoxInner} {
     ${p => {
@@ -52,8 +39,7 @@ const BoxOuter = styled.div<BoxProps>`
         bottom: 0,
         width: "100%",
         height: "100%",
-        display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         flexWrap: "nowrap"
       };
     }}
