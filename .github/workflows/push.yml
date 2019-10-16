@@ -1,5 +1,5 @@
 on: push
-name: Build and Publish
+name: Build and Test
 jobs:
   test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
