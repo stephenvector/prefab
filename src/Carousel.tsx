@@ -78,7 +78,13 @@ export default function Carousel({ children }: CarouselProps) {
       <Slides>
         {React.Children.map(children, (child, index) => {
           return (
-            <Slide key={index} isActive={index === currentSlide}>
+            <Slide
+              key={index}
+              isActive={index === currentSlide}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index} of ${children.length}`}
+            >
               {child}
             </Slide>
           );
