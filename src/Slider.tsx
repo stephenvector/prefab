@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const BackgroundBar = styled.div`
-  height: 0.5rem;
+  height: 1rem;
   width: 100%;
   border-radius: calc(1rem / 2);
   background: #f2f2f2;
