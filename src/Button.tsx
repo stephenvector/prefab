@@ -7,8 +7,8 @@ import { lightTheme, lightenHex } from "./";
 // };
 
 interface ButtonProps {
-  fullWidth: boolean;
-  theme: DefaultTheme;
+  fullWidth?: boolean;
+  theme?: DefaultTheme;
 }
 
 const Button = styled.button<ButtonProps>`
