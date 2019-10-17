@@ -79,7 +79,7 @@ function ColorPicker({ value, onChange }: ColorPickerProps) {
 
   return (
     <SliderWrapper rgbValue={rgbValue}>
-      <ColorPreview color={getHexFromRGB(rgbValue)} />
+      <ColorPreview color={value} />
       <Sliders>
         <RGBWrapper rgbValue={rgbValue} rgb={"r"}>
           <Slider
