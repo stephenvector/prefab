@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { ArrowDown } from "@stephenvector/picto";
+import { ArrowDown, ArrowUp } from "@stephenvector/picto";
 import styled from "styled-components";
 
 const SelectWrapper = styled.div`
-  position: "relative";
+  position: relative;
   background: #f2f2f2;
 `;
 
@@ -29,13 +29,25 @@ const ToggleButton = styled.button`
   background: transparent;
 `;
 
-const SelectOptions = styled.div`
+const SelectOptions = styled.ul`
   position: absolute;
   top: 3rem;
+  background: #f2f2f2;
   line-height: 3rem;
   right: 0;
   left: 0;
+  min-height: 3rem;
   max-height: 13rem;
+  text-indent: 0.5rem;
+`;
+
+const SelectOption = styled.li`
+  display: block;
+  cursor: pointer;
+  :hover {
+    background: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.fg};
+  }
 `;
 
 type SelectProps = {
@@ -55,19 +67,23 @@ function Select({ value, options }: SelectProps) {
   }, [isOpen]);
 
   return (
-    <SelectWrapper>
+    <SelectWrapper tabIndex={0}>
       <SelectControl onClick={toggleOptionsList}>
         <CurrentValue>{value}</CurrentValue>
-        <ToggleButton onClick={toggleOptionsList}>
-          <ArrowDown />
+        <ToggleButton
+          onClick={toggleOptionsList}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <ArrowUp /> : <ArrowDown />}
         </ToggleButton>
       </SelectControl>
       {isOpen && (
-        <SelectOptions>
+        <SelectOptions tabIndex={-1}>
           {options.map((option, index) => (
-            <span role="button" key={`${option.value}${index}`}>
+            <SelectOption role="option" key={`${option.value}${index}`}>
               {option.label}
-            </span>
+            </SelectOption>
           ))}
         </SelectOptions>
       )}
