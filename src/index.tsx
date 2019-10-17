@@ -19,6 +19,7 @@ declare module "styled-components" {
     sizing: {
       formControls: string;
       borderRadius: string;
+      border: string;
     };
     typefaces: {
       base: string;
@@ -41,7 +42,8 @@ export const lightTheme: DefaultTheme = {
   },
   sizing: {
     formControls: "3rem",
-    borderRadius: "3px"
+    borderRadius: "3px",
+    border: "2px"
   },
   typefaces: {
     base: "sans-serif",
@@ -50,6 +52,8 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = Object.assign({}, lightTheme);
+
+export const defaultPrefabTheme = lightTheme;
 
 export const Hr = styled.hr``;
 
