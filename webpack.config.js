@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   watch: false,
   entry: "./docs/index.tsx",
   output: {
