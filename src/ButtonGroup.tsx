@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from "./";
+import { Button, defaultPrefabTheme } from "./";
 
-const ButtonGroupWrapper = styled.div`
+const ButtonGroup = styled.div`
   display: flex;
   border-radius: ${p => p.theme.sizing.borderRadius};
   box-shadow: ${p =>
@@ -22,12 +22,8 @@ const ButtonGroupWrapper = styled.div`
   }
 `;
 
-export default function ButtonGroup(props: any) {
-  return (
-    <ButtonGroupWrapper>
-      {React.Children.map(props.children, (child, index) => {
-        return child;
-      })}
-    </ButtonGroupWrapper>
-  );
-}
+ButtonGroup.defaultProps = {
+  theme: defaultPrefabTheme
+};
+
+export default ButtonGroup;
