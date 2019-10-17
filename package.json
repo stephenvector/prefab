@@ -41,15 +41,15 @@
     "typescript-plugin-styled-components": "^1.4.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "@testing-library/jest-dom": "^4.1.2",
+    "@types/jest": "^24.0.19",
+    "ts-jest": "^24.1.0"
   },
   "dependencies": {
     "@stephenvector/picto": "^0.1.18",
-    "@testing-library/jest-dom": "^4.1.2",
-    "@types/jest": "^24.0.19",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "styled-components": "^4.4.0",
-    "ts-jest": "^24.1.0"
+    "styled-components": "^4.4.0"
   }
 }
