@@ -1,5 +1,6 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import renderer from "react-test-renderer";
+import "jest-styled-components";
 import {
   Box,
   Button,
@@ -15,6 +16,7 @@ import {
   Loading,
   // PrefabThemeProvider,
   lightTheme,
+  Padding,
   ProgressBar,
   Row,
   Select,
@@ -48,25 +50,25 @@ import {
 
 describe("<Box />", () => {
   it("Should render", () => {
-    render(<Box />);
+    renderer.create(<Box />);
   });
 });
 
 describe("<Button />", () => {
   it("Should render", () => {
-    render(<Button theme={lightTheme} />);
+    renderer.create(<Button theme={lightTheme} />);
   });
 });
 
 describe("<ButtonGroup />", () => {
   it("Should render", () => {
-    render(<ButtonGroup />);
+    renderer.create(<ButtonGroup />);
   });
 });
 
 describe("<Carousel />", () => {
   it("Should render", () => {
-    render(
+    renderer.create(
       <Carousel>
         <div>Slide 1</div>
         <div>Slide 2</div>
@@ -77,85 +79,129 @@ describe("<Carousel />", () => {
 
 describe("<Code />", () => {
   it("Should render", () => {
-    render(<Code>console.log("hello, world!")</Code>);
+    renderer.create(<Code>console.log("hello, world!")</Code>);
   });
 });
 
 describe("<ColorPicker />", () => {
   it("Should render", () => {
-    render(<ColorPicker onChange={() => {}} value="#e56" />);
+    renderer.create(<ColorPicker onChange={() => {}} value="#e56" />);
   });
 });
 
 describe("<Column />", () => {
   it("Should render", () => {
-    render(<Column />);
+    renderer.create(<Column />);
   });
 });
 
 describe("<Container />", () => {
   it("Should render", () => {
-    render(<Container />);
+    renderer.create(<Container />);
   });
 });
 
 describe("<DatePicker />", () => {
   it("Should render", () => {
-    render(<DatePicker />);
+    renderer.create(<DatePicker />);
   });
 });
 
 describe("<Input />", () => {
   it("Should render", () => {
-    render(<Input value="fdsafdsa" onChange={() => {}} />);
+    renderer.create(<Input value="fdsafdsa" onChange={() => {}} />);
   });
 });
 
 describe("<Label />", () => {
   it("Should render", () => {
-    render(<Label />);
+    renderer.create(<Label />);
   });
 });
 
 describe("<Loading />", () => {
   it("Should render", () => {
-    render(<Loading />);
+    renderer.create(<Loading />);
   });
 });
 
 // describe("<PrefabThemeProvider />", () => {
 //   it("should render", () => {
-//     render(<PrefabThemeProvider />);
+//     renderer.create(<PrefabThemeProvider />);
 //   });
 // });
 
+describe("<Padding />", () => {
+  test("Should render without padding if no props are supplied.", () => {
+    const wrapper = renderer.create(<Padding />).toJSON();
+    expect(wrapper).not.toHaveStyleRule("padding", "*");
+  });
+
+  test("Should render with padding-top value if value is supplied to prop `top`.", () => {
+    const wrapper = renderer.create(<Padding top={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-top", "1rem");
+  });
+
+  test("Should render with padding-left value if value is supplied to prop `left`.", () => {
+    const wrapper = renderer.create(<Padding left={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-left", "1rem");
+  });
+
+  test("Should render with padding-right value if value is supplied to prop `right`.", () => {
+    const wrapper = renderer.create(<Padding right={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-right", "1rem");
+  });
+
+  test("Should render with padding-bottom value if value is supplied to prop `bottom`.", () => {
+    const wrapper = renderer.create(<Padding bottom={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-bottom", "1rem");
+  });
+
+  test("Should render with padding-top & padding-bottom value if value is supplied to prop `y`.", () => {
+    const wrapper = renderer.create(<Padding y={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-top", "1rem");
+    expect(wrapper).toHaveStyleRule("padding-bottom", "1rem");
+  });
+
+  test("Should render with padding-left & padding-right value if value is supplied to prop `x`.", () => {
+    const wrapper = renderer.create(<Padding x={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding-left", "1rem");
+    expect(wrapper).toHaveStyleRule("padding-right", "1rem");
+  });
+
+  test("Should render with padding value if value is supplied to prop `all`.", () => {
+    const wrapper = renderer.create(<Padding all={1} />).toJSON();
+    expect(wrapper).toHaveStyleRule("padding", "1rem");
+  });
+});
+
 describe("<ProgressBar />", () => {
   it("Should render", () => {
-    render(<ProgressBar value={0.66} />);
+    renderer.create(<ProgressBar value={0.66} />);
   });
 });
 
 describe("<Row />", () => {
   it("Should render", () => {
-    render(<Row />);
+    renderer.create(<Row />);
   });
 });
 
 describe("<Select />", () => {
   it("Should render", () => {
-    render(<Select />);
+    renderer.create(<Select />);
   });
 });
 
 describe("<Slider />", () => {
   it("Should render", () => {
-    render(<Slider value={45} onChange={() => {}} />);
+    renderer.create(<Slider value={45} onChange={() => {}} />);
   });
 });
 
 describe("<Table />", () => {
   it("Should render", () => {
-    render(
+    renderer.create(
       <Table>
         <TableHead>
           <TableRow>
@@ -174,67 +220,69 @@ describe("<Table />", () => {
 
 describe("<H1 />", () => {
   it("Should render", () => {
-    render(<H1 />);
+    renderer.create(<H1 />);
   });
 });
 
 describe("<H2 />", () => {
   it("Should render", () => {
-    render(<H2 />);
+    renderer.create(<H2 />);
   });
 });
 
 describe("<H3 />", () => {
   it("Should render", () => {
-    render(<H3 />);
+    renderer.create(<H3 />);
   });
 });
 
 describe("<H4 />", () => {
   it("Should render", () => {
-    render(<H4 />);
+    renderer.create(<H4 />);
   });
 });
 
 describe("<H5 />", () => {
   it("Should render", () => {
-    render(<H5 />);
+    renderer.create(<H5 />);
   });
 });
 
 describe("<H6 />", () => {
   it("Should render", () => {
-    render(<H6 />);
+    renderer.create(<H6 />);
   });
 });
 
 describe("<Display1 />", () => {
   it("Should render", () => {
-    render(<Display1 />);
+    renderer.create(<Display1 />);
   });
 });
 
 describe("<Display2 />", () => {
   it("Should render", () => {
-    render(<Display2 />);
+    renderer.create(<Display2 />);
   });
 });
 
 describe("<Display3 />", () => {
   it("Should render", () => {
-    render(<Display3 />);
+    renderer.create(<Display3 />);
   });
 });
 
 describe("<Display4 />", () => {
   it("Should render", () => {
-    render(<Display4 />);
+    renderer.create(<Display4 />);
   });
 });
 
 describe("<Textarea />", () => {
   it("Should render", () => {
-    render(<Textarea value="This is the default value" onChange={() => {}} />);
+    renderer.create(
+      <Textarea value="This is the default value" onChange={() => {}} />
+    );
   });
 });
 
