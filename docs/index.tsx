@@ -50,13 +50,13 @@ const DOCS_SELECT_OPTIONS = [
 
 function Docs() {
   return (
-    <PrefabThemeProvider theme={DefaultPrefabTheme}>
+    <PrefabThemeProvider theme={defaultPrefabTheme}>
       <div className="Docs">
         <header>
           <Container>
             <Row>
               <Column>
-                <Padding top={12}>
+                <Padding top={8} bottom={6}>
                   <Display1>prefab</Display1>
                   <Paragraph>A set of themeable UI React components.</Paragraph>
                   <Paragraph>
