@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { render } from "@testing-library/react";
 import {
   Box,
   Button,
@@ -13,7 +13,8 @@ import {
   Input,
   Label,
   Loading,
-  PrefabThemeProvider,
+  // PrefabThemeProvider,
+  lightTheme,
   ProgressBar,
   Row,
   Select,
@@ -47,31 +48,25 @@ import {
 
 describe("<Box />", () => {
   it("Should render", () => {
-    mount(<Box />);
-  });
-
-  it("Should render aspect ratio of 1 as a square", () => {
-    const wrapper = mount(<Box aspectRatio={1} />);
-    const clientRect = wrapper.getDOMNode().getBoundingClientRect();
-    expect(clientRect.width).toEqual(clientRect.height);
+    render(<Box />);
   });
 });
 
 describe("<Button />", () => {
   it("Should render", () => {
-    mount(<Button />);
+    render(<Button theme={lightTheme} />);
   });
 });
 
 describe("<ButtonGroup />", () => {
   it("Should render", () => {
-    mount(<ButtonGroup />);
+    render(<ButtonGroup />);
   });
 });
 
 describe("<Carousel />", () => {
   it("Should render", () => {
-    mount(
+    render(
       <Carousel>
         <div>Slide 1</div>
         <div>Slide 2</div>
@@ -82,85 +77,85 @@ describe("<Carousel />", () => {
 
 describe("<Code />", () => {
   it("Should render", () => {
-    mount(<Code />);
+    render(<Code>console.log("hello, world!")</Code>);
   });
 });
 
 describe("<ColorPicker />", () => {
   it("Should render", () => {
-    mount(<ColorPicker onChange={() => {}} value="#e56" />);
+    render(<ColorPicker onChange={() => {}} value="#e56" />);
   });
 });
 
 describe("<Column />", () => {
   it("Should render", () => {
-    mount(<Column />);
+    render(<Column />);
   });
 });
 
 describe("<Container />", () => {
   it("Should render", () => {
-    mount(<Container />);
+    render(<Container />);
   });
 });
 
 describe("<DatePicker />", () => {
   it("Should render", () => {
-    mount(<DatePicker />);
+    render(<DatePicker />);
   });
 });
 
 describe("<Input />", () => {
   it("Should render", () => {
-    mount(<Input value="fdsafdsa" onChange={() => {}} />);
+    render(<Input value="fdsafdsa" onChange={() => {}} />);
   });
 });
 
 describe("<Label />", () => {
   it("Should render", () => {
-    mount(<Label />);
+    render(<Label />);
   });
 });
 
 describe("<Loading />", () => {
   it("Should render", () => {
-    mount(<Loading />);
+    render(<Loading />);
   });
 });
 
-describe("<PrefabThemeProvider />", () => {
-  it("should render", () => {
-    mount(<PrefabThemeProvider />);
-  });
-});
+// describe("<PrefabThemeProvider />", () => {
+//   it("should render", () => {
+//     render(<PrefabThemeProvider />);
+//   });
+// });
 
 describe("<ProgressBar />", () => {
   it("Should render", () => {
-    mount(<ProgressBar value={0.66} />);
+    render(<ProgressBar value={0.66} />);
   });
 });
 
 describe("<Row />", () => {
   it("Should render", () => {
-    mount(<Row />);
+    render(<Row />);
   });
 });
 
 describe("<Select />", () => {
   it("Should render", () => {
-    mount(<Select />);
+    render(<Select />);
   });
 });
 
 describe("<Slider />", () => {
   it("Should render", () => {
-    mount(<Slider value={45} onChange={() => {}} />);
+    render(<Slider value={45} onChange={() => {}} />);
   });
 });
 
 describe("<Table />", () => {
   it("Should render", () => {
-    mount(
+    render(
       <Table>
         <TableHead>
           <TableRow>
@@ -179,67 +174,67 @@ describe("<Table />", () => {
 
 describe("<H1 />", () => {
   it("Should render", () => {
-    mount(<H1 />);
+    render(<H1 />);
   });
 });
 
 describe("<H2 />", () => {
   it("Should render", () => {
-    mount(<H2 />);
+    render(<H2 />);
   });
 });
 
 describe("<H3 />", () => {
   it("Should render", () => {
-    mount(<H3 />);
+    render(<H3 />);
   });
 });
 
 describe("<H4 />", () => {
   it("Should render", () => {
-    mount(<H4 />);
+    render(<H4 />);
   });
 });
 
 describe("<H5 />", () => {
   it("Should render", () => {
-    mount(<H5 />);
+    render(<H5 />);
   });
 });
 
 describe("<H6 />", () => {
   it("Should render", () => {
-    mount(<H6 />);
+    render(<H6 />);
   });
 });
 
 describe("<Display1 />", () => {
   it("Should render", () => {
-    mount(<Display1 />);
+    render(<Display1 />);
   });
 });
 
 describe("<Display2 />", () => {
   it("Should render", () => {
-    mount(<Display2 />);
+    render(<Display2 />);
   });
 });
 
 describe("<Display3 />", () => {
   it("Should render", () => {
-    mount(<Display3 />);
+    render(<Display3 />);
   });
 });
 
 describe("<Display4 />", () => {
   it("Should render", () => {
-    mount(<Display4 />);
+    render(<Display4 />);
   });
 });
 
 describe("<Textarea />", () => {
   it("Should render", () => {
-    mount(<Textarea value="This is the default value" onChange={() => {}} />);
+    render(<Textarea value="This is the default value" onChange={() => {}} />);
   });
 });
 
