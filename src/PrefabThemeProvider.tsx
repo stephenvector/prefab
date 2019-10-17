@@ -7,6 +7,14 @@ const ThemeProviderWrapper = styled.div`
   color: ${p => p.theme.colors.fg};
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  & ::placeholder {
+    color: ${p => p.theme.colors.meta};
+    opacity: 1;
+  }
+  & ::selection {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.bg};
+  }
 `;
 
 type PrefabThemeProviderProps = {
