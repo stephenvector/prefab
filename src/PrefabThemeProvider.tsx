@@ -1,18 +1,20 @@
 import React from "react";
 import styled, { DefaultTheme, ThemeProvider } from "styled-components";
-import { DefaultPrefabTheme } from "./";
+import { lightTheme } from "./";
 
 const ThemeProviderWrapper = styled.div`
-  font-family: sans-serif;
+  background: ${p => p.theme.colors.bg};
+  color: ${p => p.theme.colors.fg};
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 `;
 
-function PrefabThemeProvider({
-  theme,
-  children
-}: {
+type PrefabThemeProviderProps = {
   theme: DefaultTheme;
   children: React.ReactNode;
-}) {
+};
+
+function PrefabThemeProvider({ theme, children }: PrefabThemeProviderProps) {
   return (
     <ThemeProvider theme={theme}>
       <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
@@ -21,7 +23,7 @@ function PrefabThemeProvider({
 }
 
 PrefabThemeProvider.defaultProps = {
-  theme: DefaultPrefabTheme
+  theme: lightTheme
 };
 
 export default PrefabThemeProvider;
