@@ -48,6 +48,10 @@ A set of themeable UI components for React projects. Built with accessibility in
 - `<ProgressBar />`
 - `<Loading />`
 
+## Usage
+
+- Control the component returned using `as` attribute: `<H1 as="div">Heading One Style Without H1 Tag</H1>`
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab?ref=badge_large)
