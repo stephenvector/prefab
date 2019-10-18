@@ -10,8 +10,16 @@ A set of themeable UI components for React projects. Built with accessibility in
 
 ### Layout & Presentation
 
-- `<Container>`
-- `<Row />`
+#### Container
+
+```tsx
+<Container fullWidth={boolean}>{...}</Container>
+```
+Prop | Type | Default
+-----|------|--------
+`fullWidth`|`boolean`| `false`
+
+#### `<Row />`
 - `<Column />`
 - `<Table />`
 - `<Box />`
