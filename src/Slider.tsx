@@ -85,6 +85,7 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
 
   const handleMouseEvent = useCallback(
     function(e: React.MouseEvent) {
+      e.stopPropagation();
       if (e.type === "mousedown") {
         setMouseDownFocus(true);
       }
@@ -104,9 +105,7 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
             const range = Math.abs(max - min);
             newValue = range * newFraction + min;
           }
-
           newValue = newValue - (newValue % step);
-
           onChange(newValue);
         }
       }
