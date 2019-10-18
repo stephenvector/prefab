@@ -9,5 +9,4 @@ A set of themeable UI components for React projects.
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab?ref=badge_large)
-
-https://www.w3.org/TR/wai-aria-practices/#combobox_kbd_interaction
+  
