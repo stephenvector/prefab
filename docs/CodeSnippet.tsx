@@ -3,11 +3,8 @@ import Highlight, { defaultProps, PrismTheme } from "prism-react-renderer";
 import styled from "styled-components";
 
 const CodeSnippetWrapper = styled.div`
-  margin-top: 1rem;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  background: #fff;
-  border-radius: ${p => p.theme.sizing.borderRadius};
+  background: transparent;
 `;
 
 var prefabTheme: PrismTheme = {
