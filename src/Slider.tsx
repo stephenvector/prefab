@@ -21,7 +21,7 @@ export const BackgroundBar = styled.div`
 `;
 
 export const IndicatorBar = styled.div<{ position: number }>`
-  background: blue;
+  background: ${p => p.theme.colors.accent};
   height: 100%;
   position: absolute;
   width: ${p => `${p.position}%`};
