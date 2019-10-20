@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-import { H3 } from "../src";
+
+type InjectedProps = {
+  onChange(value: any): void;
+  value: any;
+};
 
 type DemoControllerPropTypes = {
   initialValue: any;
-  label?: string;
-  component: React.FunctionComponent<{
-    value: any;
-    onChange(newValue: any, e?: React.MouseEvent): void;
-  }>;
+  children(props: InjectedProps): any;
 };
 
-export default function DemoController<T>({
+export default function DemoController({
   initialValue,
-  component,
-  label
+  children
 }: DemoControllerPropTypes) {
-  const [value, setValue] = useState(initialValue);
-  console.log(component.name);
-  return (
-    <>
-      {label !== undefined && <H3>{label}</H3>}
-      {React.createElement(component, { value, onChange: setValue })}
-    </>
-  );
+  const [value, onChange] = useState(initialValue);
+
+  return children({ value, onChange });
 }
