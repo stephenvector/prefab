@@ -54,5 +54,10 @@
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "styled-components": "4.4.0"
-  }
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts"
 }
