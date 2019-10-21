@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
+import { defaultPrefabTheme } from "./";
 
 const Wrapper = styled.div`
   width: calc(3rem * 7);
@@ -8,6 +9,8 @@ const Wrapper = styled.div`
   box-shadow: inset 0 0 ${p => p.theme.sizing.border} 0
     ${p => p.theme.colors.meta};
 `;
+
+Wrapper.defaultProps = { theme: defaultPrefabTheme };
 
 const NextPrevMonthButton = styled.button`
   background: transparent;
@@ -27,6 +30,8 @@ const NextPrevMonthButton = styled.button`
     }
   }
 `;
+
+NextPrevMonthButton.defaultProps = { theme: defaultPrefabTheme };
 
 const DatePickerHeader = styled.div`
   display: flex;
@@ -48,6 +53,8 @@ const DayButton = styled.button<{ isSelected: boolean }>`
     color: #fff;
   }
 `;
+
+DayButton.defaultProps = { theme: defaultPrefabTheme };
 
 const BlankDay = styled.span`
   width: 3rem;

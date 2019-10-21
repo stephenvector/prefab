@@ -103,7 +103,9 @@ describe("<Container />", () => {
 
 describe("<DatePicker />", () => {
   it("Should render", () => {
-    renderer.create(<DatePicker />);
+    renderer.create(
+      <DatePicker value={new Date().getTime()} onChange={() => {}} />
+    );
   });
 });
 
@@ -189,7 +191,15 @@ describe("<Row />", () => {
 
 describe("<Select />", () => {
   it("Should render", () => {
-    renderer.create(<Select />);
+    renderer.create(
+      <Select
+        listId="testselect"
+        value=""
+        onChange={() => {}}
+        toggleLabel="Open"
+        optionsLabel="Select a test option"
+      />
+    );
   });
 });
 

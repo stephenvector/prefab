@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styled from "styled-components";
-import { min as minValue, max as maxValue } from "./";
+import styled, { DefaultTheme } from "styled-components";
+import { min as minValue, max as maxValue, defaultPrefabTheme } from "./";
 
 export const Wrapper = styled.div`
   height: 3rem;
@@ -20,7 +20,10 @@ export const BackgroundBar = styled.div`
   position: relative;
 `;
 
-export const IndicatorBar = styled.div<{ position: number }>`
+export const IndicatorBar = styled.div<{
+  position: number;
+  theme: DefaultTheme;
+}>`
   background: ${p => p.theme.colors.accent};
   height: 100%;
   position: absolute;
@@ -45,9 +48,10 @@ type SliderProps = {
   step: number;
   onChange(newValue: number): void;
   value: number;
+  theme: DefaultTheme;
 };
 
-function Slider({ min, max, step, onChange, value }: SliderProps) {
+function Slider({ min, max, step, onChange, value, theme }: SliderProps) {
   const [haveMouseDownFocus, setMouseDownFocus] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -193,7 +197,7 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
       onTouchEnd={focusEndHandler}
     >
       <BackgroundBar>
-        <IndicatorBar position={position} />
+        <IndicatorBar position={position} theme={theme} />
         <Dot onKeyDown={handleDotKeydown} tabIndex={0} position={position} />
       </BackgroundBar>
     </Wrapper>
@@ -203,7 +207,8 @@ function Slider({ min, max, step, onChange, value }: SliderProps) {
 Slider.defaultProps = {
   min: 0,
   max: 100,
-  step: 1
+  step: 1,
+  theme: defaultPrefabTheme
 };
 
 export default Slider;

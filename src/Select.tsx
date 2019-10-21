@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { ArrowDown, ArrowUp } from "@stephenvector/picto";
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import { getRandomID } from "./utils";
+import { defaultPrefabTheme } from "./";
 
 const SelectControl = styled.div`
   height: ${p => p.theme.sizing.formControls};
@@ -11,6 +12,8 @@ const SelectControl = styled.div`
   cursor: pointer;
   width: 100%;
 `;
+
+SelectControl.defaultProps = { theme: defaultPrefabTheme };
 
 const CurrentValue = styled.input`
   font: inherit;
@@ -32,6 +35,8 @@ const ToggleButton = styled.button`
   background: transparent;
 `;
 
+ToggleButton.defaultProps = { theme: defaultPrefabTheme };
+
 const SelectOptions = styled.ul`
   position: absolute;
   top: 3rem;
@@ -49,9 +54,11 @@ const SelectOptions = styled.ul`
   margin-top: calc(${p => p.theme.sizing.border} * -1);
   border-bottom-left-radius: ${p => p.theme.sizing.borderRadius};
   border-bottom-right-radius: ${p => p.theme.sizing.borderRadius};
-  box-shadow: inset 0 0 0 ${p => p.theme.sizing.border}
-    ${p => p.theme.colors.accent};
+  box-shadow: inset 0 0 0
+    ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
 `;
+
+SelectOptions.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectOption = styled.li`
   display: block;
@@ -61,6 +68,8 @@ const SelectOption = styled.li`
     color: ${p => p.theme.colors.bg};
   }
 `;
+
+SelectOption.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>`
   position: relative;
@@ -72,10 +81,12 @@ const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>`
     } else {
       return `${SelectControl} { box-shadow: inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.meta}}`;
     }
-  }}
-  border-top-left-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)}
-  border-top-right-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)}
+  }};
+  border-top-left-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
+  border-top-right-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
 `;
+
+SelectWrapper.defaultProps = { theme: defaultPrefabTheme };
 
 type Option = {
   label: string;
@@ -220,7 +231,8 @@ function Select({
 Select.defaultProps = {
   multiple: false,
   options: [],
-  value: ""
+  value: "",
+  theme: defaultPrefabTheme
 };
 
 export default Select;
