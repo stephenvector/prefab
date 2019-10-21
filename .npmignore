@@ -3,3 +3,7 @@ coverage
 .docz
 doczrc.js
 .travis.yml
+docs
+public
+.travis.yml
+renovate.json
