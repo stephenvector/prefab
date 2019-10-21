@@ -1134,9 +1134,9 @@
       "dev": true
     },
     "@stephenvector/picto": {
-      "version": "0.1.18",
-      "resolved": "https://registry.npmjs.org/@stephenvector/picto/-/picto-0.1.18.tgz",
-      "integrity": "sha512-nwoRYEBsRbEozd1O+9XUoNsqH5zPbOfHD+/7asaWe6GJx2BXOpfczWH6qdoVsWy8ii9TsDIeLAo4GVwVPm/sIg==",
+      "version": "0.1.19",
+      "resolved": "https://registry.npmjs.org/@stephenvector/picto/-/picto-0.1.19.tgz",
+      "integrity": "sha512-rfDNIw7djDDi8yVbcpXwx+QS1AXonerMMsBIgQx22IkOAB3dAFv7u9Ixg/c2vyd02KytkJ5q5W+IlsVoy11L4Q==",
       "dev": true
     },
     "@testing-library/dom": {

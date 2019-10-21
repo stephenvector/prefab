@@ -25,7 +25,7 @@
     "@babel/preset-env": "7.6.3",
     "@babel/preset-react": "7.6.3",
     "@babel/preset-typescript": "7.6.0",
-    "@stephenvector/picto": "0.1.18",
+    "@stephenvector/picto": "0.1.19",
     "@testing-library/dom": "6.8.1",
     "@testing-library/jest-dom": "4.1.2",
     "@testing-library/react": "9.3.0",
@@ -61,7 +61,7 @@
     "webpack-dev-server": "3.8.2"
   },
   "peerDependencies": {
-    "@stephenvector/picto": "0.1.18",
+    "@stephenvector/picto": "0.1.19",
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "styled-components": "4.4.0"
