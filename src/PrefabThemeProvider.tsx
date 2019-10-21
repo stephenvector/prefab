@@ -5,8 +5,12 @@ import { lightTheme } from "./";
 const ThemeProviderWrapper = styled.div`
   background: ${p => p.theme.colors.bg};
   color: ${p => p.theme.colors.fg};
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900&display=swap");
+
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   & ::placeholder {
     color: ${p => p.theme.colors.meta};
     opacity: 1;
