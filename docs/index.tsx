@@ -30,21 +30,27 @@ import {
   Padding
 } from "../src";
 
+import { SelectProps } from "../src/Select";
+
 import CodeSnippet from "./CodeSnippet";
 import DemoController from "./DemoController";
 
 const DOCS_SELECT_OPTIONS = [
   {
-    label: "First Item",
-    value: "first"
+    label: "Green",
+    value: "green"
   },
   {
-    label: "Second Item",
-    value: "first"
+    label: "Blue",
+    value: "blue"
   },
   {
-    label: "Third Item",
-    value: "first"
+    label: "Red",
+    value: "red"
+  },
+  {
+    label: "Purple",
+    value: "purple"
   }
 ];
 
@@ -95,11 +101,11 @@ function Docs() {
                   <Button>Button</Button>
                 </ButtonGroup>
 
-                <DemoController
+                {/* <DemoController
                   initialValue="#e56"
                   label="ColorPicker"
                   component={ColorPicker}
-                />
+                /> */}
 
                 <div id="typography">
                   <h2>Typography</h2>
@@ -143,18 +149,19 @@ function Docs() {
                 </Carousel>
 
                 <H3>DatePicker</H3>
-                <DemoController
-                  initialValue={new Date().getTime()}
-                  component={DatePicker}
-                />
+                <DemoController initialValue={new Date().getTime()}>
+                  {({ value, onChange }) => (
+                    <DatePicker value={value} onChange={onChange} />
+                  )}
+                </DemoController>
 
-                <H3>Slider</H3>
+                {/* <H3>Slider</H3>
                 <DemoController initialValue={50} component={Slider} />
 
                 <DemoController
                   initialValue={"This is preview text"}
                   component={Textarea}
-                />
+                /> */}
               </Column>
             </Row>
 
@@ -165,9 +172,18 @@ function Docs() {
             </Row>
             <Row>
               <Column>
-                <div>
-                  <Select options={DOCS_SELECT_OPTIONS} value={undefined} />
-                </div>
+                <DemoController initialValue="">
+                  {({ value, onChange }) => (
+                    <Select
+                      optionsLabel="Select a color"
+                      toggleLabel="Open"
+                      listId="examplelist"
+                      onChange={onChange}
+                      value={value}
+                      options={DOCS_SELECT_OPTIONS}
+                    />
+                  )}
+                </DemoController>
               </Column>
               <Column>
                 <CodeSnippet
