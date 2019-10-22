@@ -30,8 +30,6 @@ import {
   Padding
 } from "../src";
 
-import { SelectProps } from "../src/Select";
-
 import CodeSnippet from "./CodeSnippet";
 import DemoController from "./DemoController";
 
@@ -51,6 +49,18 @@ const DOCS_SELECT_OPTIONS = [
   {
     label: "Purple",
     value: "purple"
+  },
+  {
+    label: "Orange",
+    value: "orange"
+  },
+  {
+    label: "Pink",
+    value: "Pink"
+  },
+  {
+    label: "Grey",
+    value: "grey"
   }
 ];
 
