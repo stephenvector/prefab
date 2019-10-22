@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { ArrowDown, ArrowUp } from "@stephenvector/picto";
-import styled, { DefaultTheme } from "styled-components";
+import styled from "styled-components";
 import { getRandomID } from "./utils";
 import { defaultPrefabTheme } from "./";
 
@@ -50,6 +50,7 @@ const SelectOptions = styled.ul`
   left: 0;
   min-height: ${p => p.theme.sizing.formControls};
   max-height: 13rem;
+  overflow-y: auto;
   text-indent: 0.5rem;
   margin-top: calc(${p => p.theme.sizing.border} * -1);
   border-bottom-left-radius: ${p => p.theme.sizing.borderRadius};
