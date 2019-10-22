@@ -79,18 +79,47 @@ function Docs() {
           <Container>
             <Row>
               <Column>
-                <Box aspectRatio={2 / 4} centerContent>
-                  <Button>Button</Button>
-                  <CodeSnippet code={`<Button>Normal Button</Button>`} />
-                </Box>
+                <Button>Button</Button>
+                <CodeSnippet code={`<Button>Button</Button>`} />
               </Column>
               <Column>
-                <Box aspectRatio={1} centerContent>
-                  <Button fullWidth>Button</Button>
-                  <CodeSnippet
-                    code={`<Button fullWidth>Full Width Button</Button>`}
-                  />
+                <Button fullWidth>Button</Button>
+                <CodeSnippet
+                  code={`<Button fullWidth>Full Width Button</Button>`}
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                <H2>Grid System</H2>
+
+                <CodeSnippet
+                  code={`
+<Container>
+  <Row>
+    <Column>{...}</Column>
+  </Row>
+</Container>
+`}
+                />
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                <Box
+                  aspectRatio={1}
+                  centerContent
+                  style={{ background: "#888", color: "#fff" }}
+                >
+                  <Display1>Box</Display1>
                 </Box>
+                <CodeSnippet code={`<Button>Button</Button>`} />
+              </Column>
+              <Column>
+                <Button fullWidth>Button</Button>
+                <CodeSnippet
+                  code={`<Button fullWidth>Full Width Button</Button>`}
+                />
               </Column>
             </Row>
             <Row>
@@ -100,12 +129,6 @@ function Docs() {
                   <Button>Button</Button>
                   <Button>Button</Button>
                 </ButtonGroup>
-
-                {/* <DemoController
-                  initialValue="#e56"
-                  label="ColorPicker"
-                  component={ColorPicker}
-                /> */}
 
                 <div id="typography">
                   <h2>Typography</h2>
