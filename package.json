@@ -61,7 +61,11 @@
     "webpack-dev-server": "3.8.2"
   },
   "peerDependencies": {
-    "@stephenvector/picto": "0.1.18",
+    "react": "16.10.2",
+    "react-dom": "16.10.2",
+    "styled-components": "4.4.0"
+  },
+  "dependencies": {
     "react": "16.10.2",
     "react-dom": "16.10.2",
     "styled-components": "4.4.0"

@@ -96,9 +96,9 @@ type Option = {
 type OptionWithId = Option & { id: string };
 
 export type SelectProps = {
-  listId: string;
-  toggleLabel: string;
-  optionsLabel: string;
+  listId?: string;
+  toggleLabel?: string;
+  optionsLabel?: string;
   value: any;
   options: Option[];
   onChange(newValue: any): void;
@@ -229,7 +229,6 @@ function Select({
 }
 
 Select.defaultProps = {
-  multiple: false,
   options: [],
   value: "",
   theme: defaultPrefabTheme
