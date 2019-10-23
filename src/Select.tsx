@@ -40,7 +40,7 @@ ToggleButton.defaultProps = { theme: defaultPrefabTheme };
 const SelectOptions = styled.ul`
   position: absolute;
   top: 3rem;
-  background: transparent;
+  background: ${p => p.theme.colors.bg};
   line-height: ${p => p.theme.sizing.formControls};
   right: 0;
   margin: 0;
