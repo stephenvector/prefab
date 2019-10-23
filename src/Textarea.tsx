@@ -5,10 +5,20 @@ const StyledTextarea = styled.textarea`
   font: inherit;
   box-sizing: border-box;
   padding: 1rem;
-  background: #f2f2f2;
+  background: transparent;
   width: 100%;
   min-height: 9rem;
   border: none;
+  background: ${p => p.theme.colors.bg};
+  box-sizing: border-box;
+  border-radius: ${p => p.theme.sizing.borderRadius};
+  box-shadow: inset 0 0 0
+    ${p => `${p.theme.sizing.border} ${p.theme.colors.meta}`};
+  :active,
+  :focus {
+    box-shadow: inset 0 0 0
+      ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
+  }
 `;
 
 type TextareaProps = {

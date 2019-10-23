@@ -5,27 +5,27 @@ import { Label } from "./";
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onChange(newValue: string): void;
   value: string;
-  disabled?: boolean;
-  error?: boolean;
-  errorMessage?: string;
-  label?: string;
 };
 
 const InputControl = styled.input`
   font: inherit;
   border: none;
-  background: #f2f2f2;
-  border-radius: 3px;
+  background: ${p => p.theme.colors.bg};
+  border-radius: ${p => p.theme.sizing.borderRadius};
+  box-shadow: inset 0 0 0
+    ${p => `${p.theme.sizing.border} ${p.theme.colors.meta}`};
+  padding: 0 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: ${p => p.theme.sizing.formControls};
+  :active,
+  :focus {
+    box-shadow: inset 0 0 0
+      ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
+  }
 `;
 
-export default function Input({
-  label,
-  onChange,
-  value,
-  error,
-  errorMessage,
-  ...otherProps
-}: InputProps) {
+export default function Input({ onChange, value, ...otherProps }: InputProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -33,13 +33,5 @@ export default function Input({
     [onChange]
   );
 
-  return (
-    <>
-      {label !== undefined && <Label>{label}</Label>}
-      <InputControl {...otherProps} value={value} onChange={handleChange} />
-      {error !== undefined && errorMessage !== undefined && (
-        <div>ERROR: {errorMessage}</div>
-      )}
-    </>
-  );
+  return <InputControl {...otherProps} value={value} onChange={handleChange} />;
 }

@@ -40,7 +40,7 @@ ToggleButton.defaultProps = { theme: defaultPrefabTheme };
 const SelectOptions = styled.ul`
   position: absolute;
   top: 3rem;
-  background: #f2f2f2;
+  background: transparent;
   line-height: ${p => p.theme.sizing.formControls};
   right: 0;
   margin: 0;
@@ -74,7 +74,7 @@ SelectOption.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>`
   position: relative;
-  background: #f2f2f2;
+  background: transparent;
   border-radius: ${p => p.theme.sizing.borderRadius};
   ${p => {
     if (p.isFocused) {
