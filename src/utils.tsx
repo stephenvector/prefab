@@ -78,6 +78,8 @@ export function getRGBFromHex(color: string): RGBColor {
     rgbValue.b = parseInt(`${color.slice(3)}${color.slice(3)}`, 16);
   }
 
+  console.log(rgbValue);
+
   return rgbValue;
 }
 
@@ -134,15 +136,17 @@ export function lightenHex(hex: string, amount: number) {
 
   const rgbValue = getRGBFromHex(hex);
 
-  const rNew = Math.floor(min(255, rgbValue.r * (1 + amount)));
-  const gNew = Math.floor(min(255, rgbValue.g * (1 + amount)));
-  const bNew = Math.floor(min(255, rgbValue.b * (1 + amount)));
+  const rNew = min(255, Math.floor(rgbValue.r + amount * 255));
+  const gNew = min(255, Math.floor(rgbValue.g + amount * 255));
+  const bNew = min(255, Math.floor(rgbValue.b + amount * 255));
 
   const newColor: RGBColor = {
     r: rNew,
     g: gNew,
     b: bNew
   };
+
+  console.log(hex, newColor);
 
   return getHexFromRGB(newColor);
 }
@@ -158,9 +162,9 @@ export function darkenHex(hex: string, amount: number) {
     return getHexFromRGB({ r: 0, g: 0, b: 0 });
   }
 
-  const rNew = Math.floor(max(255, rgbValue.r * (1 - amount)));
-  const gNew = Math.floor(max(255, rgbValue.g * (1 - amount)));
-  const bNew = Math.floor(max(255, rgbValue.b * (1 - amount)));
+  const rNew = max(255, Math.floor(rgbValue.r + amount * 255));
+  const gNew = max(255, Math.floor(rgbValue.g + amount * 255));
+  const bNew = max(255, Math.floor(rgbValue.b + amount * 255));
 
   const newColor: RGBColor = {
     r: rNew,
