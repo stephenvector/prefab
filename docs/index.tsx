@@ -27,6 +27,7 @@ import {
   defaultPrefabTheme,
   Select,
   Paragraph,
+  Input,
   Padding
 } from "../src";
 
@@ -79,6 +80,8 @@ function Docs() {
                     <a href="https://github.com/stephenvector/prefab">
                       View source on GitHub
                     </a>
+                    <Input type="text" onChange={() => {}} value="" />
+                    <Textarea value="" onChange={() => {}} />
                   </Paragraph>
                 </Padding>
               </Column>
@@ -90,7 +93,22 @@ function Docs() {
             <Row>
               <Column>
                 <Button>Button</Button>
-                <CodeSnippet code={`<Button>Button</Button>`} />
+                <Padding y={1}>
+                  <Button bg="#000" fg="#fff">
+                    Custom Colors
+                  </Button>
+                </Padding>
+                <Button outline bg="#000" fg="#fff">
+                  Outline Button
+                </Button>
+
+                <CodeSnippet
+                  code={`
+<Button>Button</Button>
+<Button bg="#000" fg="#fff">Custom Colors</Button>
+<Button outline bg="#000" fg="#fff">Outline Button</Button>
+`}
+                />
               </Column>
               <Column>
                 <Button fullWidth>Button</Button>
