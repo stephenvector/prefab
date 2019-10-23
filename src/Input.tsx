@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { Label } from "./";
+import { Label, defaultPrefabTheme } from "./";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onChange(newValue: string): void;
@@ -25,7 +25,7 @@ const InputControl = styled.input`
   }
 `;
 
-export default function Input({ onChange, value, ...otherProps }: InputProps) {
+function Input({ onChange, value, ...otherProps }: InputProps) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
@@ -35,3 +35,9 @@ export default function Input({ onChange, value, ...otherProps }: InputProps) {
 
   return <InputControl {...otherProps} value={value} onChange={handleChange} />;
 }
+
+Input.defaultProps = {
+  theme: defaultPrefabTheme
+};
+
+export default Input;

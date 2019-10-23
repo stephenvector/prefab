@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { defaultPrefabTheme } from "./";
 
 const StyledTextarea = styled.textarea`
   font: inherit;
@@ -20,6 +21,10 @@ const StyledTextarea = styled.textarea`
       ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
   }
 `;
+
+StyledTextarea.defaultProps = {
+  theme: defaultPrefabTheme
+};
 
 type TextareaProps = {
   value: string;
