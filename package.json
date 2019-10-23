@@ -1,6 +1,6 @@
 {
   "name": "@stephenvector/prefab",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A set of themeable UI components for React projects.",
   "scripts": {
     "dev": "webpack-dev-server",
