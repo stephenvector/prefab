@@ -45,18 +45,18 @@ const Button = styled.button.attrs((p: ButtonProps) => {
   background: ${p => p.bg};
   color: ${p => p.fg};
   box-shadow: ${p =>
-    `inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.accent}`};
+    `inset 0 0 0 ${p.theme.sizing.border} ${p.outline ? p.fg : p.bg};`};
   :focus {
-    outline: solid 6px #ccf;
+    outline: solid 6px #e56;
     outline-offset: 2px;
   }
   :hover {
     color: ${p => (p.outline ? p.bg : p.fg)};
-    background: ${({ theme }) => lightenHex(theme.colors.accent, 0.3)};
-    box-shadow: ${({ theme }) =>
-      `inset 0 0 ${theme.sizing.border} 0 ${lightenHex(
-        theme.colors.accent,
-        0.3
+    background: ${p => lightenHex(p.outline ? p.fg : p.bg, 0.1)};
+    box-shadow: ${p =>
+      `inset 0 0 0 ${p.theme.sizing.border} 0 ${lightenHex(
+        p.outline ? p.fg : p.bg,
+        0.1
       )}`};
   }
 `;
