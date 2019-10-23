@@ -78,8 +78,6 @@ export function getRGBFromHex(color: string): RGBColor {
     rgbValue.b = parseInt(`${color.slice(3)}${color.slice(3)}`, 16);
   }
 
-  console.log(rgbValue);
-
   return rgbValue;
 }
 
@@ -145,8 +143,6 @@ export function lightenHex(hex: string, amount: number) {
     g: gNew,
     b: bNew
   };
-
-  console.log(hex, newColor);
 
   return getHexFromRGB(newColor);
 }
