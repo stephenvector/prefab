@@ -195,6 +195,7 @@ describe("<Select />", () => {
       <Select
         listId="testselect"
         value=""
+        options={[]}
         onChange={() => {}}
         toggleLabel="Open"
         optionsLabel="Select a test option"
