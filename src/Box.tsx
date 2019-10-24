@@ -14,7 +14,7 @@ type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   paddingY?: number;
   padding?: number;
   marginTop?: number;
-  marginleft?: number;
+  marginLeft?: number;
   marginRight?: number;
   marginBottom?: number;
   marginX?: number;
@@ -36,7 +36,7 @@ const BoxOuter = styled.div<BoxProps>`
     paddingY,
     padding,
     marginTop,
-    marginleft,
+    marginLeft,
     marginRight,
     marginBottom,
     marginX,
@@ -87,8 +87,8 @@ const BoxOuter = styled.div<BoxProps>`
       rules.marginTop = `${marginTop}rem`;
     }
 
-    if (marginleft) {
-      rules.marginLeft = `${marginleft}rem`;
+    if (marginLeft) {
+      rules.marginLeft = `${marginLeft}rem`;
     }
 
     if (marginRight) {
