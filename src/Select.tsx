@@ -290,8 +290,4 @@ function Select({
   );
 }
 
-Select.defaultProps = {
-  multiple: false
-};
-
 export default Select;
