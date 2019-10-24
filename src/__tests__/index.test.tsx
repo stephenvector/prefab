@@ -14,7 +14,6 @@ import {
   Input,
   Label,
   Loading,
-  // PrefabThemeProvider,
   lightTheme,
   Padding,
   ProgressBar,
@@ -22,11 +21,11 @@ import {
   Select,
   Slider,
   Table,
-  TableHead,
-  TableHeadCell,
-  TableRow,
-  TableCell,
-  TableBody,
+  Thead,
+  Th,
+  Tr,
+  Td,
+  Tbody,
   H1,
   H2,
   H3,
@@ -127,12 +126,6 @@ describe("<Loading />", () => {
   });
 });
 
-// describe("<PrefabThemeProvider />", () => {
-//   it("should render", () => {
-//     renderer.create(<PrefabThemeProvider />);
-//   });
-// });
-
 describe("<Padding />", () => {
   test("Should render without padding if no props are supplied.", () => {
     const wrapper = renderer.create(<Padding />).toJSON();
@@ -214,16 +207,16 @@ describe("<Table />", () => {
   it("Should render", () => {
     renderer.create(
       <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeadCell>Head</TableHeadCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Cell</TableCell>
-          </TableRow>
-        </TableBody>
+        <Thead>
+          <Tr>
+            <Th>Head</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>Cell</Td>
+          </Tr>
+        </Tbody>
       </Table>
     );
   });

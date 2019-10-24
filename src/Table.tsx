@@ -2,24 +2,27 @@ import styled from "styled-components";
 
 export const Table = styled.table`
   border-collapse: collapse;
+  width: 100%;
 `;
 
-export const TableHead = styled.thead`
+export const Thead = styled.thead``;
+
+export const Tbody = styled.tbody``;
+
+export const Tfoot = styled.tfoot`
   border-collapse: collapse;
 `;
 
-export const TableRow = styled.tr`
-  border-collapse: collapse;
+export const Tr = styled.tr``;
+
+export const Td = styled.td`
+  padding: 1rem;
+  text-align: left;
+  font: inherit;
 `;
 
-export const TableBody = styled.tbody`
-  border-collapse: collapse;
-`;
-
-export const TableCell = styled.td`
-  border-collapse: collapse;
-`;
-
-export const TableHeadCell = styled.th`
-  border-collapse: collapse;
+export const Th = styled.th`
+  padding: 1rem;
+  text-align: left;
+  font: inherit;
 `;

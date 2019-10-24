@@ -96,14 +96,7 @@ export {
 export { default as Textarea } from "./Textarea";
 export { default as PrefabThemeProvider } from "./PrefabThemeProvider";
 
-export {
-  Table,
-  TableHead,
-  TableCell,
-  TableRow,
-  TableHeadCell,
-  TableBody
-} from "./Table";
+export { Table, Thead, Td, Tr, Th, Tbody } from "./Table";
 
 export {
   isValidRGBColor,
