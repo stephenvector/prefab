@@ -39,11 +39,12 @@ const DatePickerHeader = styled.div`
   line-height: 3rem;
 `;
 
-const DayButton = styled.button<{ isSelected: boolean }>`
+const DayButton = styled.button<{ isSelected: boolean; isToday: boolean }>`
   width: 3rem;
   height: 3rem;
   border: none;
   font: inherit;
+  font-weight: ${p => (p.isToday ? "bold" : "normal")};
   background: ${p => (p.isSelected ? p.theme.colors.accent : "transparent")};
   color: ${p => (p.isSelected ? p.theme.colors.bg : "inherit")};
   cursor: pointer;
@@ -63,70 +64,73 @@ const BlankDay = styled.span`
 
 const monthFormatter = new Intl.DateTimeFormat("en-us", { month: "long" });
 
+type CalendarInfo = {
+  year: number;
+  month: number;
+  date: number;
+  numDaysInMonth: number;
+  startDayOfWeek: number;
+};
+
+function getCalendarInfo(
+  date: Date,
+  atBeginningOfMonth: boolean = false
+): CalendarInfo {
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    date: atBeginningOfMonth ? 1 : date.getDate(),
+    numDaysInMonth: new Date(
+      date.getFullYear(),
+      date.getMonth() + 1,
+      0
+    ).getDate(),
+    startDayOfWeek: new Date(date.getFullYear(), date.getMonth(), 1).getDay()
+  };
+}
+
 type DatePickerProps = {
   value: number;
   onChange(val: number): void;
 };
 
-type YearMonthDate = {
-  year: number;
-  month: number;
-  date: number;
-};
-
 export default function DatePicker({ value, onChange }: DatePickerProps) {
-  const [now, setNow] = useState(new Date(value));
+  const [selectedDateInfo, setSelectedDateInfo] = useState(() =>
+    getCalendarInfo(new Date(value))
+  );
 
-  const [currentSelectedYearMonthDay, setCurrentSelected] = useState<
-    undefined | YearMonthDate
-  >(undefined);
+  const [calendarInfo, setCalendarInfo] = useState(() =>
+    getCalendarInfo(new Date(value), true)
+  );
+
+  const [rightNowInfo] = useState(() => getCalendarInfo(new Date()));
 
   useEffect(() => {
-    const newNow = new Date(value);
-    setNow(newNow);
+    setSelectedDateInfo(getCalendarInfo(new Date(value)));
   }, [value]);
-
-  useEffect(() => {
-    setCurrentSelected({
-      year: now.getFullYear(),
-      month: now.getMonth(),
-      date: now.getDate()
-    });
-  }, [now]);
-
-  const numDaysInMonth = new Date(
-    now.getFullYear(),
-    now.getMonth() + 1,
-    0
-  ).getDate();
-
-  const startDayOfWeek = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    1
-  ).getDay();
 
   const handleSelectDate = useCallback(
     (date: number) => {
       const newValue = new Date(
-        now.getFullYear(),
-        now.getMonth(),
+        calendarInfo.year,
+        calendarInfo.month,
         date
       ).getTime();
+
       onChange(newValue);
     },
-    [now, onChange]
+    [calendarInfo, onChange]
   );
 
-  function previousMonth() {
-    const newNow = new Date(now.getFullYear(), now.getMonth() - 1);
-    setNow(newNow);
-  }
+  const previousMonth = useCallback(function previousMonth() {
+    const newNow = new Date(calendarInfo.year, calendarInfo.month - 1);
+    setCalendarInfo(getCalendarInfo(newNow, true));
+  }, []);
 
-  function nextMonth() {
-    const newNow = new Date(now.getFullYear(), now.getMonth() + 1);
-    setNow(newNow);
-  }
+  const nextMonth = useCallback(function nextMonth() {
+    const newNow = new Date(calendarInfo.year, calendarInfo.month + 1);
+    setCalendarInfo(getCalendarInfo(newNow, true));
+  }, []);
 
   return (
     <Wrapper>
@@ -135,7 +139,7 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
           <ArrowLeft />
         </NextPrevMonthButton>
         <div style={{ textAlign: "center" }}>
-          {monthFormatter.format(now)} {now.getFullYear()}
+          {monthFormatter.format(calendarInfo.month)} {calendarInfo.year}
         </div>
         <NextPrevMonthButton onClick={nextMonth} type="button">
           <ArrowRight />
@@ -143,15 +147,24 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
       </DatePickerHeader>
 
       <div>
-        {Array(startDayOfWeek)
+        {Array(calendarInfo.startDayOfWeek)
           .fill(0)
           .map((_item, index) => (
             <BlankDay key={index} />
           ))}
-        {Array(numDaysInMonth)
+        {Array(calendarInfo.numDaysInMonth)
           .fill(0)
           .map((_item, index) => {
-            const isSelected = false;
+            let isSelected =
+              selectedDateInfo.year === calendarInfo.year &&
+              selectedDateInfo.month === calendarInfo.month &&
+              selectedDateInfo.date === index;
+
+            let isToday =
+              rightNowInfo.year === calendarInfo.year &&
+              rightNowInfo.month === calendarInfo.month &&
+              rightNowInfo.date === index;
+
             return (
               <DayButton
                 onClick={() => {
@@ -159,6 +172,7 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
                 }}
                 key={index}
                 isSelected={isSelected}
+                isToday={isToday}
               >
                 {index + 1}
               </DayButton>
