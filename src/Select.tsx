@@ -6,7 +6,15 @@ import React, {
   useState
 } from "react";
 import { getRandomID } from "./utils";
-import { defaultPrefabTheme } from "./";
+import {
+  defaultPrefabTheme,
+  SelectOptionProps,
+  SelectProps,
+  OptionValue,
+  OptionWithId,
+  Option
+} from "./";
+import { useOptionsWithIds } from "./hooks";
 import { ArrowDown, ArrowUp } from "@stephenvector/picto";
 import styled from "styled-components";
 
@@ -66,22 +74,6 @@ function SelectOption(props: SelectOptionProps) {
 }
 
 SelectOption.defaultProps = { theme: defaultPrefabTheme };
-
-type OptionValue = any;
-
-export type Option = {
-  label: string;
-  value: OptionValue;
-};
-
-export type OptionWithId = Option & { id: string };
-
-export type SelectOptionProps = {
-  option: OptionWithId;
-  focused: boolean;
-  selected: boolean;
-  toggleOption(value: OptionValue): void;
-};
 
 const SelectControl = styled.div`
   height: ${p => p.theme.sizing.formControls};
@@ -158,15 +150,6 @@ const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>`
 `;
 SelectWrapper.defaultProps = { theme: defaultPrefabTheme };
 
-export type SelectProps = {
-  listId?: string;
-  toggleLabel?: string;
-  optionsLabel?: string;
-  options: Option[];
-  value: OptionValue;
-  onChange(newValue: OptionValue): void;
-};
-
 function Select({
   value,
   onChange,
@@ -177,13 +160,9 @@ function Select({
 }: SelectProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOptionOrOptions, setSelectedOptionId] = useState<
-    undefined | typeof value
-  >();
-
   const [currentValueLabel, setCurrentValueLabel] = useState("");
   const inputRef = createRef<HTMLInputElement>();
-  const [optionsWithIds, setOptionsWithIds] = useState<OptionWithId[]>([]);
+  const optionsWithIds = useOptionsWithIds(options);
 
   useEffect(() => {
     let match = options.find(i => i.value === value);
@@ -193,24 +172,6 @@ function Select({
       setCurrentValueLabel(value);
     }
   }, [value, options]);
-
-  useEffect(() => {
-    const newOptions: OptionWithId[] = [];
-    const newOptionsIds: string[] = [];
-
-    const minNumCharacters = Math.ceil(Math.log2(options.length));
-
-    options.forEach((option: Option) => {
-      const optionId = getRandomID(newOptionsIds, minNumCharacters);
-      newOptionsIds.push(optionId);
-      newOptions.push({
-        ...option,
-        id: optionId
-      });
-    });
-
-    setOptionsWithIds(newOptions);
-  }, [options]);
 
   const toggleOption = useCallback(
     (optionValue: OptionValue) => {
@@ -272,19 +233,15 @@ function Select({
         isOpen={isOpen}
         aria-hidden={!isOpen}
       >
-        {optionsWithIds.map(option => {
-          const selected = option.value === value;
-
-          return (
-            <SelectOption
-              toggleOption={toggleOption}
-              focused={false}
-              selected={selected}
-              option={option}
-              key={option.id}
-            />
-          );
-        })}
+        {optionsWithIds.map(option => (
+          <SelectOption
+            toggleOption={toggleOption}
+            focused={false}
+            selected={option.value === value}
+            option={option}
+            key={option.id}
+          />
+        ))}
       </SelectOptions>
     </SelectWrapper>
   );

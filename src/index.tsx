@@ -1,6 +1,37 @@
 import styled, { DefaultTheme } from "styled-components";
 import "styled-components";
 
+export type OptionValue = any;
+
+export type Option = {
+  label: string;
+  value: OptionValue;
+};
+
+export type OptionWithId = Option & { id: string };
+
+export type SelectOptionProps = {
+  option: OptionWithId;
+  focused: boolean;
+  selected: boolean;
+  toggleOption(value: OptionValue): void;
+};
+
+export type SelectProps = {
+  listId?: string;
+  toggleLabel?: string;
+  optionsLabel?: string;
+  options: Option[];
+  value: OptionValue;
+  onChange(newValue: OptionValue): void;
+};
+
+export type RadioProps = {
+  options: Option[];
+  value: OptionValue;
+  onChange(newValue: OptionValue): void;
+};
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: ColorPalette;
