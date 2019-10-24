@@ -25,6 +25,7 @@ import {
   H5,
   H6,
   defaultPrefabTheme,
+  RadioGroup,
   Select,
   Paragraph,
   Input,
@@ -65,6 +66,14 @@ const DOCS_SELECT_OPTIONS = [
   }
 ];
 
+function DemoContainer(props) {
+  return (
+    <Box marginY={4}>
+      <Container {...props} />
+    </Box>
+  );
+}
+
 function Docs() {
   return (
     <PrefabThemeProvider theme={defaultPrefabTheme}>
@@ -89,7 +98,7 @@ function Docs() {
           </Container>
         </header>
         <section>
-          <Container>
+          <DemoContainer>
             <Row>
               <Column>
                 <Button>Button</Button>
@@ -117,6 +126,23 @@ function Docs() {
                 />
               </Column>
             </Row>
+          </DemoContainer>
+          <DemoContainer>
+            <Row>
+              <Column>
+                <DemoController label="RadioGroup" initialValue="red">
+                  {({ value, onChange }) => (
+                    <RadioGroup
+                      onChange={onChange}
+                      value={value}
+                      options={DOCS_SELECT_OPTIONS}
+                    />
+                  )}
+                </DemoController>
+              </Column>
+            </Row>
+          </DemoContainer>
+          <DemoContainer>
             <Row>
               <Column>
                 <H2>Grid System</H2>
@@ -242,7 +268,7 @@ function Docs() {
                 />
               </Column>
             </Row>
-          </Container>
+          </DemoContainer>
 
           <Box aspectRatio={1 / 4} centerContent>
             <H3>prefab</H3>

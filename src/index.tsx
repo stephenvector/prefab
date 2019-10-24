@@ -32,6 +32,12 @@ export type RadioProps = {
   onChange(newValue: OptionValue): void;
 };
 
+export type RadioOptionProps = {
+  isActive: boolean;
+  onClick(value: OptionValue): void;
+  option: OptionWithId;
+};
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: ColorPalette;
@@ -108,6 +114,7 @@ export { default as Label } from "./Label";
 export { default as Loading } from "./Loading";
 export { default as Padding } from "./Padding";
 export { default as ProgressBar } from "./ProgressBar";
+export { default as RadioGroup } from "./RadioGroup";
 export { default as Row } from "./Row";
 export { default as Select } from "./Select";
 export { default as Slider } from "./Slider";
