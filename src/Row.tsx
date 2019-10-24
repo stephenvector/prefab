@@ -1,9 +1,20 @@
 import styled from "styled-components";
 
-const Row = styled.div`
+export type RowProps = {
+  padding?: boolean;
+};
+
+const Row = styled.div<RowProps>`
   display: flex;
-  padding: 0 1rem;
+  padding-left: ${p => (p.padding ? `1rem` : "initial")};
+  padding-right: ${p => (p.padding ? `1rem` : "initial")};
   box-sizing: border-box;
+  flex-direction: row;
+  flex-wrap: nowrap;
 `;
+
+Row.defaultProps = {
+  padding: true
+};
 
 export default Row;
