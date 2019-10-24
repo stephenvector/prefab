@@ -1,5 +1,9 @@
 import React from "react";
-import styled, { DefaultTheme, ThemeProvider } from "styled-components";
+import styled, {
+  DefaultTheme,
+  ThemeProvider,
+  createGlobalStyle
+} from "styled-components";
 import { lightTheme } from "./";
 
 const ThemeProviderWrapper = styled.div`
@@ -21,21 +25,53 @@ const ThemeProviderWrapper = styled.div`
   }
 `;
 
+const Globals = createGlobalStyle<{ theme: DefaultTheme }>`
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    font-size: ${p => p.theme.sizing.remSize};
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: ${p => p.theme.colors.bg};
+    color: ${p => p.theme.colors.fg};
+  }
+
+  a {
+    color: inherit;
+  }
+`;
+
 type PrefabThemeProviderProps = {
   theme: DefaultTheme;
   children: React.ReactNode;
+  includeGlobals?: boolean;
 };
 
-function PrefabThemeProvider({ theme, children }: PrefabThemeProviderProps) {
+function PrefabThemeProvider({
+  theme,
+  children,
+  includeGlobals
+}: PrefabThemeProviderProps) {
   return (
     <ThemeProvider theme={theme}>
-      <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+      <>
+        {includeGlobals && <Globals theme={theme} />}
+        <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+      </>
     </ThemeProvider>
   );
 }
 
 PrefabThemeProvider.defaultProps = {
-  theme: lightTheme
+  theme: lightTheme,
+  includeGlobals: false
 };
 
 export default PrefabThemeProvider;
