@@ -11,6 +11,10 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
+Wrapper.defaultProps = {
+  theme: defaultPrefabTheme
+};
+
 export const BackgroundBar = styled.div`
   height: 1rem;
   width: 100%;
@@ -20,9 +24,12 @@ export const BackgroundBar = styled.div`
   position: relative;
 `;
 
+BackgroundBar.defaultProps = {
+  theme: defaultPrefabTheme
+};
+
 export const IndicatorBar = styled.div<{
   position: number;
-  theme: DefaultTheme;
 }>`
   background: ${p => p.theme.colors.accent};
   height: 100%;
@@ -30,6 +37,10 @@ export const IndicatorBar = styled.div<{
   width: ${p => `${p.position}%`};
   border-radius: calc(2rem / 2);
 `;
+
+IndicatorBar.defaultProps = {
+  theme: defaultPrefabTheme
+};
 
 export const Dot = styled.div<{ position: number }>`
   width: 2rem;
@@ -41,6 +52,10 @@ export const Dot = styled.div<{ position: number }>`
   left: ${p => `${p.position}%`};
   box-shadow: 0 0 0.2rem 0 blue;
 `;
+
+Dot.defaultProps = {
+  theme: defaultPrefabTheme
+};
 
 type SliderProps = {
   min: number;
