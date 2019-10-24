@@ -1,14 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { defaultPrefabTheme } from "./";
 
 type ContainerProps = {
   fullWidth?: boolean;
+  center?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const Container = styled.div<ContainerProps>`
-  margin: 0 auto;
+  box-sizing: border-box;
+  margin-left: ${p => (p.center === true ? "auto" : 0)};
+  margin-right: ${p => (p.center === true ? "auto" : 0)};
+  max-width: ${p => (p.fullWidth === true ? "100%" : p.theme.breakpoints.xl)};
   width: 100%;
-  max-width: ${p => (p.fullWidth === true ? "100%" : "1200px")};
 `;
+
+Container.defaultProps = {
+  center: true,
+  fullWidth: false,
+  theme: defaultPrefabTheme
+};
 
 export default Container;
