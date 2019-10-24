@@ -1,25 +1,21 @@
 import styled, { DefaultTheme } from "styled-components";
-
-export type ColorPalette = {
-  bg: string;
-  fg: string;
-  accent: string;
-  meta: string;
-};
-
 import "styled-components";
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: ColorPalette;
     breakpoints: {
+      xs: string;
       sm: string;
       md: string;
       lg: string;
+      xl: string;
     };
     sizing: {
       formControls: string;
       borderRadius: string;
       border: string;
+      remSize: string;
     };
     typefaces: {
       base: string;
@@ -27,6 +23,13 @@ declare module "styled-components" {
     };
   }
 }
+
+export type ColorPalette = {
+  bg: string;
+  fg: string;
+  accent: string;
+  meta: string;
+};
 
 export const lightTheme: DefaultTheme = {
   colors: {
@@ -36,14 +39,17 @@ export const lightTheme: DefaultTheme = {
     meta: "#bbb"
   },
   breakpoints: {
-    sm: "600px",
-    md: "1024px",
-    lg: "1200px"
+    xs: "0",
+    sm: "480px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1200px"
   },
   sizing: {
     formControls: "3rem",
     borderRadius: "3px",
-    border: "2px"
+    border: "2px",
+    remSize: "18px"
   },
   typefaces: {
     base: "sans-serif",
