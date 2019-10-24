@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { H2 } from "../src";
 
 type InjectedProps = {
   onChange(value: any): void;
@@ -6,15 +7,22 @@ type InjectedProps = {
 };
 
 type DemoControllerPropTypes = {
+  label?: string;
   initialValue: any;
   children(props: InjectedProps): any;
 };
 
 export default function DemoController({
   initialValue,
-  children
+  children,
+  label
 }: DemoControllerPropTypes) {
   const [value, onChange] = useState(initialValue);
 
-  return children({ value, onChange });
+  return (
+    <>
+      {label !== undefined && <H2>{label}</H2>}
+      {children({ value, onChange })}
+    </>
+  );
 }
