@@ -89,8 +89,6 @@ function Docs() {
                     <a href="https://github.com/stephenvector/prefab">
                       View source on GitHub
                     </a>
-                    <Input type="text" onChange={() => {}} value="" />
-                    <Textarea value="" onChange={() => {}} />
                   </Paragraph>
                 </Padding>
               </Column>
