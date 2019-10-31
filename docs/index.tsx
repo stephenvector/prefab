@@ -108,20 +108,17 @@ function Docs() {
                 <Button outline bg="#000" fg="#fff">
                   Outline Button
                 </Button>
-
+<Button fullWidth>Button</Button>
                 <CodeSnippet
                   code={`
 <Button>Button</Button>
 <Button bg="#000" fg="#fff">Custom Colors</Button>
 <Button outline bg="#000" fg="#fff">Outline Button</Button>
+<Button fullWidth>Button</Button>
 `}
                 />
               </Column>
               <Column>
-                <Button fullWidth>Button</Button>
-                <CodeSnippet
-                  code={`<Button fullWidth>Full Width Button</Button>`}
-                />
               </Column>
             </Row>
           </DemoContainer>
@@ -165,7 +162,7 @@ function Docs() {
                 >
                   <Display1>Box</Display1>
                 </Box>
-                <CodeSnippet code={`<Button>Button</Button>`} />
+                <CodeSnippet code={`<Box aspectRatio={1}><Display1>Box</Display1></Box>`} />
               </Column>
               <Column>
                 <Button fullWidth>Button</Button>
