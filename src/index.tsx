@@ -1,5 +1,4 @@
-import styled, { DefaultTheme } from "styled-components";
-import "styled-components";
+import styled, { CreateStyled } from "@emotion/styled";
 
 export type OptionValue = any;
 
@@ -38,27 +37,25 @@ export type RadioOptionProps = {
   option: OptionWithId;
 };
 
-declare module "styled-components" {
-  export interface DefaultTheme {
-    colors: ColorPalette;
-    breakpoints: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-    };
-    sizing: {
-      formControls: string;
-      borderRadius: string;
-      border: string;
-      remSize: string;
-    };
-    typefaces: {
-      base: string;
-      headings: string;
-    };
-  }
+export interface Theme {
+  colors: ColorPalette;
+  breakpoints: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  sizing: {
+    formControls: string;
+    borderRadius: string;
+    border: string;
+    remSize: string;
+  };
+  typefaces: {
+    base: string;
+    headings: string;
+  };
 }
 
 export type ColorPalette = {
@@ -68,7 +65,7 @@ export type ColorPalette = {
   meta: string;
 };
 
-export const lightTheme: DefaultTheme = {
+export const lightTheme: Theme = {
   colors: {
     bg: "#fff",
     fg: "#000",
@@ -94,18 +91,16 @@ export const lightTheme: DefaultTheme = {
   }
 };
 
-export const darkTheme: DefaultTheme = Object.assign({}, lightTheme);
+export const darkTheme: Theme = Object.assign({}, lightTheme);
 
 export const defaultPrefabTheme = lightTheme;
 
 export const Hr = styled.hr``;
 
 export { default as Button } from "./Button";
-export { default as ButtonGroup } from "./ButtonGroup";
 export { default as Box } from "./Box";
 export { default as Carousel } from "./Carousel";
 export { default as Code } from "./Code";
-export { default as ColorPicker } from "./ColorPicker";
 export { default as Column } from "./Column";
 export { default as Container } from "./Container";
 export { default as DatePicker } from "./DatePicker";

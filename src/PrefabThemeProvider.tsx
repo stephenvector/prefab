@@ -1,20 +1,14 @@
 import React from "react";
-import styled, {
-  DefaultTheme,
-  ThemeProvider,
-  createGlobalStyle
-} from "styled-components";
-import { lightTheme } from "./";
+import { ThemeProvider } from "emotion-theming";
+import styled from "./styled";
+import { lightTheme, Theme } from "./";
 
 const ThemeProviderWrapper = styled.div`
   background: ${p => p.theme.colors.bg};
   color: ${p => p.theme.colors.fg};
 
-  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,900&display=swap");
-
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   & ::placeholder {
     color: ${p => p.theme.colors.meta};
     opacity: 1;
@@ -25,31 +19,28 @@ const ThemeProviderWrapper = styled.div`
   }
 `;
 
-const Globals = createGlobalStyle<{ theme: DefaultTheme }>`
-  *, *:before, *:after {
-    box-sizing: border-box;
-  }
-
-  html {
-    margin: 0;
-    padding: 0;
-    font-size: ${p => p.theme.sizing.remSize};
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background: ${p => p.theme.colors.bg};
-    color: ${p => p.theme.colors.fg};
-  }
-
-  a {
-    color: inherit;
-  }
-`;
+// const Globals = createGlobalStyle<{ theme: DefaultTheme }>`
+//   *, *:before, *:after {
+//     box-sizing: border-box;
+//   }
+//   html {
+//     margin: 0;
+//     padding: 0;
+//     font-size: ${p => p.theme.sizing.remSize};
+//   }
+//   body {
+//     margin: 0;
+//     padding: 0;
+//     background: ${p => p.theme.colors.bg};
+//     color: ${p => p.theme.colors.fg};
+//   }
+//   a {
+//     color: inherit;
+//   }
+// `;
 
 type PrefabThemeProviderProps = {
-  theme: DefaultTheme;
+  theme: Theme;
   children: React.ReactNode;
   includeGlobals?: boolean;
 };
@@ -61,10 +52,7 @@ function PrefabThemeProvider({
 }: PrefabThemeProviderProps) {
   return (
     <ThemeProvider theme={theme}>
-      <>
-        {includeGlobals && <Globals theme={theme} />}
-        <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
-      </>
+      <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
     </ThemeProvider>
   );
 }
@@ -75,3 +63,9 @@ PrefabThemeProvider.defaultProps = {
 };
 
 export default PrefabThemeProvider;
+
+// {/* {includeGlobals && <Globals theme={theme} />} */ }
+// {/* <ThemeProviderWrapper> */ }
+
+// {/* </ThemeProviderWrapper> */ }
+//       // </>

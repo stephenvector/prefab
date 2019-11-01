@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
-
-import styled from "styled-components";
+import styled from "./styled";
 
 const Wrapper = styled.div`
   overflow: hidden;

@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import styled from "styled-components";
+import styled from "./styled";
 import { defaultPrefabTheme } from "./";
 
 const StyledTextarea = styled.textarea`

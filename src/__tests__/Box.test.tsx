@@ -1,7 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+import { matchers } from "jest-emotion";
 import { Box } from "../";
+
+expect.extend(matchers);
 
 describe("<Box />", () => {
   test("Should render with a custom background if prop `bg` is supplied.", () => {

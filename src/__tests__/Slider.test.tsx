@@ -1,13 +1,10 @@
 import React from "react";
-import "jest-styled-components";
-import {
-  render,
-  fireEvent,
-  createEvent,
-  waitForElement
-} from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { Slider } from "../";
+import { matchers } from "jest-emotion";
+
+expect.extend(matchers);
 
 describe("<Slider />", () => {
   it("should render", () => {

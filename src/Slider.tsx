@@ -1,6 +1,11 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styled, { DefaultTheme } from "styled-components";
-import { min as minValue, max as maxValue, defaultPrefabTheme } from "./";
+import styled from "./styled";
+import {
+  min as minValue,
+  max as maxValue,
+  defaultPrefabTheme,
+  Theme
+} from "./";
 
 export const Wrapper = styled.div`
   height: 3rem;
@@ -63,7 +68,7 @@ type SliderProps = {
   step: number;
   onChange(newValue: number): void;
   value: number;
-  theme: DefaultTheme;
+  theme: Theme;
 };
 
 function Slider({ min, max, step, onChange, value, theme }: SliderProps) {

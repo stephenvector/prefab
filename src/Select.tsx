@@ -5,18 +5,15 @@ import React, {
   useRef,
   useState
 } from "react";
-import { getRandomID } from "./utils";
 import {
   defaultPrefabTheme,
   SelectOptionProps,
   SelectProps,
-  OptionValue,
-  OptionWithId,
-  Option
+  OptionValue
 } from "./";
 import { useOptionsWithIds } from "./hooks";
 import { ArrowDown, ArrowUp } from "@stephenvector/picto";
-import styled from "styled-components";
+import styled from "./styled";
 
 const SelectOptionListItem = styled.li`
   display: block;
@@ -106,7 +103,6 @@ const ToggleButton = styled.button`
   font: inherit;
   margin: 0;
   background: transparent;
-  border-left: ${p => p.theme.sizing.border} solid ${p => p.theme.colors.meta};
 `;
 ToggleButton.defaultProps = { theme: defaultPrefabTheme };
 
@@ -121,7 +117,7 @@ const SelectOptions = styled.ul<{ isOpen: boolean }>`
   line-height: ${p => p.theme.sizing.formControls};
   list-style-type: none;
   margin: 0;
-  margin-top: calc(${p => p.theme.sizing.border} * -1);
+  /* margin-top: calc(${p => p.theme.sizing.border} * -1); */
   max-height: 13rem;
   min-height: ${p => p.theme.sizing.formControls};
   overflow-y: auto;
@@ -129,25 +125,44 @@ const SelectOptions = styled.ul<{ isOpen: boolean }>`
   position: absolute;
   right: 0;
   text-indent: 0.5rem;
-  top: ${p => p.theme.sizing.formControls};
+  top: calc(100% + 2px);
   z-index: 1000;
 `;
 SelectOptions.defaultProps = { theme: defaultPrefabTheme };
 
-const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>`
-  position: relative;
-  background: transparent;
-  border-radius: ${p => p.theme.sizing.borderRadius};
-  ${p => {
-    if (p.isFocused) {
-      return `${SelectControl} { box-shadow: inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.accent}}`;
-    } else {
-      return `${SelectControl} { box-shadow: inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.meta}}`;
-    }
-  }};
-  border-top-left-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
-  border-top-right-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
-`;
+const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>(
+  props => {
+    return {
+      position: "relative",
+      borderRadius: props.theme.sizing.borderRadius,
+      borderBottomLeftRadius: props.isOpen
+        ? 0
+        : props.theme.sizing.borderRadius,
+      borderBottomRightRadius: props.isOpen
+        ? 0
+        : props.theme.sizing.borderRadius,
+      boxShadow: `inset 0 0 0 ${props.theme.sizing.border} ${props.theme.colors.meta}`,
+      ":focus": {
+        boxShadow: `inset 0 0 0 ${props.theme.sizing.border} ${props.theme.colors.accent}`
+      }
+    };
+  }
+);
+
+// `
+//   position: relative;
+//   background: red;
+//   border-radius: ${p => p.theme.sizing.borderRadius};
+//   ${p => {
+//     if (p.isFocused) {
+//       return `${SelectControl} { box-shadow: inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.accent}}`;
+//     } else {
+//       return `${SelectControl} { ;
+//     }
+//   }};
+//   border-top-left-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
+//   border-top-right-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
+// `;
 SelectWrapper.defaultProps = { theme: defaultPrefabTheme };
 
 function Select({

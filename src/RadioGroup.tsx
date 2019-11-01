@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import styled from "styled-components";
+import styled from "./styled";
 import { RadioActive, RadioInactive } from "@stephenvector/picto";
 import { RadioProps, RadioOptionProps, OptionValue } from ".";
 import { useOptionsWithIds } from "./hooks";
@@ -7,7 +7,7 @@ import { useOptionsWithIds } from "./hooks";
 const RadioOptionWrapper = styled.div`
   display: flex;
   align-items: center;
-  line-height: 3rem;
+  line-height: 2rem;
   svg {
     display: block;
     width: 1.5rem;

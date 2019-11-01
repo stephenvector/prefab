@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "./styled";
 
 export const Display1 = styled.div`
   line-height: 1.1;

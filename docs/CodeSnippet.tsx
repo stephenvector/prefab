@@ -1,6 +1,6 @@
 import React from "react";
 import Highlight, { defaultProps, PrismTheme } from "prism-react-renderer";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const CodeSnippetWrapper = styled.div`
   padding: 1rem;

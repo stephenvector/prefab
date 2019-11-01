@@ -1,8 +1,10 @@
 import React from "react";
-import "jest-styled-components";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { matchers } from "jest-emotion";
 import { RadioGroup } from "../";
+
+expect.extend(matchers);
 
 const TEST_OPTIONS = [
   { label: "Red", value: "red" },

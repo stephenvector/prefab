@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import styled from "styled-components";
-import { Label, defaultPrefabTheme } from "./";
+import styled from "./styled";
+import { defaultPrefabTheme } from "./";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onChange(newValue: string): void;

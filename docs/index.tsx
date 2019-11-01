@@ -3,9 +3,7 @@ import ReactDOM from "react-dom";
 import {
   Box,
   Button,
-  ButtonGroup,
   Carousel,
-  ColorPicker,
   Container,
   Row,
   Column,
@@ -66,6 +64,8 @@ const DOCS_SELECT_OPTIONS = [
   }
 ];
 
+// <Box marginY={4}>
+
 function DemoContainer(props) {
   return (
     <Box marginY={4}>
@@ -78,18 +78,32 @@ function Docs() {
   return (
     <PrefabThemeProvider theme={defaultPrefabTheme}>
       <div className="Docs">
-        <header>
+        <header style={{ background: "#f2f2f2" }}>
           <Container>
             <Row>
               <Column>
-                <Padding top={8} bottom={6}>
-                  <Display1>prefab</Display1>
-                  <Paragraph>A set of themeable UI React components.</Paragraph>
-                  <Paragraph>
-                    <a href="https://github.com/stephenvector/prefab">
-                      View source on GitHub
-                    </a>
-                  </Paragraph>
+                <Padding top={4} bottom={4}>
+                  <Box
+                    bg="linear-gradient(#56e, #e56)"
+                    fg="#fff"
+                    centerContent
+                    aspectRatio={1}
+                    style={{
+                      maxWidth: "600px",
+                      borderRadius: "3px",
+                      boxShadow: "1rem 1rem 0 0 rgba(10,10,120,1)"
+                    }}
+                  >
+                    <Display1>prefab</Display1>
+                    <Paragraph>
+                      A set of themeable UI React components.
+                    </Paragraph>
+                    <Paragraph>
+                      <a href="https://github.com/stephenvector/prefab">
+                        View source on GitHub
+                      </a>
+                    </Paragraph>
+                  </Box>
                 </Padding>
               </Column>
             </Row>
@@ -100,15 +114,13 @@ function Docs() {
             <Row>
               <Column>
                 <Button>Button</Button>
-                <Padding y={1}>
-                  <Button bg="#000" fg="#fff">
-                    Custom Colors
-                  </Button>
-                </Padding>
+                <Button bg="#000" fg="#fff">
+                  Custom Colors
+                </Button>
                 <Button outline bg="#000" fg="#fff">
                   Outline Button
                 </Button>
-<Button fullWidth>Button</Button>
+                <Button fullWidth>Button</Button>
                 <CodeSnippet
                   code={`
 <Button>Button</Button>
@@ -118,8 +130,7 @@ function Docs() {
 `}
                 />
               </Column>
-              <Column>
-              </Column>
+              <Column></Column>
             </Row>
           </DemoContainer>
           <DemoContainer>
@@ -162,10 +173,12 @@ function Docs() {
                 >
                   <Display1>Box</Display1>
                 </Box>
-                <CodeSnippet code={`<Box aspectRatio={1}><Display1>Box</Display1></Box>`} />
+                <CodeSnippet
+                  code={`<Box aspectRatio={1}><Display1>Box</Display1></Box>`}
+                />
               </Column>
               <Column>
-                <Button fullWidth>Button</Button>
+                {/* <Button fullWidth>Button</Button> */}
                 <CodeSnippet
                   code={`<Button fullWidth>Full Width Button</Button>`}
                 />
@@ -174,10 +187,10 @@ function Docs() {
             <Row>
               <Column>
                 <h3>Button Group</h3>
-                <ButtonGroup>
+                {/* <ButtonGroup>
                   <Button>Button</Button>
                   <Button>Button</Button>
-                </ButtonGroup>
+                </ButtonGroup> */}
 
                 <div id="typography">
                   <h2>Typography</h2>
@@ -197,7 +210,7 @@ function Docs() {
 
                 <H3>Carousel</H3>
                 <Carousel>
-                  <Box
+                  {/* <Box
                     style={{ background: "#777", color: "#fff" }}
                     centerContent
                     aspectRatio={9 / 16}
@@ -217,7 +230,7 @@ function Docs() {
                     aspectRatio={9 / 16}
                   >
                     <H4>Slide Three</H4>
-                  </Box>
+                  </Box> */}
                 </Carousel>
 
                 <H3>DatePicker</H3>

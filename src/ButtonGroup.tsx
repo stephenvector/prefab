@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import styled from "./styled";
 import { Button, defaultPrefabTheme } from "./";
 
-const ButtonGroup = styled.div`
+const ButtonGroup = styled.div
+
+
   display: flex;
   border-radius: ${p => p.theme.sizing.borderRadius};
   box-shadow: ${p =>

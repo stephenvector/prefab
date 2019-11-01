@@ -1,13 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import "jest-styled-components";
+import { matchers } from "jest-emotion";
 import {
   Box,
   Button,
-  ButtonGroup,
   Carousel,
   Code,
-  ColorPicker,
   Column,
   Container,
   DatePicker,
@@ -47,6 +45,8 @@ import {
   max
 } from "../";
 
+expect.extend(matchers);
+
 describe("<Box />", () => {
   it("Should render", () => {
     renderer.create(<Box />);
@@ -56,12 +56,6 @@ describe("<Box />", () => {
 describe("<Button />", () => {
   it("Should render", () => {
     renderer.create(<Button theme={lightTheme} />);
-  });
-});
-
-describe("<ButtonGroup />", () => {
-  it("Should render", () => {
-    renderer.create(<ButtonGroup />);
   });
 });
 
@@ -79,12 +73,6 @@ describe("<Carousel />", () => {
 describe("<Code />", () => {
   it("Should render", () => {
     renderer.create(<Code>console.log("hello, world!")</Code>);
-  });
-});
-
-describe("<ColorPicker />", () => {
-  it("Should render", () => {
-    renderer.create(<ColorPicker onChange={() => {}} value="#e56" />);
   });
 });
 

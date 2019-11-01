@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "./styled";
 
 const LoadingWrapper = styled.div`
   padding: 1rem;

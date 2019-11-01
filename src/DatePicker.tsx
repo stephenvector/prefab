@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import styled from "styled-components";
+import styled from "./styled";
 import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
 import { defaultPrefabTheme } from "./";
 

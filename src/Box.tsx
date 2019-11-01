@@ -1,5 +1,6 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "./styled";
+import { defaultPrefabTheme } from ".";
 
 type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   bg?: string;
@@ -22,7 +23,33 @@ type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   margin?: number;
 };
 
-const BoxInner = styled.div``;
+const BoxInner = styled.div<BoxProps>(props => {
+  let styles = {};
+  if (props.aspectRatio !== undefined) {
+    styles = {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: "100%",
+      height: "100%",
+      flexDirection: "column",
+      flexWrap: "nowrap"
+    };
+  }
+
+  if (props.centerContent) {
+    styles = {
+      ...styles,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    };
+  }
+
+  return styles;
+});
 
 const BoxOuter = styled.div<BoxProps>`
   ${({
@@ -131,43 +158,18 @@ const BoxOuter = styled.div<BoxProps>`
       }
     };
   }}
-
-  ${BoxInner} {
-    ${p => {
-      if (p.aspectRatio === undefined) {
-        return {};
-      }
-
-      return {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: "100%",
-        height: "100%",
-        flexDirection: "column",
-        flexWrap: "nowrap"
-      };
-    }}
-    ${p => {
-      if (p.centerContent !== true) {
-        return {};
-      }
-
-      return {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-      };
-    }}
-  }
 `;
 
-export default function Box(props: BoxProps) {
+function Box(props: BoxProps) {
   return (
     <BoxOuter {...props}>
       <BoxInner {...props}>{props.children}</BoxInner>
     </BoxOuter>
   );
 }
+
+Box.defaultProps = {
+  theme: defaultPrefabTheme
+};
+
+export default Box;
