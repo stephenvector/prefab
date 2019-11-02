@@ -39,21 +39,23 @@ const DatePickerHeader = styled.div`
   line-height: 3rem;
 `;
 
-const DayButton = styled.button<{ isSelected: boolean; isToday: boolean }>`
-  width: 3rem;
-  height: 3rem;
-  border: none;
-  font: inherit;
-  font-weight: ${p => (p.isToday ? "bold" : "normal")};
-  background: ${p => (p.isSelected ? p.theme.colors.accent : "transparent")};
-  color: ${p => (p.isSelected ? p.theme.colors.bg : "inherit")};
-  cursor: pointer;
-  border-radius: ${p => p.theme.sizing.borderRadius};
-  :hover {
-    background: ${p => p.theme.colors.accent};
-    color: #fff;
-  }
-`;
+const DayButton = styled.button<{ isSelected: boolean; isToday: boolean }>(
+  props => ({
+    width: "3rem",
+    height: "3rem",
+    border: "none",
+    font: "inherit",
+    fontWeight: props.isToday ? "bold" : "normal",
+    background: props.isSelected ? props.theme.colors.accent : "transparent",
+    color: props.isSelected ? props.theme.colors.bg : "inherit",
+    cursor: "pointer",
+    borderRadius: props.theme.sizing.borderRadius,
+    ":hover": {
+      background: props.theme.colors.accent,
+      color: "#fff"
+    }
+  })
+);
 
 DayButton.defaultProps = { theme: defaultPrefabTheme };
 
