@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
 import styled from "./styled";
 
@@ -48,20 +48,22 @@ type CarouselProps = {
 
 export default function Carousel({ children }: CarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [numSlides, setNumSlides] = useState(React.Children.count(children));
+
+  useEffect(() => {
+    setNumSlides(React.Children.count(children));
+  }, [children]);
 
   const previousSlide = useCallback(() => {
     if (currentSlide === 0) {
-      setCurrentSlide(React.Children.count(children) - 1);
+      setCurrentSlide(numSlides - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
   }, [currentSlide]);
+
   const nextSlide = useCallback(() => {
-    if (currentSlide === React.Children.count(children) - 1) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
+    setCurrentSlide(currentSlide + (1 % numSlides) - 1);
   }, [currentSlide]);
 
   return (
