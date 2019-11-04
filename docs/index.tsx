@@ -82,29 +82,18 @@ function Docs() {
           <Container>
             <Row>
               <Column>
-                <Padding top={4} bottom={4}>
-                  <Box
-                    bg="linear-gradient(#56e, #e56)"
-                    fg="#fff"
-                    centerContent
-                    aspectRatio={1}
-                    style={{
-                      maxWidth: "600px",
-                      borderRadius: "3px",
-                      boxShadow: "1rem 1rem 0 0 rgba(10,10,120,1)"
-                    }}
-                  >
-                    <Display1>prefab</Display1>
-                    <Paragraph>
-                      A set of themeable UI React components.
-                    </Paragraph>
-                    <Paragraph>
-                      <a href="https://github.com/stephenvector/prefab">
-                        View source on GitHub
-                      </a>
-                    </Paragraph>
-                  </Box>
-                </Padding>
+                <Box paddingTop={4} paddingBottom={4}>
+                  <Display1>prefab</Display1>
+                  <Paragraph>A set of themeable UI React components.</Paragraph>
+                  <Paragraph>
+                    <Button
+                      as="a"
+                      href="https://github.com/stephenvector/prefab"
+                    >
+                      View source on GitHub
+                    </Button>
+                  </Paragraph>
+                </Box>
               </Column>
             </Row>
           </Container>
@@ -113,21 +102,28 @@ function Docs() {
           <DemoContainer>
             <Row>
               <Column>
-                <Button>Button</Button>
-                <Button bg="#000" fg="#fff">
-                  Custom Colors
-                </Button>
-                <Button outline bg="#000" fg="#fff">
-                  Outline Button
-                </Button>
-                <Button fullWidth>Button</Button>
+                <H1>Buttons</H1>
+                <Box marginBottom={1}>
+                  <Button>Button</Button>
+                </Box>
+                <Box marginBottom={1}>
+                  <Button bg="#000" fg="#fff">
+                    Custom Colors
+                  </Button>
+                </Box>
+                <Box marginBottom={1}>
+                  <Button outline bg="#000" fg="#fff">
+                    Outline Button
+                  </Button>
+                </Box>
+                <Box marginBottom={1}>
+                  <Button fullWidth>Button</Button>
+                </Box>
                 <CodeSnippet
-                  code={`
-<Button>Button</Button>
+                  code={`<Button>Button</Button>
 <Button bg="#000" fg="#fff">Custom Colors</Button>
 <Button outline bg="#000" fg="#fff">Outline Button</Button>
-<Button fullWidth>Button</Button>
-`}
+<Button fullWidth>Button</Button>`}
                 />
               </Column>
               <Column></Column>
@@ -178,7 +174,6 @@ function Docs() {
                 />
               </Column>
               <Column>
-                {/* <Button fullWidth>Button</Button> */}
                 <CodeSnippet
                   code={`<Button fullWidth>Full Width Button</Button>`}
                 />
@@ -234,7 +229,7 @@ function Docs() {
                 </Carousel>
 
                 <H3>DatePicker</H3>
-                <DemoController initialValue={new Date().getTime()}>
+                <DemoController initialValue={new Date().valueOf()}>
                   {({ value, onChange }) => (
                     <DatePicker value={value} onChange={onChange} />
                   )}
