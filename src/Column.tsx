@@ -1,5 +1,6 @@
+import { Interpolation } from "@emotion/styled";
 import styled from "./styled";
-import { defaultPrefabTheme } from "./";
+import { defaultPrefabTheme, Theme } from "./";
 
 type ColumnProps = {
   xs?: string;
@@ -8,52 +9,42 @@ type ColumnProps = {
   lg?: string;
 };
 
-const Column = styled.div<ColumnProps>`
-  flex: 0 0 auto;
-  flex-grow: 1;
-  flex-basis: 0;
-  min-height: 1px;
-  display: block;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-sizing: border-box;
-  max-width: 100%;
-  ${({ xs }) => {
-    if (!xs) return;
-    return {
-      flexBasis: xs,
-      maxWidth: xs
+const Column = styled.div<ColumnProps>({}, props => {
+  const styles: Interpolation<ColumnProps & { theme: Theme }> = {
+    flex: "0 0 auto",
+    flexGrow: 1,
+    maxWidth: props.xs !== undefined ? props.xs : "100%",
+    flexBasis: props.xs !== undefined ? props.xs : 0,
+    minHeight: "1px",
+    display: "block",
+    paddingLeft: "1rem",
+    paddingRight: "1rem",
+    boxSizing: "border-box"
+  };
+
+  if (props.sm !== undefined) {
+    styles[`@media screen and(min - width: ${props.theme.breakpoints.sm}`] = {
+      flexBasis: props.sm,
+      maxWidth: props.sm
     };
-  }}
-        
-  @media screen and (min-width: ${p => p.theme.breakpoints.sm}) {
-    ${({ sm }) => {
-      if (!sm) return;
-      return {
-        flexBasis: sm,
-        maxWidth: sm
-      };
-    }}
   }
-  @media screen and (min-width: ${p => p.theme.breakpoints.md}) {
-    ${({ md }) => {
-      if (!md) return;
-      return {
-        flexBasis: md,
-        maxWidth: md
-      };
-    }}
+
+  if (props.md !== undefined) {
+    styles[`@media screen and(min - width: ${props.theme.breakpoints.md}`] = {
+      flexBasis: props.md,
+      maxWidth: props.md
+    };
   }
-  @media screen and (min-width: ${p => p.theme.breakpoints.lg}) {
-    ${({ lg }) => {
-      if (!lg) return;
-      return {
-        flexBasis: lg,
-        maxWidth: lg
-      };
-    }}
+
+  if (props.lg !== undefined) {
+    styles[`@media screen and(min - width: ${props.theme.breakpoints.lg}`] = {
+      flexBasis: props.lg,
+      maxWidth: props.lg
+    };
   }
-`;
+
+  return styles;
+});
 
 Column.defaultProps = {
   theme: defaultPrefabTheme
