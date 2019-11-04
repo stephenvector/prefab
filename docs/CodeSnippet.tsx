@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 const CodeSnippetWrapper = styled.div`
   padding: 1rem;
-  background: transparent;
+  background: #f2f2f2;
 `;
 
 var prefabTheme: PrismTheme = {
@@ -13,6 +13,7 @@ var prefabTheme: PrismTheme = {
     backgroundColor: "transparent",
     padding: 0,
     fontSize: "1rem",
+    lineHeight: "1.67",
     margin: 0
   },
   styles: [
