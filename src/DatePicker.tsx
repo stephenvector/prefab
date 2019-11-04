@@ -81,7 +81,7 @@ function getCalendarInfo(
   return {
     year: date.getFullYear(),
     month: date.getMonth(),
-    date: atBeginningOfMonth ? 1 : date.getDate(),
+    date: atBeginningOfMonth ? 0 : date.getDate(),
     numDaysInMonth: new Date(
       date.getFullYear(),
       date.getMonth() + 1,
@@ -105,7 +105,7 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
     getCalendarInfo(new Date(value), true)
   );
 
-  const [rightNowInfo] = useState(() => getCalendarInfo(new Date()));
+  const [rightNowInfo] = useState(() => getCalendarInfo(new Date(), true));
 
   useEffect(() => {
     setSelectedDateInfo(getCalendarInfo(new Date(value)));
@@ -114,9 +114,7 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
   const handleSelectDate = useCallback(
     (date: number) => {
       const newValue = new Date(
-        calendarInfo.year,
-        calendarInfo.month,
-        date
+        Date.UTC(calendarInfo.year, calendarInfo.month, date)
       ).getTime();
 
       onChange(newValue);
@@ -124,15 +122,21 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
     [calendarInfo, onChange]
   );
 
-  const previousMonth = useCallback(function previousMonth() {
-    const newNow = new Date(calendarInfo.year, calendarInfo.month - 1);
-    setCalendarInfo(getCalendarInfo(newNow, true));
-  }, []);
+  const previousMonth = useCallback(
+    function previousMonth() {
+      const newNow = new Date(calendarInfo.year, calendarInfo.month - 1);
+      setCalendarInfo(getCalendarInfo(newNow, true));
+    },
+    [calendarInfo, setCalendarInfo, getCalendarInfo]
+  );
 
-  const nextMonth = useCallback(function nextMonth() {
-    const newNow = new Date(calendarInfo.year, calendarInfo.month + 1);
-    setCalendarInfo(getCalendarInfo(newNow, true));
-  }, []);
+  const nextMonth = useCallback(
+    function nextMonth() {
+      const newNow = new Date(calendarInfo.year, calendarInfo.month + 1);
+      setCalendarInfo(getCalendarInfo(newNow, true));
+    },
+    [calendarInfo, setCalendarInfo, getCalendarInfo]
+  );
 
   return (
     <Wrapper>
@@ -141,7 +145,10 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
           <ArrowLeft />
         </NextPrevMonthButton>
         <div style={{ textAlign: "center" }}>
-          {monthFormatter.format(calendarInfo.month)} {calendarInfo.year}
+          {monthFormatter.format(
+            new Date(calendarInfo.year, calendarInfo.month)
+          )}{" "}
+          {calendarInfo.year}
         </div>
         <NextPrevMonthButton onClick={nextMonth} type="button">
           <ArrowRight />
