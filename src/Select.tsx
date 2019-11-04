@@ -117,7 +117,6 @@ const SelectOptions = styled.ul<{ isOpen: boolean }>`
   line-height: ${p => p.theme.sizing.formControls};
   list-style-type: none;
   margin: 0;
-  /* margin-top: calc(${p => p.theme.sizing.border} * -1); */
   max-height: 13rem;
   min-height: ${p => p.theme.sizing.formControls};
   overflow-y: auto;
