@@ -140,28 +140,14 @@ const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>(
       borderBottomRightRadius: props.isOpen
         ? 0
         : props.theme.sizing.borderRadius,
-      boxShadow: `inset 0 0 0 ${props.theme.sizing.border} ${props.theme.colors.meta}`,
+      boxShadow: `inset 0 0 ${props.theme.sizing.border} ${props.theme.colors.meta}`,
       ":focus": {
-        boxShadow: `inset 0 0 0 ${props.theme.sizing.border} ${props.theme.colors.accent}`
+        boxShadow: `inset 0 0 ${props.theme.sizing.border} ${props.theme.colors.accent}`
       }
     };
   }
 );
 
-// `
-//   position: relative;
-//   background: red;
-//   border-radius: ${p => p.theme.sizing.borderRadius};
-//   ${p => {
-//     if (p.isFocused) {
-//       return `${SelectControl} { box-shadow: inset 0 0 0 ${p.theme.sizing.border} ${p.theme.colors.accent}}`;
-//     } else {
-//       return `${SelectControl} { ;
-//     }
-//   }};
-//   border-top-left-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
-//   border-top-right-radius: ${p => (p.isOpen ? 0 : p.theme.sizing.borderRadius)};
-// `;
 SelectWrapper.defaultProps = { theme: defaultPrefabTheme };
 
 function Select({

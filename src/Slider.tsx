@@ -8,10 +8,10 @@ import {
 } from "./";
 
 export const Wrapper = styled.div`
-  height: 3rem;
+  height: 2rem;
   display: flex;
   width: 100%;
-  margin: 1.5rem 0;
+  margin: 0;
   display: flex;
   align-items: center;
 `;
@@ -21,9 +21,9 @@ Wrapper.defaultProps = {
 };
 
 export const BackgroundBar = styled.div`
-  height: 1rem;
+  height: 0.75rem;
   width: 100%;
-  border-radius: calc(1rem / 2);
+  border-radius: calc(0.75rem / 2);
   background: #f2f2f2;
   overflow: visible;
   position: relative;
@@ -48,11 +48,11 @@ IndicatorBar.defaultProps = {
 };
 
 export const Dot = styled.div<{ position: number }>`
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   position: absolute;
   background: #fff;
-  border-radius: calc(2rem / 2);
+  border-radius: calc(1.5rem / 2);
   transform: translateY(calc(2rem / -4)) translateX(calc(2rem / -4));
   left: ${p => `${p.position}%`};
   box-shadow: 0 0 0.2rem 0 blue;

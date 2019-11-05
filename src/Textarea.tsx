@@ -13,11 +13,11 @@ const StyledTextarea = styled.textarea`
   background: ${p => p.theme.colors.bg};
   box-sizing: border-box;
   border-radius: ${p => p.theme.sizing.borderRadius};
-  box-shadow: inset 0 0 0
+  box-shadow: inset 0 0
     ${p => `${p.theme.sizing.border} ${p.theme.colors.meta}`};
   :active,
   :focus {
-    box-shadow: inset 0 0 0
+    box-shadow: inset 0 0
       ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
   }
 `;
