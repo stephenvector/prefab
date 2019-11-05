@@ -2,8 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { matchers } from "jest-emotion";
 import {
-  Box,
-  Button,
   Carousel,
   Code,
   Column,
@@ -13,7 +11,6 @@ import {
   Label,
   Loading,
   lightTheme,
-  Padding,
   ProgressBar,
   Row,
   Select,
@@ -46,18 +43,6 @@ import {
 } from "../";
 
 expect.extend(matchers);
-
-describe("<Box />", () => {
-  it("Should render", () => {
-    renderer.create(<Box />);
-  });
-});
-
-describe("<Button />", () => {
-  it("Should render", () => {
-    renderer.create(<Button theme={lightTheme} />);
-  });
-});
 
 describe("<Carousel />", () => {
   it("Should render", () => {
@@ -111,50 +96,6 @@ describe("<Label />", () => {
 describe("<Loading />", () => {
   it("Should render", () => {
     renderer.create(<Loading />);
-  });
-});
-
-describe("<Padding />", () => {
-  test("Should render without padding if no props are supplied.", () => {
-    const wrapper = renderer.create(<Padding />).toJSON();
-    expect(wrapper).not.toHaveStyleRule("padding", "*");
-  });
-
-  test("Should render with padding-top value if value is supplied to prop `top`.", () => {
-    const wrapper = renderer.create(<Padding top={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-top", "1rem");
-  });
-
-  test("Should render with padding-left value if value is supplied to prop `left`.", () => {
-    const wrapper = renderer.create(<Padding left={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-left", "1rem");
-  });
-
-  test("Should render with padding-right value if value is supplied to prop `right`.", () => {
-    const wrapper = renderer.create(<Padding right={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-right", "1rem");
-  });
-
-  test("Should render with padding-bottom value if value is supplied to prop `bottom`.", () => {
-    const wrapper = renderer.create(<Padding bottom={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-bottom", "1rem");
-  });
-
-  test("Should render with padding-top & padding-bottom value if value is supplied to prop `y`.", () => {
-    const wrapper = renderer.create(<Padding y={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-top", "1rem");
-    expect(wrapper).toHaveStyleRule("padding-bottom", "1rem");
-  });
-
-  test("Should render with padding-left & padding-right value if value is supplied to prop `x`.", () => {
-    const wrapper = renderer.create(<Padding x={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding-left", "1rem");
-    expect(wrapper).toHaveStyleRule("padding-right", "1rem");
-  });
-
-  test("Should render with padding value if value is supplied to prop `all`.", () => {
-    const wrapper = renderer.create(<Padding all={1} />).toJSON();
-    expect(wrapper).toHaveStyleRule("padding", "1rem");
   });
 });
 
