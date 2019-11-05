@@ -107,7 +107,6 @@ export { default as DatePicker } from "./DatePicker";
 export { default as Input } from "./Input";
 export { default as Label } from "./Label";
 export { default as Loading } from "./Loading";
-export { default as Padding } from "./Padding";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as RadioGroup } from "./RadioGroup";
 export { default as Row } from "./Row";
