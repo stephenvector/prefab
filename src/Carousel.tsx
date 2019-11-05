@@ -52,7 +52,7 @@ export default function Carousel({ children }: CarouselProps) {
 
   useEffect(() => {
     setNumSlides(React.Children.count(children));
-  }, [children]);
+  }, [children, setNumSlides]);
 
   const previousSlide = useCallback(() => {
     if (currentSlide === 0) {
@@ -60,11 +60,11 @@ export default function Carousel({ children }: CarouselProps) {
     } else {
       setCurrentSlide(currentSlide - 1);
     }
-  }, [currentSlide]);
+  }, [currentSlide, setCurrentSlide, numSlides]);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide(currentSlide + (1 % numSlides) - 1);
-  }, [currentSlide]);
+    setCurrentSlide((currentSlide + 1) % numSlides);
+  }, [currentSlide, setCurrentSlide, numSlides]);
 
   return (
     <Wrapper>
@@ -84,7 +84,7 @@ export default function Carousel({ children }: CarouselProps) {
               isActive={index === currentSlide}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${index} of ${children.length}`}
+              aria-label={`${index + 1} of ${children.length}`}
             >
               {child}
             </Slide>
