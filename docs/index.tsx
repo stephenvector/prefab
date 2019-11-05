@@ -7,11 +7,8 @@ import {
   Container,
   Row,
   Column,
-  DatePicker,
   PrefabThemeProvider,
-  Slider,
   Hr,
-  Textarea,
   Display1,
   Display2,
   Display3,
@@ -23,15 +20,14 @@ import {
   H5,
   H6,
   defaultPrefabTheme,
-  RadioGroup,
-  Select,
   Paragraph,
-  Input,
-  Padding
+  lightenHex
 } from "../src";
 
 import CodeSnippet from "./CodeSnippet";
 import DemoController from "./DemoController";
+
+import FormControls from "./FormControls";
 
 const DOCS_SELECT_OPTIONS = [
   {
@@ -74,6 +70,8 @@ function DemoContainer(props) {
   );
 }
 
+const ButtonLink = Button.withComponent("a");
+
 function Docs() {
   return (
     <PrefabThemeProvider theme={defaultPrefabTheme}>
@@ -86,12 +84,9 @@ function Docs() {
                   <Display1>prefab</Display1>
                   <Paragraph>A set of themeable UI React components.</Paragraph>
                   <Paragraph>
-                    <Button
-                      as="a"
-                      href="https://github.com/stephenvector/prefab"
-                    >
+                    <ButtonLink href="https://github.com/stephenvector/prefab">
                       View source on GitHub
-                    </Button>
+                    </ButtonLink>
                   </Paragraph>
                 </Box>
               </Column>
@@ -131,16 +126,13 @@ function Docs() {
           </DemoContainer>
           <DemoContainer>
             <Row>
+              <Column></Column>
+            </Row>
+          </DemoContainer>
+          <DemoContainer>
+            <Row>
               <Column>
-                <DemoController label="RadioGroup" initialValue="red">
-                  {({ value, onChange }) => (
-                    <RadioGroup
-                      onChange={onChange}
-                      value={value}
-                      options={DOCS_SELECT_OPTIONS}
-                    />
-                  )}
-                </DemoController>
+                <FormControls />
               </Column>
             </Row>
           </DemoContainer>
@@ -166,27 +158,18 @@ function Docs() {
                   aspectRatio={1}
                   centerContent
                   style={{ background: "#888", color: "#fff" }}
+                  marginBottom={1}
                 >
                   <Display1>Box</Display1>
                 </Box>
+
                 <CodeSnippet
                   code={`<Box aspectRatio={1}><Display1>Box</Display1></Box>`}
-                />
-              </Column>
-              <Column>
-                <CodeSnippet
-                  code={`<Button fullWidth>Full Width Button</Button>`}
                 />
               </Column>
             </Row>
             <Row>
               <Column>
-                <h3>Button Group</h3>
-                {/* <ButtonGroup>
-                  <Button>Button</Button>
-                  <Button>Button</Button>
-                </ButtonGroup> */}
-
                 <div id="typography">
                   <h2>Typography</h2>
                   <Display1>Display1</Display1>
@@ -205,77 +188,35 @@ function Docs() {
 
                 <H3>Carousel</H3>
                 <Carousel>
-                  {/* <Box
-                    style={{ background: "#777", color: "#fff" }}
+                  <Box
+                    bg={lightenHex("#e56", 0.6)}
+                    fg="#e56"
                     centerContent
                     aspectRatio={9 / 16}
                   >
                     <H4>Slide One</H4>
                   </Box>
+
                   <Box
-                    style={{ background: "#444", color: "#fff" }}
+                    bg={lightenHex("#56e", 0.6)}
+                    fg="#56e"
                     centerContent
                     aspectRatio={9 / 16}
                   >
                     <H4>Slide Two</H4>
                   </Box>
                   <Box
-                    style={{ background: "#555", color: "#fff" }}
+                    bg={lightenHex("#5e6", 0.6)}
+                    fg="#5e6"
                     centerContent
                     aspectRatio={9 / 16}
                   >
                     <H4>Slide Three</H4>
-                  </Box> */}
+                  </Box>
                 </Carousel>
-
-                <H3>DatePicker</H3>
-                <DemoController initialValue={new Date().valueOf()}>
-                  {({ value, onChange }) => (
-                    <DatePicker value={value} onChange={onChange} />
-                  )}
-                </DemoController>
-
-                {/* <H3>Slider</H3>
-                <DemoController initialValue={50} component={Slider} />
-
-                <DemoController
-                  initialValue={"This is preview text"}
-                  component={Textarea}
-                /> */}
-              </Column>
-            </Row>
-
-            <Row>
-              <Column>
-                <H3>Select</H3>
-              </Column>
-            </Row>
-            <Row>
-              <Column>
-                <DemoController initialValue="">
-                  {({ value, onChange }) => (
-                    <Select
-                      optionsLabel="Select a color"
-                      toggleLabel="Open"
-                      listId="examplelist"
-                      onChange={onChange}
-                      value={value}
-                      options={DOCS_SELECT_OPTIONS}
-                    />
-                  )}
-                </DemoController>
-              </Column>
-              <Column>
-                <CodeSnippet
-                  code={`<Select options={{label: string, value: string}[]} />`}
-                />
               </Column>
             </Row>
           </DemoContainer>
-
-          <Box aspectRatio={1 / 4} centerContent>
-            <H3>prefab</H3>
-          </Box>
         </section>
       </div>
     </PrefabThemeProvider>
