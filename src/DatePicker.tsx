@@ -96,7 +96,10 @@ type DatePickerProps = {
   onChange(val: number): void;
 };
 
-export default function DatePicker({ value, onChange }: DatePickerProps) {
+function DatePicker(
+  { value, onChange }: DatePickerProps,
+  ref: React.Ref<HTMLDivElement>
+) {
   const [selectedDateInfo, setSelectedDateInfo] = useState(() =>
     getCalendarInfo(new Date(value))
   );
@@ -139,7 +142,7 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
   );
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <DatePickerHeader>
         <NextPrevMonthButton onClick={previousMonth} type="button">
           <ArrowLeft />
@@ -191,3 +194,5 @@ export default function DatePicker({ value, onChange }: DatePickerProps) {
     </Wrapper>
   );
 }
+
+export default React.forwardRef(DatePicker);

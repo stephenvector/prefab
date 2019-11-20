@@ -31,14 +31,17 @@ type TextareaProps = {
   onChange(newValue: string): void;
 };
 
-function Textarea({ value, onChange }: TextareaProps) {
+function Textarea(
+  { value, onChange }: TextareaProps,
+  ref: React.Ref<HTMLTextAreaElement>
+) {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       onChange(e.target.value);
     },
     [value]
   );
-  return <StyledTextarea value={value} onChange={handleChange} />;
+  return <StyledTextarea ref={ref} value={value} onChange={handleChange} />;
 }
 
-export default Textarea;
+export default React.forwardRef(Textarea);

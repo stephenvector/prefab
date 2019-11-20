@@ -51,9 +51,7 @@ const Button = styled.button<ButtonProps>(props => {
 });
 
 Button.defaultProps = {
-  theme: defaultPrefabTheme,
-  fullWidth: false,
-  outline: false
+  theme: defaultPrefabTheme
 };
 
 export default Button;

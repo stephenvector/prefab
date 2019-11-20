@@ -150,14 +150,10 @@ const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>(
 
 SelectWrapper.defaultProps = { theme: defaultPrefabTheme };
 
-function Select({
-  value,
-  onChange,
-  options,
-  listId,
-  toggleLabel,
-  optionsLabel
-}: SelectProps) {
+function Select(
+  { value, onChange, options, listId, toggleLabel, optionsLabel }: SelectProps,
+  ref: React.Ref<HTMLDivElement>
+) {
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [currentValueLabel, setCurrentValueLabel] = useState("");
@@ -211,7 +207,7 @@ function Select({
   }, [isOpen, inputRef]);
 
   return (
-    <SelectWrapper tabIndex={0} isOpen={isOpen} isFocused={isFocused}>
+    <SelectWrapper ref={ref} tabIndex={0} isOpen={isOpen} isFocused={isFocused}>
       <SelectControl onClick={handleControlClick}>
         <CurrentValue>{currentValueLabel}</CurrentValue>
         <ToggleButton
@@ -247,4 +243,4 @@ function Select({
   );
 }
 
-export default Select;
+export default React.forwardRef(Select);

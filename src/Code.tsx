@@ -10,10 +10,15 @@ const CodeTag = styled.code`
   background: transparent;
 `;
 
-export default function Code(props: { children: React.ReactNode }) {
+function Code(
+  props: { children: React.ReactNode },
+  ref: React.Ref<HTMLPreElement>
+) {
   return (
-    <Pre>
+    <Pre ref={ref}>
       <CodeTag>{props.children}</CodeTag>
     </Pre>
   );
 }
+
+export default React.forwardRef(Code);

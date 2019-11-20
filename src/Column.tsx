@@ -1,3 +1,4 @@
+import React from "react";
 import { Interpolation } from "@emotion/styled";
 import styled from "./styled";
 import { defaultPrefabTheme, Theme } from "./";

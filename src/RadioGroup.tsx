@@ -50,7 +50,7 @@ function RadioOption(props: RadioOptionProps) {
   );
 }
 
-function RadioGroup(props: RadioProps) {
+function RadioGroup(props: RadioProps, ref: React.Ref<HTMLDivElement>) {
   const { options, onChange, value } = props;
   const optionsWithIds = useOptionsWithIds(options);
 
@@ -62,7 +62,7 @@ function RadioGroup(props: RadioProps) {
   );
 
   return (
-    <div role="radiogroup">
+    <div ref={ref} role="radiogroup">
       {optionsWithIds.map(option => (
         <RadioOption
           key={option.id}
@@ -75,4 +75,4 @@ function RadioGroup(props: RadioProps) {
   );
 }
 
-export default RadioGroup;
+export default React.forwardRef(RadioGroup);

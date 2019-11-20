@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "./styled";
 
 export type RowProps = {
@@ -12,9 +13,5 @@ const Row = styled.div<RowProps>`
   flex-direction: row;
   flex-wrap: nowrap;
 `;
-
-Row.defaultProps = {
-  padding: true
-};
 
 export default Row;

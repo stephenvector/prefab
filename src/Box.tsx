@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "./styled";
-import { defaultPrefabTheme } from ".";
 
 type BoxProps = React.HTMLAttributes<HTMLDivElement> & {
   bg?: string;
@@ -160,16 +159,12 @@ const BoxOuter = styled.div<BoxProps>`
   }}
 `;
 
-function Box(props: BoxProps) {
+function Box(props: BoxProps, ref: React.Ref<HTMLDivElement>) {
   return (
-    <BoxOuter {...props}>
+    <BoxOuter {...props} ref={ref}>
       <BoxInner {...props}>{props.children}</BoxInner>
     </BoxOuter>
   );
 }
 
-Box.defaultProps = {
-  theme: defaultPrefabTheme
-};
-
-export default Box;
+export default React.forwardRef(Box);

@@ -46,7 +46,7 @@ type CarouselProps = {
   children: React.ReactNodeArray;
 };
 
-export default function Carousel({ children }: CarouselProps) {
+function Carousel({ children }: CarouselProps, ref: React.Ref<HTMLDivElement>) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [numSlides, setNumSlides] = useState(React.Children.count(children));
 
@@ -67,7 +67,7 @@ export default function Carousel({ children }: CarouselProps) {
   }, [currentSlide, setCurrentSlide, numSlides]);
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <PreviousSlide type="button" onClick={previousSlide}>
         <ArrowLeft />
       </PreviousSlide>
@@ -94,3 +94,5 @@ export default function Carousel({ children }: CarouselProps) {
     </Wrapper>
   );
 }
+
+export default React.forwardRef(Carousel);

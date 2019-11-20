@@ -1,7 +1,7 @@
-import React from "react";
+import styled from "@emotion/styled";
 
-export default function Label(
-  props: React.LabelHTMLAttributes<HTMLLabelElement>
-) {
-  return <label {...props} />;
-}
+const Label = styled.label`
+  display: block;
+`;
+
+export default Label;

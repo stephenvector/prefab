@@ -6,6 +6,12 @@ const LoadingWrapper = styled.div`
   text-align: center;
 `;
 
-export default function Loading() {
-  return <LoadingWrapper>Loading</LoadingWrapper>;
+function Loading(props: any, ref: React.Ref<HTMLDivElement>) {
+  return (
+    <LoadingWrapper {...props} ref={ref}>
+      Loading
+    </LoadingWrapper>
+  );
 }
+
+export default React.forwardRef(Loading);

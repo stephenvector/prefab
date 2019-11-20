@@ -1,13 +1,7 @@
-import React, { useCallback } from "react";
 import styled from "./styled";
 import { defaultPrefabTheme } from "./";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  onChange(newValue: string): void;
-  value: string;
-};
-
-const InputControl = styled.input`
+const Input = styled.input`
   font: inherit;
   border: none;
   background: ${p => p.theme.colors.bg};
@@ -24,17 +18,6 @@ const InputControl = styled.input`
       ${p => p.theme.colors.accent};
   }
 `;
-
-function Input({ onChange, value, ...otherProps }: InputProps) {
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.value);
-    },
-    [onChange]
-  );
-
-  return <InputControl {...otherProps} value={value} onChange={handleChange} />;
-}
 
 Input.defaultProps = {
   theme: defaultPrefabTheme
