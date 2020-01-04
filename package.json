@@ -3,7 +3,7 @@
   "version": "0.4.0",
   "description": "A set of themeable UI components for React projects.",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "build:lib": "tsc",
     "test": "jest",
     "cleanup": "rimraf coverage lib node_modules",
