@@ -19,7 +19,10 @@ describe("<Slider />", () => {
         top: 0,
         left: 0,
         right: 100,
-        bottom: 100
+        bottom: 100,
+        x: 0,
+        y: 0,
+        toJSON: () => "{}"
       };
     };
 
@@ -63,7 +66,10 @@ describe("<Slider />", () => {
         top: 0,
         left: 0,
         right: 100,
-        bottom: 100
+        bottom: 100,
+        x: 0,
+        y: 0,
+        toJSON: () => "{}"
       };
     };
 
