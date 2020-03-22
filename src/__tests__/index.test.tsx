@@ -65,6 +65,9 @@ describe("<Column />", () => {
   it("Should render", () => {
     renderer.create(<Column />);
   });
+  it("Should render with breakpoints", () => {
+    renderer.create(<Column xs="22" sm="3" md="4" lg="11" />);
+  });
 });
 
 describe("<Container />", () => {
