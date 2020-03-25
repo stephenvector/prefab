@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Option, OptionWithId } from ".";
+import { Option, OptionWithId } from "./types";
 import { getRandomID } from "./utils";
 
 export function useOptionsWithIds(options: Option[]) {

@@ -1,35 +1,16 @@
 import React from "react";
 import {
   Box,
-  Button,
-  Carousel,
-  Container,
-  Row,
-  Column,
   DatePicker,
-  PrefabThemeProvider,
   Slider,
-  Hr,
   Textarea,
-  Display1,
-  Display2,
-  Display3,
   Display4,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  H6,
-  defaultPrefabTheme,
   RadioGroup,
   Select,
-  Paragraph,
   Input,
   Label
 } from "../src";
 
-import CodeSnippet from "./CodeSnippet";
 import DemoController from "./DemoController";
 
 const DOCS_SELECT_OPTIONS = [

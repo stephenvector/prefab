@@ -5,12 +5,8 @@ import React, {
   useRef,
   useState
 } from "react";
-import {
-  defaultPrefabTheme,
-  SelectOptionProps,
-  SelectProps,
-  OptionValue
-} from "./";
+import { defaultPrefabTheme } from ".";
+import { SelectOptionProps, SelectProps, OptionValue } from "./types";
 import { useOptionsWithIds } from "./hooks";
 import { ArrowDown, ArrowUp } from "@stephenvector/picto";
 import styled from "./styled";

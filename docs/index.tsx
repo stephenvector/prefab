@@ -21,7 +21,10 @@ import {
   H6,
   defaultPrefabTheme,
   Paragraph,
-  lightenHex
+  lightenHex,
+  useField,
+  TextField,
+  Form
 } from "../src";
 
 import CodeSnippet from "./CodeSnippet";
@@ -76,15 +79,19 @@ function Docs() {
   return (
     <PrefabThemeProvider theme={defaultPrefabTheme}>
       <div className="Docs">
-        <header style={{ background: "#f2f2f2" }}>
+        <header style={{ background: defaultPrefabTheme.colors.accent }}>
           <Container>
             <Row>
               <Column>
-                <Box paddingTop={4} paddingBottom={4}>
+                <Box fg="#fff" paddingTop={4} paddingBottom={4}>
                   <Display1>prefab</Display1>
                   <Paragraph>A set of themeable UI React components.</Paragraph>
                   <Paragraph>
-                    <ButtonLink href="https://github.com/stephenvector/prefab">
+                    <ButtonLink
+                      bg={defaultPrefabTheme.colors.bg}
+                      fg={defaultPrefabTheme.colors.fg}
+                      href="https://github.com/stephenvector/prefab"
+                    >
                       View source on GitHub
                     </ButtonLink>
                   </Paragraph>
@@ -126,13 +133,34 @@ function Docs() {
           </DemoContainer>
           <DemoContainer>
             <Row>
-              <Column></Column>
+              <Column>
+                <FormControls />
+              </Column>
             </Row>
           </DemoContainer>
           <DemoContainer>
             <Row>
               <Column>
-                <FormControls />
+                <H2>Form State</H2>
+              </Column>
+            </Row>
+            <Row>
+              <Column>
+                <Form
+                  onSubmit={() => {}}
+                  initialValues={{ textfield: "Hello, world!" }}
+                >
+                  <TextField name="textfield" label="Text Field" />
+                  <Button type="submit">Submit</Button>
+                </Form>
+              </Column>
+              <Column>
+                <CodeSnippet
+                  code={`<Form onSubmit={() => {}} initialValues={{textfield: "Hello, world!"}}>
+  <TextField name="textfield" label="Text Field" />
+  <Button type="submit">Submit</Button>
+</Form>`}
+                />
               </Column>
             </Row>
           </DemoContainer>

@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "./styled";
 import { RadioActive, RadioInactive } from "@stephenvector/picto";
-import { RadioProps, RadioOptionProps, OptionValue } from ".";
+import { RadioProps, RadioOptionProps, OptionValue } from "./types";
 import { useOptionsWithIds } from "./hooks";
 
 const RadioOptionWrapper = styled.div`

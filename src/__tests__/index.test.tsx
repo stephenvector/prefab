@@ -10,7 +10,6 @@ import {
   Input,
   Label,
   Loading,
-  lightTheme,
   ProgressBar,
   Row,
   Select,

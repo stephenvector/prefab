@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import { Theme } from "./types";
 
+export { Theme } from "./types";
+
 export const lightTheme: Theme = {
   colors: {
     bg: "#fff",
     fg: "#000",
-    accent: "#4020b6",
+    accent: "#0121DF",
     meta: "#bbb"
   },
   breakpoints: {
@@ -77,5 +79,5 @@ export {
   max
 } from "./utils";
 
-export { default as Form } from "./Form";
+export { default as Form, useField } from "./Form";
 export { default as TextField } from "./fields/TextField";
