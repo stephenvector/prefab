@@ -15,11 +15,13 @@ A set of themeable UI components for React projects. Built with accessibility in
 ```tsx
 <Container fullWidth={boolean}>{...}</Container>
 ```
-Prop | Type | Default
------|------|--------
-`fullWidth`|`boolean`| `false`
+
+| Prop        | Type      | Default |
+| ----------- | --------- | ------- |
+| `fullWidth` | `boolean` | `false` |
 
 #### `<Row />`
+
 - `<Column />`
 - `<Table />`
 - `<Box />`
@@ -53,6 +55,7 @@ Prop | Type | Default
 - `<Checkbox />`
 
 ### Status Indicators
+
 - `<ProgressBar />`
 - `<Loading />`
 
@@ -63,11 +66,7 @@ Prop | Type | Default
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fstephenvector%2Fprefab?ref=badge_large)
-  
+
 ## Tests
 
 Functional tests performed courtesy of BrowserStack.
-
-<a href="https://www.browserstack.com/">
-  <img src="https://live.browserstack.com/images/opensource/browserstack-logo.svg" alt="BrowserStack Logo" width="192" height="42">
-</a>

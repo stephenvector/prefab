@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { useField } from "../Form";
-import { PrefabFieldProps } from "../types";
+import { useField } from "./Form";
+import { PrefabFieldProps } from "./types";
 
 export default function TextField(props: PrefabFieldProps) {
   const { label, name } = props;
