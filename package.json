@@ -21,6 +21,7 @@
   "homepage": "https://github.com/stephenvector/prefab#readme",
   "devDependencies": {
     "@types/react": "^16.9.25",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "3.7.2"

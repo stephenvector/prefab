@@ -81,7 +81,7 @@ function DatePicker(
     <div ref={ref}>
       <div>
         <button onClick={previousMonth} type="button">
-          Prev{" "}
+          Prev
         </button>
         <div style={{ textAlign: "center" }}>
           {monthFormatter.format(
