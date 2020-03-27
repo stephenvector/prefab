@@ -3,11 +3,10 @@
   "version": "0.4.0",
   "description": "A set of themeable UI components for React projects.",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build:lib": "tsc",
+    "start": "docz dev",
     "test": "jest",
     "cleanup": "rimraf coverage lib node_modules",
-    "build": "webpack",
+    "build": "tsc",
     "lint": "eslint src/**/*.{ts,tsx}"
   },
   "repository": {
@@ -21,59 +20,22 @@
   },
   "homepage": "https://github.com/stephenvector/prefab#readme",
   "devDependencies": {
-    "@babel/core": "7.7.0",
-    "@babel/preset-env": "7.7.1",
-    "@babel/preset-react": "7.7.0",
-    "@babel/preset-typescript": "7.7.0",
-    "@testing-library/dom": "7.1.2",
-    "@testing-library/jest-dom": "4.1.2",
-    "@testing-library/react": "9.3.0",
-    "@types/animejs": "3.1.0",
-    "@types/jest": "24.0.19",
-    "@types/react-test-renderer": "16.9.1",
-    "@typescript-eslint/eslint-plugin": "2.5.0",
-    "@typescript-eslint/parser": "2.5.0",
-    "babel-jest": "24.9.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-styled-components": "1.10.6",
-    "css-loader": "3.2.0",
-    "eslint": "6.5.1",
-    "eslint-plugin-jest": "22.19.0",
-    "eslint-plugin-react-hooks": "2.2.0",
-    "formik": "^2.1.4",
-    "html-webpack-inline-source-plugin": "0.0.10",
-    "html-webpack-plugin": "3.2.0",
-    "html-webpack-template": "6.2.0",
-    "identity-obj-proxy": "3.0.0",
-    "jest": "24.9.0",
-    "jest-emotion": "10.0.17",
-    "jest-styled-components": "6.3.3",
-    "prism-react-renderer": "1.0.2",
-    "react": "16.11.0",
-    "react-dom": "16.11.0",
-    "react-test-renderer": "16.11.0",
-    "style-loader": "1.0.0",
-    "ts-jest": "24.1.0",
-    "typescript": "3.7.2",
-    "webpack": "4.41.2",
-    "webpack-cli": "3.3.9",
-    "webpack-dev-server": "3.8.2"
+    "@types/react": "^16.9.25",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "3.7.2"
   },
   "peerDependencies": {
-    "@stephenvector/picto": "0.1.19",
-    "react": "16.11.0",
-    "react-dom": "16.11.0"
-  },
-  "dependencies": {
-    "@emotion/core": "^10.0.22",
-    "@emotion/styled": "^10.0.23",
-    "@stephenvector/picto": "^0.1.19",
-    "babel-plugin-emotion": "^10.0.23",
-    "emotion-theming": "^10.0.19"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "files": [
     "lib"
   ],
   "main": "lib/index.js",
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "docz": "^2.2.0"
+  }
 }

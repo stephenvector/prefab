@@ -1,68 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import styled from "./styled";
-import { ArrowLeft, ArrowRight } from "@stephenvector/picto";
-import { defaultPrefabTheme } from "./";
-
-const Wrapper = styled.div`
-  width: calc(3rem * 7);
-  border-radius: ${p => p.theme.sizing.borderRadius};
-  box-shadow: inset 0 0 ${p => p.theme.sizing.border} 0
-    ${p => p.theme.colors.meta};
-`;
-
-Wrapper.defaultProps = { theme: defaultPrefabTheme };
-
-const NextPrevMonthButton = styled.button`
-  background: transparent;
-  padding: 0;
-  font: inherit;
-  border: none;
-  width: 3rem;
-  height: 3rem;
-  background: transparent;
-  cursor: pointer;
-  border-radius: ${p => p.theme.sizing.borderRadius};
-  :hover {
-    background: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.bg};
-    svg polyline {
-      stroke: #fff;
-    }
-  }
-`;
-
-NextPrevMonthButton.defaultProps = { theme: defaultPrefabTheme };
-
-const DatePickerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  line-height: 3rem;
-`;
-
-const DayButton = styled.button<{ isSelected: boolean; isToday: boolean }>(
-  props => ({
-    width: "3rem",
-    height: "3rem",
-    border: "none",
-    font: "inherit",
-    fontWeight: props.isToday ? "bold" : "normal",
-    background: props.isSelected ? props.theme.colors.accent : "transparent",
-    color: props.isSelected ? props.theme.colors.bg : "inherit",
-    cursor: "pointer",
-    borderRadius: props.theme.sizing.borderRadius,
-    ":hover": {
-      background: props.theme.colors.accent,
-      color: "#fff"
-    }
-  })
-);
-
-DayButton.defaultProps = { theme: defaultPrefabTheme };
-
-const BlankDay = styled.span`
-  width: 3rem;
-  height: 3rem;
-`;
 
 const monthFormatter = new Intl.DateTimeFormat("en-us", { month: "long" });
 
@@ -142,27 +78,27 @@ function DatePicker(
   );
 
   return (
-    <Wrapper ref={ref}>
-      <DatePickerHeader>
-        <NextPrevMonthButton onClick={previousMonth} type="button">
-          <ArrowLeft />
-        </NextPrevMonthButton>
+    <div ref={ref}>
+      <div>
+        <button onClick={previousMonth} type="button">
+          Prev
+        </button>
         <div style={{ textAlign: "center" }}>
           {monthFormatter.format(
             new Date(calendarInfo.year, calendarInfo.month)
           )}{" "}
           {calendarInfo.year}
         </div>
-        <NextPrevMonthButton onClick={nextMonth} type="button">
-          <ArrowRight />
-        </NextPrevMonthButton>
-      </DatePickerHeader>
+        <button onClick={nextMonth} type="button">
+          Next
+        </button>
+      </div>
 
       <div>
         {Array(calendarInfo.startDayOfWeek)
           .fill(0)
           .map((_item, index) => (
-            <BlankDay key={index} />
+            <span key={index} />
           ))}
         {Array(calendarInfo.numDaysInMonth)
           .fill(0)
@@ -178,20 +114,20 @@ function DatePicker(
               rightNowInfo.date === index;
 
             return (
-              <DayButton
+              <button
                 onClick={() => {
                   handleSelectDate(index);
                 }}
                 key={index}
-                isSelected={isSelected}
-                isToday={isToday}
+                // isSelected={isSelected}
+                // isToday={isToday}
               >
                 {index + 1}
-              </DayButton>
+              </button>
             );
           })}
       </div>
-    </Wrapper>
+    </div>
   );
 }
 

@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
-import { Label, Input } from "../";
-import { useField } from "../Form";
-import { PrefabFieldProps } from "../types";
+import { useField } from "./Form";
+import { PrefabFieldProps } from "./types";
 
 export default function TextField(props: PrefabFieldProps) {
   const { label, name } = props;
@@ -16,8 +15,8 @@ export default function TextField(props: PrefabFieldProps) {
 
   return (
     <>
-      <Label>{label}</Label>
-      <Input name={name} value={value} onChange={handleChange} />
+      <label>{label}</label>
+      <input name={name} value={value} onChange={handleChange} />
     </>
   );
 }

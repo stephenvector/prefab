@@ -13,11 +13,6 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*"],
-  "exclude": [
-    "src/**/*.test.tsx",
-    "*/__tests__/**/*",
-    "coverage",
-    "node_modules"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
