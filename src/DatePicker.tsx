@@ -1,134 +1,170 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useState } from "react";
+import styled from "@emotion/styled";
+import { useField } from "./Form";
+import Label from "./Label";
 
 const monthFormatter = new Intl.DateTimeFormat("en-us", { month: "long" });
 
-type CalendarInfo = {
-  year: number;
-  month: number;
-  date: number;
-  numDaysInMonth: number;
-  startDayOfWeek: number;
-};
+const StyledDateField = styled.div`
+  border-radius: 3px;
+  text-align: center;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+  width: 14rem;
+  box-shadow: 0 0 0.25rem 0 rgba(0, 0, 0, 0.1);
+`;
 
-function getCalendarInfo(
-  date: Date,
-  atBeginningOfMonth: boolean = false
-): CalendarInfo {
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    date: atBeginningOfMonth ? 0 : date.getDate(),
-    numDaysInMonth: new Date(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      0
-    ).getDate(),
-    startDayOfWeek: new Date(date.getFullYear(), date.getMonth(), 1).getDay()
-  };
+const Header = styled.div`
+  display: flex;
+  border-bottom: 2px solid #fff;
+  button {
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: none;
+    padding: none;
+    margin: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    width: 2rem;
+  }
+  & > div {
+    width: 10rem;
+  }
+`;
+
+const DaysHeader = styled.div`
+  display: flex;
+  span {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+  }
+`;
+
+const Days = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  span,
+  button {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+  }
+  button {
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+  }
+`;
+
+function getNumberOfDaysInMonth(date: Date) {
+  return new Date(
+    Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 0)
+  ).getDate();
 }
 
 type DatePickerProps = {
-  value: number;
-  onChange(val: number): void;
+  name: string;
+  label: string;
 };
 
-function DatePicker(
-  { value, onChange }: DatePickerProps,
-  ref: React.Ref<HTMLDivElement>
-) {
-  const [selectedDateInfo, setSelectedDateInfo] = useState(() =>
-    getCalendarInfo(new Date(value))
-  );
+export default function DateField(props: DatePickerProps) {
+  const { label, name } = props;
+  const { onChange } = useField(name);
+  const [beginningOfCurrentMonth, setBeginningOfCurrentMonth] = useState(() => {
+    const rightNow = new Date();
 
-  const [calendarInfo, setCalendarInfo] = useState(() =>
-    getCalendarInfo(new Date(value), true)
-  );
+    rightNow.setDate(1);
 
-  const [rightNowInfo] = useState(() => getCalendarInfo(new Date(), true));
-
-  useEffect(() => {
-    setSelectedDateInfo(getCalendarInfo(new Date(value)));
-  }, [value]);
+    return rightNow;
+  });
 
   const handleSelectDate = useCallback(
     (date: number) => {
-      const newValue = new Date(
-        Date.UTC(calendarInfo.year, calendarInfo.month, date)
-      ).getTime();
-
-      onChange(newValue);
+      onChange(new Date(beginningOfCurrentMonth).setDate(date));
     },
-    [calendarInfo, onChange]
+    [onChange, beginningOfCurrentMonth]
   );
 
-  const previousMonth = useCallback(
-    function previousMonth() {
-      const newNow = new Date(calendarInfo.year, calendarInfo.month - 1);
-      setCalendarInfo(getCalendarInfo(newNow, true));
-    },
-    [calendarInfo, setCalendarInfo, getCalendarInfo]
-  );
+  const previousMonth = useCallback(() => {
+    if (beginningOfCurrentMonth.getMonth() === 0) {
+      const newDate = new Date(beginningOfCurrentMonth);
+      newDate.setFullYear(newDate.getFullYear() - 1);
+      newDate.setMonth(11);
+      setBeginningOfCurrentMonth(newDate);
+    } else {
+      const newDate = new Date(beginningOfCurrentMonth);
+      newDate.setMonth(newDate.getMonth() - 1);
+      setBeginningOfCurrentMonth(newDate);
+    }
+  }, [beginningOfCurrentMonth]);
 
-  const nextMonth = useCallback(
-    function nextMonth() {
-      const newNow = new Date(calendarInfo.year, calendarInfo.month + 1);
-      setCalendarInfo(getCalendarInfo(newNow, true));
-    },
-    [calendarInfo, setCalendarInfo, getCalendarInfo]
-  );
+  const nextMonth = useCallback(() => {
+    if (beginningOfCurrentMonth.getMonth() === 11) {
+      const newDate = new Date(beginningOfCurrentMonth);
+      newDate.setFullYear(newDate.getFullYear() + 1);
+      newDate.setMonth(0);
+      setBeginningOfCurrentMonth(newDate);
+    } else {
+      const newDate = new Date(beginningOfCurrentMonth);
+      newDate.setMonth(newDate.getMonth() + 1);
+      setBeginningOfCurrentMonth(newDate);
+    }
+  }, [beginningOfCurrentMonth]);
 
   return (
-    <div ref={ref}>
-      <div>
-        <button onClick={previousMonth} type="button">
-          Prev
-        </button>
-        <div style={{ textAlign: "center" }}>
-          {monthFormatter.format(
-            new Date(calendarInfo.year, calendarInfo.month)
-          )}{" "}
-          {calendarInfo.year}
-        </div>
-        <button onClick={nextMonth} type="button">
-          Next
-        </button>
-      </div>
+    <>
+      <Label>{label}</Label>
+      <StyledDateField>
+        <Header>
+          <button onClick={previousMonth} type="button">
+            &lt;
+          </button>
 
-      <div>
-        {Array(calendarInfo.startDayOfWeek)
-          .fill(0)
-          .map((_item, index) => (
-            <span key={index} />
-          ))}
-        {Array(calendarInfo.numDaysInMonth)
-          .fill(0)
-          .map((_item, index) => {
-            let isSelected =
-              selectedDateInfo.year === calendarInfo.year &&
-              selectedDateInfo.month === calendarInfo.month &&
-              selectedDateInfo.date === index;
+          <div style={{ textAlign: "center" }}>
+            {monthFormatter.format(beginningOfCurrentMonth)}
+            <br />
+            {beginningOfCurrentMonth.getFullYear()}
+          </div>
 
-            let isToday =
-              rightNowInfo.year === calendarInfo.year &&
-              rightNowInfo.month === calendarInfo.month &&
-              rightNowInfo.date === index;
+          <button onClick={nextMonth} type="button">
+            &gt;
+          </button>
+        </Header>
 
-            return (
+        <DaysHeader>
+          <span>S</span>
+          <span>M</span>
+          <span>T</span>
+          <span>W</span>
+          <span>T</span>
+          <span>F</span>
+          <span>S</span>
+        </DaysHeader>
+
+        <Days>
+          {Array(beginningOfCurrentMonth.getDay())
+            .fill(0)
+            .map((_v, index) => (
+              <span key={index}>&nbsp;</span>
+            ))}
+          {Array(getNumberOfDaysInMonth(beginningOfCurrentMonth))
+            .fill(0)
+            .map((_v, index) => (
               <button
-                onClick={() => {
+                key={index}
+                onClick={e => {
+                  e.preventDefault();
                   handleSelectDate(index);
                 }}
-                key={index}
-                // isSelected={isSelected}
-                // isToday={isToday}
               >
                 {index + 1}
               </button>
-            );
-          })}
-      </div>
-    </div>
+            ))}
+        </Days>
+      </StyledDateField>
+    </>
   );
 }
-
-export default React.forwardRef(DatePicker);

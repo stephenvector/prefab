@@ -23,16 +23,13 @@ export function isValidHex(hexOrNot?: string): boolean {
     .slice(1)
     .toLowerCase()
     .split("")
-    .reduce(
-      (acc, letter) => {
-        if (VALID_HEX_CHARS.indexOf(letter) === -1) {
-          return [...acc, letter];
-        }
+    .reduce((acc, letter) => {
+      if (VALID_HEX_CHARS.indexOf(letter) === -1) {
+        return [...acc, letter];
+      }
 
-        return acc;
-      },
-      [] as string[]
-    );
+      return acc;
+    }, [] as string[]);
 
   if (invalidChars.length > 0) {
     return false;

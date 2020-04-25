@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
-import PropTypes from "prop-types";
 
 interface FormContextShape {
   values: {
@@ -28,7 +27,7 @@ export default function Form<T>(props: FormProps<T>) {
       e.preventDefault();
       onSubmit(values);
     },
-    [values]
+    [values, onSubmit]
   );
 
   const setValue = useCallback(
@@ -38,7 +37,7 @@ export default function Form<T>(props: FormProps<T>) {
         [key]: value
       });
     },
-    [values]
+    [values, setValues]
   );
 
   return (
@@ -55,7 +54,7 @@ export function useField(name: string) {
     (newValue: any) => {
       setValue(name, newValue);
     },
-    [name]
+    [name, setValue]
   );
 
   return {

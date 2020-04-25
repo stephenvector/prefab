@@ -1,31 +1,58 @@
-import React from "react";
+import styled from "./styled";
+import { defaultPrefabTheme, lightenHex } from "./";
+import { Theme } from "./types";
 
 interface ButtonProps {
-  /** The type of button */
-  type: "submit" | "button" | "reset";
-  children: React.ReactNode;
-  variant?: "default" | "inverse" | "outline" | "inverse-outline";
-  /**
-   * Background color
-   */
+  fullWidth?: boolean;
+  theme?: Theme;
+  outline?: boolean;
   bg?: string;
-  /**
-   * Foreground color, color of text and border
-   */
   fg?: string;
-  disabled?: boolean;
 }
 
-const buttonStyle = {
-  border: "none",
-  font: "inherit",
-  background: "#000",
-  color: "#fff",
-  padding: "0.5rem 1rem"
+const Button = styled.button<ButtonProps>(props => {
+  let bg = props.bg ? props.bg : props.theme.colors.accent;
+  let fg = props.fg ? props.fg : props.theme.colors.bg;
+
+  if (props.outline) {
+    const temp = bg;
+    bg = fg;
+    fg = temp;
+  }
+  let borderColor = props.outline ? fg : bg;
+  return {
+    font: "inherit",
+    fontSize: "1rem",
+    fontWeight: 700,
+    margin: 0,
+    textDecoration: "none",
+    padding: "0 2rem",
+    cursor: "pointer",
+    display: "inline-block",
+    border: "none",
+    width: props.fullWidth ? "100%" : "auto",
+    lineHeight: props.theme.sizing.formControls,
+    borderRadius: props.theme.sizing.borderRadius,
+    background: bg,
+    color: fg,
+    boxShadow: `inset 0 0 0 ${props.theme.sizing.border} ${borderColor}`,
+    ":focus": {
+      outline: "solid 6px #e56",
+      outlineOffset: "2px"
+    },
+    ":hover": {
+      color: props.outline ? bg : fg,
+      background: lightenHex(props.outline ? fg : bg, 0.1),
+      boxShadow: `inset 0 0 0 ${props.theme.sizing.border} 0 ${lightenHex(
+        borderColor,
+        0.1
+      )}`
+    }
+  };
+});
+
+Button.defaultProps = {
+  theme: defaultPrefabTheme
 };
-
-function Button({ bg, fg, variant, ...otherProps }: ButtonProps) {
-  return <button {...otherProps} style={buttonStyle} />;
-}
 
 export default Button;
