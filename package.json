@@ -32,7 +32,7 @@
   "author": "Stephen Vector",
   "module": "dist/prefab.esm.js",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.10.2",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
