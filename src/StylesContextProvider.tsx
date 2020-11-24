@@ -10,7 +10,7 @@ export default function StylesContextProvider(
   props: StylesContextProviderProps
 ) {
   const [addedStyleTag, setAddedStyleTag] = useState(false);
-  const styleTagId = useState(() => {
+  const [styleTagId] = useState(() => {
     return getRandomString();
   });
 
@@ -21,20 +21,18 @@ export default function StylesContextProvider(
   );
 
   useEffect(() => {
-    if (!document) return
     const styleTag = document.createElement("style");
-    styleTag.setAttribute("id", styleTagId.toString());
+    styleTag.setAttribute("id", styleTagId);
     const headElements = document.getElementsByTagName("head");
     const headElement = headElements.item(0);
-    if (headElement) {
+    if (headElement !== null) {
       headElement.appendChild(styleTag);
       setAddedStyleTag(true);
     }
   }, []);
 
   useEffect(() => {
-    if (!document) return
-    const styleTag = document.getElementById(styleTagId.toString());
+    const styleTag = document.getElementById(styleTagId);
     if (styleTag) {
       styleTag.textContent = `body{background: red}`;
     }

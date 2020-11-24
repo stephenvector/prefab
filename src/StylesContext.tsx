@@ -1,10 +1,10 @@
 import { createContext, CSSProperties } from "react";
 
-type StylesContext = {
+type StylesContextShape = {
   addStyle: (selector: string, cssProps: CSSProperties) => void;
 };
 
-const StylesContext = createContext<StylesContext>({
+const StylesContext = createContext<StylesContextShape>({
   addStyle: () => {},
 });
 

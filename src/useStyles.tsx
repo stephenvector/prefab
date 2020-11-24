@@ -11,10 +11,19 @@ export default function useStyles(props: UseStylesProps) {
     return getRandomString();
   });
   const stylesContext = useContext(StylesContext);
+  const [currentStyles, setCurrentStyles] = useState(() => {
+    return props.styles;
+  });
 
   useEffect(() => {
-    stylesContext.addStyle(randomString, props.styles);
-  }, [stylesContext, props.styles, randomString]) 
- 
+    if (JSON.stringify(props.styles) !== JSON.stringify(currentStyles)) {
+      setCurrentStyles(props.styles);
+    }
+  }, [props.styles, currentStyles]);
+
+  useEffect(() => {
+    stylesContext.addStyle(randomString, currentStyles);
+  }, [currentStyles]);
+
   return { id: randomString };
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "./useStyles"
+import useStyles from "./useStyles";
 
 interface ButtonProps
   extends React.DetailedHTMLProps<
@@ -10,10 +10,10 @@ interface ButtonProps
 export default function Button(props: ButtonProps) {
   const sty = useStyles({
     styles: {
-      background: "red"
-    }
-  })
-  console.log(sty);
+      background: "red",
+    },
+  });
+
   return <button {...props} />;
 }
 
