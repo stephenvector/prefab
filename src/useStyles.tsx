@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import getRandomString from "./getRandomString";
 import StylesContext from "./StylesContext";
 
@@ -11,5 +11,10 @@ export default function useStyles(props: UseStylesProps) {
     return getRandomString();
   });
   const stylesContext = useContext(StylesContext);
-  return StylesContext;
+
+  useEffect(() => {
+    stylesContext.addStyle(randomString, props.styles);
+  }, [stylesContext, props.styles, randomString]) 
+ 
+  return { id: randomString };
 }

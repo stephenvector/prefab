@@ -3,7 +3,7 @@ import getRandomString from "./getRandomString";
 import StylesContext from "./StylesContext";
 
 type StylesContextProviderProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export default function StylesContextProvider(
@@ -21,6 +21,7 @@ export default function StylesContextProvider(
   );
 
   useEffect(() => {
+    if (!document) return
     const styleTag = document.createElement("style");
     styleTag.setAttribute("id", styleTagId.toString());
     const headElements = document.getElementsByTagName("head");
@@ -32,6 +33,7 @@ export default function StylesContextProvider(
   }, []);
 
   useEffect(() => {
+    if (!document) return
     const styleTag = document.getElementById(styleTagId.toString());
     if (styleTag) {
       styleTag.textContent = `body{background: red}`;
@@ -50,7 +52,7 @@ export default function StylesContextProvider(
 
   return (
     <StylesContext.Provider value={{ addStyle }}>
-      {props.children}
+      {props.children ? props.children : null}
     </StylesContext.Provider>
   );
 }
