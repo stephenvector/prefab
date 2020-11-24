@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "./styled";
-import { RadioActive, RadioInactive } from "@stephenvector/picto";
 import { RadioProps, RadioOptionProps, OptionValue } from "./types";
 import { useOptionsWithIds } from "./hooks";
 
@@ -63,7 +62,7 @@ function RadioGroup(props: RadioProps, ref: React.Ref<HTMLDivElement>) {
 
   return (
     <div ref={ref} role="radiogroup">
-      {optionsWithIds.map(option => (
+      {optionsWithIds.map((option) => (
         <RadioOption
           key={option.id}
           isActive={option.value === value}

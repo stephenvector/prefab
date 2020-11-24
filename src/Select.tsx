@@ -3,12 +3,11 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import { defaultPrefabTheme } from "./";
 import { SelectOptionProps, SelectProps, OptionValue } from "./types";
 import { useOptionsWithIds } from "./hooks";
-import { ArrowDown, ArrowUp } from "@stephenvector/picto";
 import styled from "./styled";
 
 const SelectOptionListItem = styled.li`
@@ -17,8 +16,8 @@ const SelectOptionListItem = styled.li`
   user-select: "none";
   :hover,
   :focus {
-    background: ${p => p.theme.colors.accent};
-    color: ${p => p.theme.colors.bg};
+    background: ${(p) => p.theme.colors.accent};
+    color: ${(p) => p.theme.colors.bg};
   }
 `;
 
@@ -66,8 +65,8 @@ function SelectOption(props: SelectOptionProps) {
 SelectOption.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectControl = styled.div`
-  height: ${p => p.theme.sizing.formControls};
-  border-radius: ${p => p.theme.sizing.borderRadius};
+  height: ${(p) => p.theme.sizing.formControls};
+  border-radius: ${(p) => p.theme.sizing.borderRadius};
   display: flex;
   min-width: 10rem;
   cursor: pointer;
@@ -81,8 +80,8 @@ const CurrentValue = styled.div`
   margin: 0;
   border: none;
   text-indent: 0.5rem;
-  height: ${p => p.theme.sizing.formControls};
-  line-height: ${p => p.theme.sizing.formControls};
+  height: ${(p) => p.theme.sizing.formControls};
+  line-height: ${(p) => p.theme.sizing.formControls};
   flex: 1 1 auto;
   background: transparent;
 `;
@@ -90,8 +89,8 @@ CurrentValue.defaultProps = { theme: defaultPrefabTheme };
 
 const ToggleButton = styled.button`
   border: none;
-  width: ${p => p.theme.sizing.formControls};
-  height: ${p => p.theme.sizing.formControls};
+  width: ${(p) => p.theme.sizing.formControls};
+  height: ${(p) => p.theme.sizing.formControls};
   padding: 0;
   font: inherit;
   margin: 0;
@@ -100,18 +99,18 @@ const ToggleButton = styled.button`
 ToggleButton.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectOptions = styled.ul<{ isOpen: boolean }>`
-  background: ${p => p.theme.colors.bg};
-  border-bottom-left-radius: ${p => p.theme.sizing.borderRadius};
-  border-bottom-right-radius: ${p => p.theme.sizing.borderRadius};
+  background: ${(p) => p.theme.colors.bg};
+  border-bottom-left-radius: ${(p) => p.theme.sizing.borderRadius};
+  border-bottom-right-radius: ${(p) => p.theme.sizing.borderRadius};
   box-shadow: inset 0 0 0
-    ${p => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
-  display: ${p => (p.isOpen ? "block" : "none")};
+    ${(p) => `${p.theme.sizing.border} ${p.theme.colors.accent}`};
+  display: ${(p) => (p.isOpen ? "block" : "none")};
   left: 0;
-  line-height: ${p => p.theme.sizing.formControls};
+  line-height: ${(p) => p.theme.sizing.formControls};
   list-style-type: none;
   margin: 0;
   max-height: 13rem;
-  min-height: ${p => p.theme.sizing.formControls};
+  min-height: ${(p) => p.theme.sizing.formControls};
   overflow-y: auto;
   padding: 0;
   position: absolute;
@@ -123,7 +122,7 @@ const SelectOptions = styled.ul<{ isOpen: boolean }>`
 SelectOptions.defaultProps = { theme: defaultPrefabTheme };
 
 const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>(
-  props => {
+  (props) => {
     return {
       position: "relative",
       borderRadius: props.theme.sizing.borderRadius,
@@ -135,8 +134,8 @@ const SelectWrapper = styled.div<{ isOpen: boolean; isFocused: boolean }>(
         : props.theme.sizing.borderRadius,
       boxShadow: `inset 0 0 ${props.theme.sizing.border} ${props.theme.colors.meta}`,
       ":focus": {
-        boxShadow: `inset 0 0 ${props.theme.sizing.border} ${props.theme.colors.accent}`
-      }
+        boxShadow: `inset 0 0 ${props.theme.sizing.border} ${props.theme.colors.accent}`,
+      },
     };
   }
 );
@@ -154,7 +153,7 @@ function Select(
   const optionsWithIds = useOptionsWithIds(options);
 
   useEffect(() => {
-    let match = options.find(i => i.value === value);
+    let match = options.find((i) => i.value === value);
     if (match !== undefined) {
       setCurrentValueLabel(match.label);
     } else {
@@ -222,7 +221,7 @@ function Select(
         isOpen={isOpen}
         aria-hidden={!isOpen}
       >
-        {optionsWithIds.map(option => (
+        {optionsWithIds.map((option) => (
           <SelectOption
             toggleOption={toggleOption}
             focused={false}
