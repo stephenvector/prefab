@@ -11,6 +11,8 @@ export default function Button(props: ButtonProps) {
   const sty = useStyles({
     styles: {
       background: "red",
+      border: "none",
+      font: "inherit",
     },
   });
 
