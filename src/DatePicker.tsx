@@ -5,6 +5,8 @@ import Label from "./Label";
 
 const monthFormatter = new Intl.DateTimeFormat("en-us", { month: "long" });
 
+const yearFormatter = new Intl.DateTimeFormat("en-us", { year: "numeric" });
+
 const StyledDateField = styled.div`
   border-radius: 3px;
   text-align: center;
